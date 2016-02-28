@@ -1,3 +1,8 @@
+require 'google/apis/drive_v2'
+# require 'auth/client_secret.json'
+require 'google/api_client/client_secrets'
+
+
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
