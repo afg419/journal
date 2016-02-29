@@ -10,7 +10,7 @@
 
 <body class="application-body-<%=background%>">
   <div class=" <%= background %> ">
-    <%= render(partial: '/navs/logged_in_nav') if user_info %>
+    <%= render(partial: '/navs/logged_in_nav') if current_user %>
     <%= yield %>
   </div>
 </body>

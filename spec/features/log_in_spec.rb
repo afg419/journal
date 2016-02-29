@@ -1,20 +1,34 @@
 require 'rails_helper'
 
 RSpec.feature "LogInSpec", type: :feature do
-  scenario "A user can log in through drive" do
+  scenario "A logged in user can see email" do
     VCR.use_cassette 'login' do
       mock_login
-      visit root_path
+      visit dashboard_path
       expect(page).to have_content("afg419@gmail.com")
+      expect(page).to have_content("Logout")
     end
   end
 
-  # scenario "A user can be oauthed with drive" do
-  #   VCR.use_cassette 'oauth' do
-  #     mock_oauth
-  #     visit root_path
-  #     click_on "Login with Google Drive"
-  #     expect(page).to have_content("afg419@gmail.com")
-  #   end
-  # end
+  scenario "A non-logged in user can see login button" do
+    VCR.use_cassette 'not-logged-in' do
+      visit root_path
+      expect(page).to have_content("Login with Google Drive")
+    end
+  end
+
+  scenario "A non-logged in user redirected to root" do
+    VCR.use_cassette 'not-logged-in' do
+      visit dashboard_path
+      expect(page).to have_content("Login with Google Drive")
+    end
+  end
+
+  scenario "A logged in user redirected to dashboard_path" do
+    VCR.use_cassette 'login' do
+      mock_login
+      visit root_path
+      expect(page).to have_content("Logout")
+    end
+  end
 end

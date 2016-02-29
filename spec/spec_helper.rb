@@ -23,11 +23,8 @@ RSpec.configure do |config|
   # end
 
   def mock_login
-    ApplicationController.any_instance.stubs(:access_token).returns("ya29.lwJeg4EO0b2MKxbBDuTBwW1iBJjBktAWED2I8-RBX2W7v4In5vyQDK2ynpIZv-ntZaY")
-    # ApplicationController.any_instance.stubs(:user_info).returns(mock_user_info)
-
-    # ApplicationController.any_instance.stubs(:google_service).returns(true)
-    # ApplicationController.any_instance.stubs(:current_user_info).returns(mock_user_info)
+    ApplicationController.any_instance.stubs(:current_user).returns(User.find_or_create_by_auth(mock_user_info))
+    ApplicationController.any_instance.stubs(:access_token).returns("ya29.lwI69xOk_BgRvmV-xPKLiQllNHkO26TGAKXZJgWKRQ4F0hoA1Pjb9vH3SIZWfyBSZ0U")
   end
 
   def mock_user_info
