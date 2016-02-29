@@ -3,6 +3,7 @@ require 'google/apis/drive_v2'
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user, :google_service, :user_info
+  before_action :authorize!
 
   def auth
     @ac ||= Auth.new( {"access_token" => access_token} )
@@ -12,12 +13,16 @@ class ApplicationController < ActionController::Base
     @gs ||= GoogleService.new( auth, {"user_info" => user_info} )
   end
 
-  def user_user?
-    !!current_user
+  def current_user
+    @current_user ||= User.find_or_create_by_auth(google_service.user_info) if access_token
   end
 
-  def current_user
-    @current_user ||= User.find_or_create_by_auth(google_service.user_info)
+  def authorize!
+    @ps = PermissionService.new(current_user)
+    permission = @ps.allow?(params[:controller], params[:action])
+    unless permission[0]
+      redirect_to permission[1]
+    end
   end
 
 private
