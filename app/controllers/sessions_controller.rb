@@ -8,13 +8,13 @@ class SessionsController < ApplicationController
 
   def destroy
     session.clear
-    redirect_to dashboard_path
+    redirect_to root_path
   end
 
   def create
-    auth = Auth.new(params)
+    auth = Auth.new( {"code" => code} )
     session[:access_token] = auth.client.access_token
-    service = GoogleService.new(auth, session)
+    service = GoogleService.new(auth, {"access_token" => access_token})
     session[:user_info] = service.user_info
     redirect_to dashboard_path
   end

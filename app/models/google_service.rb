@@ -4,8 +4,10 @@ class GoogleService
   def initialize(auth, opts)
     @auth_client = auth.client
     @user_info = opts["user_info"]
-    set_drive if auth_client.access_token
-    set_user_info if drive
+    if auth_client.access_token
+      set_drive
+      set_user_info
+    end
   end
 
   def set_drive
@@ -20,9 +22,9 @@ class GoogleService
 
   def user_params(user)
     {
-               name: user.display_name,
-              email: user.email_address,
-      permission_id: user.permission_id
+               "name" => user.display_name,
+              "email" => user.email_address,
+      "permission_id" => user.permission_id
     }
   end
 end

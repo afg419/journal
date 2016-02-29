@@ -3,23 +3,15 @@
 
 <head>
   <title>Reflection</title>
-  <!-- <link href='https://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
   <%= stylesheet_link_tag    'application', media: 'all'%>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 
 <body class="application-body-<%=background%>">
-
-  <%# if in_game %>
-    <%#= render partial: '/shared/game_nav' %>
-  <%# else %>
-    <%#= render partial: '/shared/nav' %>
-  <%# end %>
-
-    <%# flash.each do |type, msg| %>
-    <%# end %>
+  <div class=" <%= background %> ">
+    <%= render(partial: '/navs/logged_in_nav') if user_info %>
     <%= yield %>
+  </div>
 </body>
 </html>

@@ -1,0 +1,15 @@
+<nav class="nav logged-in-nav">
+  <ul class="nav navbar-nav navbar-right">
+    <li><br></li>
+  </ul>
+  <ul class="nav navbar-nav navbar-right">
+    <li><%= link_to google_service.user_info["email"] + " Dashboard", logout_path, method: :delete, class:"nav-button" %></li>
+    <li><%= link_to "New Journal Entry", logout_path, method: :delete, class:"nav-button"  %></li>
+    <li><%= link_to "Browse Journal", logout_path, method: :delete, class:"nav-button"  %></li>
+    <li><br></li>
+  </ul>
+
+  <ul class="nav navbar-nav navbar-left">
+    <li><%= link_to "Logout", logout_path, method: :delete, class:"nav-button" %></li>
+  </ul>
+</nav>

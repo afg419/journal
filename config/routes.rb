@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  root "dashboards#show"
+  root "home#home"
+  # root "dashboards#show"
 
   get 'google_api/auth', to: "sessions#create"
   get 'o/oauth2/auth', to: "sessions#create"

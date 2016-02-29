@@ -25,3 +25,59 @@
    background-size: cover;
    background-attachment: fixed;
  }
+
+ .application-body-dashboard2 {
+   background: url("dashboard2.jpeg") no-repeat center center fixed;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+   background-attachment: fixed;
+ }
+
+ .application-body-dashboard3 {
+   background: url("dashboard3.jpeg") no-repeat center center fixed;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+   background-attachment: fixed;
+ }
+
+
+ .btn-default {
+   background: none;
+   color: #CBC5D1;
+   border-width: 2px;
+   border-color: #62868E;
+ }
+
+ .btn-default:hover {
+   background: none;
+   color: white;
+   border-width: 2px;
+   border-color: white;
+ }
+
+ .logged-in-nav {
+   background-color: rgba(14,12,10,0.9)
+ }
+
+.login{
+  text-align: center;
+  line-height: 800px;
+}
+
+.nav-button{
+  background: none;
+  color: #77909F;
+  border-width: 2px;
+  border-color: #62868E;
+  &:hover{
+    background-color: #62868E;
+    color: black;
+    border-width: 2px;
+    border-color: white;
+
+  }
+}

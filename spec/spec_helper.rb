@@ -18,9 +18,16 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
 
+  # def mock_oauth
+  #   ApplicationController.any_instance.stubs(:code).returns("4/ysYIdCady_uMbzRpWwrZxk6-i1mbpOfJt018Bc_7Le8")
+  # end
+
   def mock_login
-    ApplicationController.any_instance.stubs(:access_token).returns("ya29.lwLA9mwVhn8R23-gJvx5aT5ZColmW2fRf6QZCOyON_IxXGsdbKbc8V-mZpNfdEdVvZA")
-    ApplicationController.any_instance.stubs(:user_info).returns(mock_user_info)
+    ApplicationController.any_instance.stubs(:access_token).returns("ya29.lwJeg4EO0b2MKxbBDuTBwW1iBJjBktAWED2I8-RBX2W7v4In5vyQDK2ynpIZv-ntZaY")
+    # ApplicationController.any_instance.stubs(:user_info).returns(mock_user_info)
+
+    # ApplicationController.any_instance.stubs(:google_service).returns(true)
+    # ApplicationController.any_instance.stubs(:current_user_info).returns(mock_user_info)
   end
 
   def mock_user_info
