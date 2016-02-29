@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   delete 'logout', to: "sessions#destroy"
 
   resource :dashboard, only: [:show]
-
+  resources :journal_entries, only: [:new]
 end

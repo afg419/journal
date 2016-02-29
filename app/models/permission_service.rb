@@ -21,6 +21,7 @@ private
   def user_permissions
     return [true, :ok] if controller == "dashboards"
     return [true, :ok] if controller == "sessions"
+    return [true, :ok] if controller == "journal_entries"
     [false, "/dashboard"]
   end
 
