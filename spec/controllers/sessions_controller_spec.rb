@@ -14,4 +14,10 @@ RSpec.describe SessionsController, type: :controller do
       assert_redirected_to dashboard_path
     end
   end
+
+  it "logs out a user" do
+    delete :destroy
+    expect(response.status).to eq 302
+    assert_redirected_to root_path
+  end
 end
