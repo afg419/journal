@@ -12,9 +12,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    service = GoogleService.new(params)
-    service.relog_in
-    session[:access_token] = service.auth_client.access_token
+    auth = Auth.new(params)
+    session[:access_token] = auth.client.access_token
+    service = GoogleService.new(auth, session)
     session[:user_info] = service.user_info
     redirect_to dashboard_path
   end
