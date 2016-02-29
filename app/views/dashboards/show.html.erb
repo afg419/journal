@@ -1,6 +1,6 @@
 <%= link_to "Login with Google Drive", login_path %>
 <%= link_to "Logout", logout_path, method: :delete %>
 
-<% if session[:user_info] %>
-  Logged in with email: <%= session[:user_info]["email"] %>
+<% if google_service.user_info %>
+  Logged in with email: <%= google_service.user_info["email"] %>
 <% end %>

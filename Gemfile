@@ -12,6 +12,7 @@ gem 'google-api-client'
 gem "figaro"
 
 group :development, :test do
+  gem 'mocha'
   gem 'byebug'
   gem 'pry'
   gem "rspec-rails", "~> 3.0"

@@ -17,9 +17,20 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
-  # rspec-expectations config goes here. You can use an alternate
-  # assertion/expectation library such as wrong or the stdlib/minitest
-  # assertions if you prefer.
+
+  def mock_login
+    ApplicationController.any_instance.stubs(:access_token).returns("ya29.lwLA9mwVhn8R23-gJvx5aT5ZColmW2fRf6QZCOyON_IxXGsdbKbc8V-mZpNfdEdVvZA")
+    ApplicationController.any_instance.stubs(:user_info).returns(mock_user_info)
+  end
+
+  def mock_user_info
+    {
+      "name"=>"Aaron Greenspan",
+      "email"=>"afg419@gmail.com",
+      "permission_id"=>"18263496424187584795"
+    }
+  end
+
   config.mock_with :mocha
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`
