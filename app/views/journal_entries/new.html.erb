@@ -16,36 +16,35 @@
 
             <div class="happy">
               <p>Happy</p>
-              <input class="happy-slide" type="range" name="name" min="0" max="10" value="0"><br>
+              <input class="slider happy-slide" type="range" name="happy" min="0" max="10" value="0"><br>
             </div>
-
             <div class="sad">
               <p>Sad</p>
-              <input class="sad-slide" type="range" name="name" min="0" max="10" value="0"><br>
+              <input class="slider sad-slide" type="range" name="sad" min="0" max="10" value="0"><br>
             </div>
             <div class="angry">
               <p>Angry</p>
-              <input class="sad-slide" type="range" name="name" min="0" max="10" value="0"><br>
+              <input class="slider sad-slide" type="range" name="angry" min="0" max="10" value="0"><br>
             </div>
             <div class="anxious">
               <p>Anxious</p>
-              <input class="sad-slide" type="range" name="name" min="0" max="10" value="0"><br>
+              <input class="slider sad-slide" type="range" name="anxious" min="0" max="10" value="0"><br>
             </div>
             <div class="focused">
               <p>Focused</p>
-              <input class="sad-slide" type="range" name="name" min="0" max="10" value="0"><br>
+              <input class="slider sad-slide" type="range" name="focused" min="0" max="10" value="0"><br>
             </div>
             <div class="content">
               <p>Content</p>
-              <input class="sad-slide" type="range" name="name" min="0" max="10" value="0"><br>
+              <input class="slider sad-slide" type="range" name="content" min="0" max="10" value="0"><br>
             </div>
             <!-- <div class="sad">
               Sad
-              <input class="sad-slide" type="range" name="name" min="0" max="10" value="0"><br>
+              <input class="slider sad-slide" type="range" name="name" min="0" max="10" value="0"><br>
             </div>
             <div class="sad">
               Sad
-              <input class="sad-slide" type="range" name="name" min="0" max="10" value="0"><br>
+              <input class="slider sad-slide" type="range" name="name" min="0" max="10" value="0"><br>
             </div> -->
 
           </div>
@@ -58,11 +57,13 @@
         <%= f.text_field :tag, id: "tag", value: "Tag your post with a descriptive title" %>
         <%= f.text_area :body, value: "New Entry" %>
       </div>
-
-      <div class="create-entry">
-        <%= f.submit class:"submit-entry"%>
-      </div>
       <% end %>
+      <div class="create-entry">
+        <a href="#" class="submit-entry">Create New Entry</a>
+        <%#= f.submit class:"submit-entry"%>
+      </div>
+      <div class="user" name="<%= @entry.user.id %>">
+      </div>
     </div>
   </div>
 </div>

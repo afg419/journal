@@ -3,11 +3,12 @@ require 'google/api_client/client_secrets'
 
 class JournalEntriesController < ApplicationController
   def new
-    @entry = JournalEntry.new
+    @entry = JournalEntry.new(user: current_user)
     render layout: 'wide',  :locals => {:background => "dashboard3"}
   end
 
   def create
+    binding.pry
     user_id = current_user.id
     new_entry = google_service.create_file(journal_params[:tag])
     `touch entry#{user_id}.txt`
@@ -17,7 +18,11 @@ class JournalEntriesController < ApplicationController
                                              content_type: 'text/plain')
     `rm entry#{user_id}.txt`
     @entry = JournalEntry.create(file_id: reply.id, user: current_user)
-    redirect_to dashboard_path
+    redirect_to journal_entry_path(@entry)
+  end
+
+  def show
+    @entry = JournalEntry.find(params[:id])
   end
 
   private
