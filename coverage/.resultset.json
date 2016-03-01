@@ -69,10 +69,13 @@
       ],
       "/Users/aarongreenspan/turing/3module/personal_project/journal/app/models/journal_entry.rb": [
         1,
+        1,
         null
       ],
       "/Users/aarongreenspan/turing/3module/personal_project/journal/app/models/user.rb": [
         1,
+        1,
+        null,
         1,
         6,
         6,
@@ -214,20 +217,21 @@
         1,
         0,
         0,
-        null,
         0,
         0,
-        null,
         0,
         null,
         null,
         0,
         0,
-        null,
         0,
         null,
         null,
         1,
+        null,
+        1,
+        null,
+        null,
         null,
         1,
         0,
@@ -235,6 +239,6 @@
         null
       ]
     },
-    "timestamp": 1456800675
+    "timestamp": 1456862899
   }
 }

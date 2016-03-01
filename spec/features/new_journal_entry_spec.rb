@@ -5,7 +5,9 @@ RSpec.feature "New Journal Spec", type: :feature do
     VCR.use_cassette 'new entry' do
       mock_login
       visit dashboard_path
-      click_on "New Journal Entry"
+      within('.logged-in-nav') do
+        click_on "New Journal Entry"
+      end
       expect(current_path).to eq new_journal_entry_path
     end
   end
