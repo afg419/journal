@@ -27,4 +27,8 @@ class GoogleService
       "permission_id" => user.permission_id
     }
   end
+
+  def create_file(title)
+    Google::Apis::DriveV2::File.new(title: title)
+  end
 end

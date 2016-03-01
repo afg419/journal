@@ -9,9 +9,9 @@
 </head>
 
 <body class="application-body-<%=background%>">
-  <div class=" <%= background %> ">
     <%= render(partial: '/navs/logged_in_nav') if current_user %>
-    <%= yield %>
-  </div>
+    <div class="container">
+      <%= yield %>
+    </div>
 </body>
 </html>

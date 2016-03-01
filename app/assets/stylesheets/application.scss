@@ -13,9 +13,12 @@
 
  */
 
-
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+ body {
+   height: 100vh;
+ }
 
  .application-body-home {
    background: url("home.jpeg") no-repeat center center fixed;
@@ -60,7 +63,7 @@
  }
 
  .logged-in-nav {
-   background-color: rgba(14,12,10,0.9)
+   background-color: rgba(14,12,10,0.15)
  }
 
 .login{
@@ -68,16 +71,95 @@
   line-height: 800px;
 }
 
+.nav a:hover{
+  background-color: blue;
+}
+
 .nav-button{
   background: none;
-  color: #77909F;
+  color: #85A1A7;
   border-width: 2px;
   border-color: #62868E;
   &:hover{
     background-color: #62868E;
     color: black;
     border-width: 2px;
-    border-color: white;
+    // border-color: white;
 
   }
 }
+
+textarea#journal_entry_body {
+    width: 95%;
+    height: 485px;
+    background-color: rgba(0,0,0,0.75);
+    padding: 20px;
+    color: #FFF3B7;
+}
+
+input#tag{
+  width: 95%;
+  background-color: rgba(0,0,0,0.75);
+  padding: 20px;
+  color: #FFF3B7;
+  border-color:#999999
+}
+
+.emotion-select{
+  background-color: rgba(0,0,0,0.75);
+}
+
+.happy{
+  color: yellow;
+}
+
+.sad{
+  color: blue;
+}
+
+
+// input[type="range" i] {
+//     display: block;
+//     width: 100%;
+//     background-color: red;
+// }
+//
+// input[type="range" i] {
+//     -webkit-appearance: slider-horizontal;
+//     color: red;
+//     padding: initial;
+//     border: initial;
+//     margin: 2px;
+// }
+
+/* STUFF TO DELETE */
+//
+// input[type=range]{
+//     // -webkit-appearance: none;
+// }
+//
+// input[type=range]::-webkit-slider-runnable-track {
+//     width: 300px;
+//     height: 3px;
+//     background: #ddd;
+//     border: none;
+//     border-radius: 3px;
+// }
+//
+// input[type=range]::-webkit-slider-thumb {
+//     -webkit-appearance: none;
+//     border: none;
+//     height: 10px;
+//     width: 10px;
+//     border-radius: 50%;
+//     background: red;
+//     margin-top: -4px;
+// }
+//
+// input[type=range]:focus {
+//     outline: none;
+// }
+//
+// // input[type=range]:focus::-webkit-slider-runnable-track {
+// //     background: #ccc;
+// // }
