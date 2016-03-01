@@ -3,15 +3,15 @@
 
 <head>
   <title>Reflection</title>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Josefin+Slab:600' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    'application', media: 'all'%>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 
 <body class="application-body-<%=background%>">
-    <%= render(partial: '/navs/logged_in_nav') if current_user %>
-    <div class="container">
+    <%= render(partial: '/navs/logged_in_nav', :locals => {:navbar => background} ) if current_user %>
       <%= yield %>
-    </div>
 </body>
 </html>

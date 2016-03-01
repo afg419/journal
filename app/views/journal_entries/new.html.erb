@@ -1,24 +1,38 @@
-<div class="">
-  <br>
-</div>
 <div class="row">
-  <div class="col-md-3 emotion-select">
+  <div class="col-md-2 emotion-select">
+    <div class="row">
+      <div class="col-md-1">
+        <br><br>
+      </div>
       <br>
-      <div class="happy">
-        Happy
-        <input class="happy-slide" type="range" name="name" min="0" max="10" value="0"><br>
+      <div class="col-md-9 emotions">
+        <div class="happy">
+          Happy
+          <input class="happy-slide" type="range" name="name" min="0" max="10" value="0"><br>
+        </div>
+        <div class="sad">
+          Sad
+          <input class="sad-slide" type="range" name="name" min="0" max="10" value="0"><br>
+        </div>
+        <input type="range" name="name" min="0" max="10" value="0"><br>
+        <input type="range" name="name" min="0" max="10" value="0"><br>
+        <input type="range" name="name" min="0" max="10" value="0"><br>
+        <input type="range" name="name" min="0" max="10" value="0"><br>
+        <div class="">
+          <br><br>
+          <br><br>
+          <br><br>
+          <br><br>
+          <br><br>
+          <br><br>
+          <br><br>
+          <br><br><br><br><br><br><br><br>
+        </div>
       </div>
-
-      <div class="sad">
-        Sad
-        <input class="sad-slide" type="range" name="name" min="0" max="10" value="0"><br>
-      </div>
-      <input type="range" name="name" min="0" max="10" value="0"><br>
-      <input type="range" name="name" min="0" max="10" value="0"><br>
-      <input type="range" name="name" min="0" max="10" value="0"><br>
-      <input type="range" name="name" min="0" max="10" value="0"><br>
+    </div>
   </div>
-  <div class="col-md-9">
+  <div class="col-md-10">
+    <br>
     <%= form_for @entry do |f| %>
     <div class="form-group">
       <%= f.text_field :tag, id: "tag", value: "Tag your post with a descriptive title" %>
@@ -28,7 +42,11 @@
       <%= f.text_area :body, value: "New Entry" %>
     </div>
 
-    <%= f.submit class:"create-entry"%>
+    <div class="create-entry">
+      <%= f.submit class:"submit-entry"%>
+    </div>
+
     <% end %>
   </div>
+
 </div>
