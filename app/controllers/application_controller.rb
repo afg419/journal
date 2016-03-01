@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :google_service, :user_info
   before_action :authorize!
 
+  def basic_emotion_prototypes
+    @bep ||= User.find_by(email: "basic_emotion_prototypes").emotion_prototypes
+  end
+
   def auth
     @ac ||= Auth.new( {"access_token" => access_token} )
   end
@@ -14,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.find_or_create_by_auth(google_service.user_info) if access_token
+    @current_user ||= User.find_or_create_by_auth(google_service.user_info, basic_emotion_prototypes) if access_token
   end
 
   def authorize!

@@ -18,38 +18,13 @@
           <div class="emotion-container">
 
 
-            <div class="happy">
-              <p>Happy</p>
-              <input class="slider happy-slide" type="range" name="happy" min="0" max="10" value="0"><br>
-            </div>
-            <div class="sad">
-              <p>Sad</p>
-              <input class="slider sad-slide" type="range" name="sad" min="0" max="10" value="0"><br>
-            </div>
-            <div class="angry">
-              <p>Angry</p>
-              <input class="slider sad-slide" type="range" name="angry" min="0" max="10" value="0"><br>
-            </div>
-            <div class="anxious">
-              <p>Anxious</p>
-              <input class="slider sad-slide" type="range" name="anxious" min="0" max="10" value="0"><br>
-            </div>
-            <div class="focused">
-              <p>Focused</p>
-              <input class="slider sad-slide" type="range" name="focused" min="0" max="10" value="0"><br>
-            </div>
-            <div class="content">
-              <p>Content</p>
-              <input class="slider sad-slide" type="range" name="content" min="0" max="10" value="0"><br>
-            </div>
-            <!-- <div class="sad">
-              Sad
-              <input class="slider sad-slide" type="range" name="name" min="0" max="10" value="0"><br>
-            </div>
-            <div class="sad">
-              Sad
-              <input class="slider sad-slide" type="range" name="name" min="0" max="10" value="0"><br>
-            </div> -->
+            <% current_user.emotion_prototypes.each do |emotion| %>
+              <% name = emotion.name.downcase %>
+              <div class="<%=name%>">
+                <p><%= emotion.name %></p>
+                <input class="slider <%=name%>-slide" type="range" name="<%=name%>" min="0" max="10" value="0"><br>
+              </div>
+            <% end %>
 
           </div>
         </div>
