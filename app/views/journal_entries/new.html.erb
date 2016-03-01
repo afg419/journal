@@ -15,40 +15,28 @@
 
 
             <div class="happy">
-              Happy
+              <p>Happy</p>
               <input class="happy-slide" type="range" name="name" min="0" max="10" value="0"><br>
             </div>
 
-            <div class="row">
-              <div class="small-10 medium-11 columns">
-                <div class="range-slider" data-slider data-options="display_selector: #sliderOutput3;">
-                  <span class="range-slider-handle" role="slider" tabindex="0"></span>
-                  <span class="range-slider-active-segment"></span>
-                </div>
-              </div>
-              <div class="small-2 medium-1 columns">
-                <span id="sliderOutput3"></span>
-              </div>
-            </div>
-
             <div class="sad">
-              Sad
+              <p>Sad</p>
               <input class="sad-slide" type="range" name="name" min="0" max="10" value="0"><br>
             </div>
             <div class="angry">
-              Angry
+              <p>Angry</p>
               <input class="sad-slide" type="range" name="name" min="0" max="10" value="0"><br>
             </div>
             <div class="anxious">
-              Sad
+              <p>Anxious</p>
               <input class="sad-slide" type="range" name="name" min="0" max="10" value="0"><br>
             </div>
             <div class="focused">
-              Sad
+              <p>Focused</p>
               <input class="sad-slide" type="range" name="name" min="0" max="10" value="0"><br>
             </div>
             <div class="content">
-              Sad
+              <p>Content</p>
               <input class="sad-slide" type="range" name="name" min="0" max="10" value="0"><br>
             </div>
             <!-- <div class="sad">
@@ -65,7 +53,7 @@
       </div>
     </div>
     <div class="col-md-10">
-      <%= form_for @entry do |f| %>
+      <%= form_for(@entry, html:{autocomplete:"off"}) do |f| %>
       <div class="form-group">
         <%= f.text_field :tag, id: "tag", value: "Tag your post with a descriptive title" %>
         <%= f.text_area :body, value: "New Entry" %>

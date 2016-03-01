@@ -11,6 +11,7 @@
  * file per style scope.
  *
  //= require_tree .
+ //= require_self
  */
 
  @import "bootstrap-sprockets";
@@ -86,4 +87,10 @@ input[type="range"] {
 .emotion-container{
   // height: 482px
   height: 1040px;
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color: rgb(0, 0, 0)!important;
+    background-image: none;
+    color: rgb(0, 0, 0);
 }

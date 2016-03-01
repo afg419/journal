@@ -12,3 +12,6 @@
 !/log/.keep
 /tmp
 /google
+
+# Ignore application configuration
+/config/application.yml
