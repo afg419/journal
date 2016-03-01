@@ -10,208 +10,80 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
-
+ //= require_tree .
  */
 
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+.dashboard3-show{
+  text-align: center
+}
 
  body {
    height: 100vh;
    font-family: 'Josefin Slab', serif;
  }
 
- .application-body-home {
-   background: url("home.jpeg") no-repeat center center fixed;
-   -webkit-background-size: cover;
-   -moz-background-size: cover;
-   -o-background-size: cover;
-   background-size: cover;
-   background-attachment: fixed;
- }
-
- .application-body-dashboard2 {
-   background: url("dashboard2.jpeg") no-repeat center center fixed;
-   -webkit-background-size: cover;
-   -moz-background-size: cover;
-   -o-background-size: cover;
-   background-size: cover;
-   background-attachment: fixed;
- }
-
- .application-body-dashboard3 {
-   background: url("dashboard3.jpeg") no-repeat center center fixed;
-   -webkit-background-size: cover;
-   -moz-background-size: cover;
-   -o-background-size: cover;
-   background-size: cover;
-   background-attachment: fixed;
- }
-
- .application-body-pool {
-   background: url("pool.jpeg") no-repeat center center fixed;
-   opacity: 10;
-   -webkit-background-size: cover;
-   -moz-background-size: cover;
-   -o-background-size: cover;
-   background-size: cover;
-   background-attachment: fixed;
- }
-
- .application-body-woods {
-   background: url("woods.jpeg") no-repeat center center fixed;
-   opacity: 10;
-   -webkit-background-size: cover;
-   -moz-background-size: cover;
-   -o-background-size: cover;
-   background-size: cover;
-   background-attachment: fixed;
- }
-
- .application-body-solid {
-   background-color: #84A1AB;
-  //  opacity: 10;
-  //  -webkit-background-size: cover;
-  //  -moz-background-size: cover;
-  //  -o-background-size: cover;
-  //  background-size: cover;
-  //  background-attachment: fixed;
- }
-
-
- .solid .logged-in-nav {
-   background-color: rgba(14,12,10,0.65)
- }
-
- .solid  .nav-button{
-   // background: black;
-   color: #C7D4D7;
-   &:hover{
-     background-color: #62868E;
-     color: black;
-     border-width: 2px;
-    //  border-color: white;
-   }
- }
-
-
-
- .dashboard3 .logged-in-nav {
-   background-color: rgba(14,12,10,0.15)
- }
-
- .dashboard3  .nav-button{
-   // background: black;
-   color: #D9C0A1;
-   &:hover{
-     background-color: #62868E;
-     color: black;
-     border-width: 2px;
-     // border-color: white;
-
-   }
- }
-
- .woods .logged-in-nav {
-   background-color: rgba(14,12,10,0.75)
- }
-
- .woods  .nav-button{
-   // background: black;
-   color: #D1D0D0;
-   &:hover{
-     background-color: #62868E;
-     color: black;
-     border-width: 2px;
-     // border-color: white;
-
-   }
- }
-
-
-.login{
-  text-align: center;
-  line-height: 800px;
-  .btn-default {
-    font-size: large;
-    background-color: rgba(0,0,0,0.45);
-    color: #CBC5D1;
-    border-width: 2px;
-    border-color: #62868E;
-    &:hover{
-      background: none;
-      color: white;
-      border-width: 2px;
-      border-color: white;
-    }
-  }
-}
-
-.new-entry{
-  text-align: center;
-  line-height: 800px;
-  .btn-default {
-    font-size: large;
-    background-color: rgba(0,0,0,0.25);
-    color: #FFD582;
-    border-width: 2px;
-    border-color: #99A199;
-    &:hover{
-      background: none;
-      color: white;
-      border-width: 2px;
-      border-color: white;
-    }
-  }
-}
-
-.create-entry {
-  input{
-    font-size: large;
-    background-color: rgba(0,0,0,0.45);
-    color: #CBC5D1;
-    border-width: 2px;
-    border-color: #62868E;
-    &:hover{
-      background: none;
-      color: white;
-      border-width: 2px;
-      border-color: white;
-    }
-  }
-}
-
-
 textarea#journal_entry_body {
   font-family: sans-serif;
-    width: 95%;
-    height: 440px;
-    background-color: rgba(0,0,0,0.65);
-    padding: 20px;
-    color: #C7D4D7;
+  width: 102%;
+  // height: 440px;
+  height: 1000px;
+  // background-color: rgba(200,200,200,1);
+  // background-color: rgba(217, 192, 161, 0.83);
+  // background-color: rgba(0,0,0,0.75);
+  padding: 20px;
+  color: #EAD9C3;
+  // color: #C7D4D7;
+  // color:black;
+  // opacity: 0.4;
+  background-color: rgba(1, 5, 13,0.85);
+  border: none;
+  outline: none;
+  margin-left: -15px;
+  z-index: 9999
+}
+
+.container{
+  // -webkit-filter: blur(3px);
+}
+
+.entry-form{
+  width: 950px;
 }
 
 input#tag{
   font-family:sans-serif;
-  width: 95%;
-  background-color: rgba(0,0,0,0.85);
+  width: 102%;
+  // background-color: rgba(0,0,0,0.15);
+  // background-color: #495A6C;
+  background-color: rgba(43, 60, 78, 0.7);
   padding: 20px;
-  color: #C7D4D7;
-  border-color:#999999
+  // color: #C7D4D7;
+  color: #EAD9C3;
+  border-color:#999999;
+  margin-left: -15px;
+  border: none;
+  outline: none;
+
 }
 
 .emotion-select{
-  background-color: rgba(255,255,255,0.55);
-  .emotions {
-    background-color: #2E383B;
-    padding-top: 10px;
-  }
+  background-color: rgba(1,3,8,0.65);
+
+  // .emotions {
+  //   background-color: #2E383B;
+  //   padding-top: 10px;
+  // }
 }
 
-.happy{
-  color: yellow;
+input[type="range"] {
+    display: block;
+    width: 120%;
 }
 
-.sad{
-  color: blue;
+.emotion-container{
+  // height: 482px
+  height: 1040px;
 }

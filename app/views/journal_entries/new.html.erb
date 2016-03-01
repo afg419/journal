@@ -1,52 +1,80 @@
-<div class="row">
-  <div class="col-md-2 emotion-select">
-    <div class="row">
-      <div class="col-md-1">
-        <br><br>
+<br>
+<h3 style="text-align:center">New Journal Entry</h3>
+<br>
+
+<div class="container entry-form">
+  <div class="row">
+    <div class="col-md-2 emotion-select">
+      <div class="row">
+        <div class="col-md-1">
+          <br>
+        </div>
+        <br>
+        <div class="col-md-10 emotions">
+          <div class="emotion-container">
+
+
+            <div class="happy">
+              Happy
+              <input class="happy-slide" type="range" name="name" min="0" max="10" value="0"><br>
+            </div>
+
+            <div class="row">
+              <div class="small-10 medium-11 columns">
+                <div class="range-slider" data-slider data-options="display_selector: #sliderOutput3;">
+                  <span class="range-slider-handle" role="slider" tabindex="0"></span>
+                  <span class="range-slider-active-segment"></span>
+                </div>
+              </div>
+              <div class="small-2 medium-1 columns">
+                <span id="sliderOutput3"></span>
+              </div>
+            </div>
+
+            <div class="sad">
+              Sad
+              <input class="sad-slide" type="range" name="name" min="0" max="10" value="0"><br>
+            </div>
+            <div class="angry">
+              Sad
+              <input class="sad-slide" type="range" name="name" min="0" max="10" value="0"><br>
+            </div>
+            <div class="anxious">
+              Sad
+              <input class="sad-slide" type="range" name="name" min="0" max="10" value="0"><br>
+            </div>
+            <div class="focused">
+              Sad
+              <input class="sad-slide" type="range" name="name" min="0" max="10" value="0"><br>
+            </div>
+            <div class="content">
+              Sad
+              <input class="sad-slide" type="range" name="name" min="0" max="10" value="0"><br>
+            </div>
+            <!-- <div class="sad">
+              Sad
+              <input class="sad-slide" type="range" name="name" min="0" max="10" value="0"><br>
+            </div>
+            <div class="sad">
+              Sad
+              <input class="sad-slide" type="range" name="name" min="0" max="10" value="0"><br>
+            </div> -->
+
+          </div>
+        </div>
       </div>
-      <br>
-      <div class="col-md-9 emotions">
-        <div class="happy">
-          Happy
-          <input class="happy-slide" type="range" name="name" min="0" max="10" value="0"><br>
-        </div>
-        <div class="sad">
-          Sad
-          <input class="sad-slide" type="range" name="name" min="0" max="10" value="0"><br>
-        </div>
-        <input type="range" name="name" min="0" max="10" value="0"><br>
-        <input type="range" name="name" min="0" max="10" value="0"><br>
-        <input type="range" name="name" min="0" max="10" value="0"><br>
-        <input type="range" name="name" min="0" max="10" value="0"><br>
-        <div class="">
-          <br><br>
-          <br><br>
-          <br><br>
-          <br><br>
-          <br><br>
-          <br><br>
-          <br><br>
-          <br><br><br><br><br><br><br><br>
-        </div>
+    </div>
+    <div class="col-md-10">
+      <%= form_for @entry do |f| %>
+      <div class="form-group">
+        <%= f.text_field :tag, id: "tag", value: "Tag your post with a descriptive title" %>
+        <%= f.text_area :body, value: "New Entry" %>
       </div>
+
+      <div class="create-entry">
+        <%= f.submit class:"submit-entry"%>
+      </div>
+      <% end %>
     </div>
   </div>
-  <div class="col-md-10">
-    <br>
-    <%= form_for @entry do |f| %>
-    <div class="form-group">
-      <%= f.text_field :tag, id: "tag", value: "Tag your post with a descriptive title" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.text_area :body, value: "New Entry" %>
-    </div>
-
-    <div class="create-entry">
-      <%= f.submit class:"submit-entry"%>
-    </div>
-
-    <% end %>
-  </div>
-
 </div>

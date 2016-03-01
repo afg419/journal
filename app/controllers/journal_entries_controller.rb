@@ -4,7 +4,7 @@ require 'google/api_client/client_secrets'
 class JournalEntriesController < ApplicationController
   def new
     @entry = JournalEntry.new
-    render layout: 'wide',  :locals => {:background => "solid"}
+    render layout: 'wide',  :locals => {:background => "dashboard3"}
   end
 
   def create
