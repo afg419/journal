@@ -1,8 +1,12 @@
 <br>
-<h3 style="text-align:center">New Journal Entry</h3>
+<h3 id="header" style="text-align:center">New Journal Entry</h3>
 <br>
 
+
 <div class="container entry-form">
+  <div id="new-entry-main-button">
+    <a href="#" style="font-size:large; color: black" class="btn btn-default submit-entry">Submit Entry</a>
+  </div>
   <div class="row">
     <div class="col-md-2 emotion-select">
       <div class="row">
@@ -58,10 +62,6 @@
         <%= f.text_area :body, value: "New Entry" %>
       </div>
       <% end %>
-      <div class="create-entry">
-        <a href="#" class="submit-entry">Create New Entry</a>
-        <%#= f.submit class:"submit-entry"%>
-      </div>
       <div class="user" name="<%= @entry.user.id %>">
       </div>
     </div>
