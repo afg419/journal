@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.feature "New Journal Spec", type: :feature do
+  before(:each) do
+    seed_emotions_user
+  end
+  
   scenario "A logged in user can get to new entry page" do
     VCR.use_cassette 'new entry' do
       mock_login

@@ -2,7 +2,6 @@
 <h3 id="header" style="text-align:center">New Journal Entry</h3>
 <br>
 
-
 <div class="container entry-form">
   <div id="new-entry-main-button">
     <a href="#" style="font-size:large; color: black" class="btn btn-default submit-entry">Submit Entry</a>
@@ -17,11 +16,10 @@
         <div class="col-md-10 emotions">
           <div class="emotion-container">
 
-
             <% current_user.emotion_prototypes.each do |emotion| %>
-              <% name = emotion.name.downcase %>
+              <% name = emotion.name %>
               <div class="<%=name%>">
-                <p><%= emotion.name %></p>
+                <p><%= name.capitalize %></p>
                 <input class="slider <%=name%>-slide" type="range" name="<%=name%>" min="0" max="10" value="0"><br>
               </div>
             <% end %>

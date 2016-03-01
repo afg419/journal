@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.feature "LogInSpec", type: :feature do
+
+  before(:each) do
+    seed_emotions_user
+  end
+
   scenario "A logged in user can see email" do
     VCR.use_cassette 'login' do
       mock_login

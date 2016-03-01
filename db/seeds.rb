@@ -8,9 +8,9 @@
 
 def seed_basic_emotion_prototypes
   emotion_prototypes = [
-    EmotionPrototype.create(name: "Happy", description: " ", color: "#D6D965"),
-    EmotionPrototype.create(name: "Sad", description: " ", color: "#D6D965"),
-    EmotionPrototype.create(name: "Angry", description: " ", color: "#D6D965")
+    EmotionPrototype.create(name: "happy", description: " ", color: "#D6D965"),
+    EmotionPrototype.create(name: "sad", description: " ", color: "#D6D965"),
+    EmotionPrototype.create(name: "angry", description: " ", color: "#D6D965")
   ]
   User.create(email:"basic_emotion_prototypes", emotion_prototypes: emotion_prototypes)
   puts "seeded basic emotion prototypes"

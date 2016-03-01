@@ -8,6 +8,7 @@ class JournalEntriesController < ApplicationController
   end
 
   def create
+    binding.pry
     user_id = current_user.id
     if journal_params["user_id"].to_i == current_user.id
       new_entry = google_service.create_file(params[:tag])
@@ -17,7 +18,8 @@ class JournalEntriesController < ApplicationController
         upload_source: "entry#{user_id}.txt",
         content_type: 'text/plain')
       `rm entry#{user_id}.txt`
-      @entry = JournalEntry.create(file_id: reply.id)
+      @entry = current_user.journal_entries.create(file_id: reply.id)
+      process_emotion_params
       render json: {created: "success"}
       # redirect_to journal_entry_path(@entry)
     else
@@ -39,5 +41,12 @@ class JournalEntriesController < ApplicationController
   def journal_params
     params.permit!
     params.except("controller","action","tag","body")
+  end
+
+  def process_emotion_params
+    journal_params.except("user_id").each do |emotion, score|
+      proto = current_user.emotion_prototypes.find_by(name: emotion)
+      @entry.emotions.create(emotion_prototype: proto, score: score)
+    end
   end
 end

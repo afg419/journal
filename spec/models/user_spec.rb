@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  before(:each) do
+    seed_emotions_user
+  end
+
   it "finds by auth" do
     user1 = User.create("email" => "x", "name" => "y", "permission_id" => "z")
     user2 = User.find_or_create_by_auth("email" => "x")

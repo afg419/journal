@@ -22,6 +22,10 @@ RSpec.configure do |config|
   #   ApplicationController.any_instance.stubs(:code).returns("4/ysYIdCady_uMbzRpWwrZxk6-i1mbpOfJt018Bc_7Le8")
   # end
 
+  def seed_emotions_user
+    User.create(email: "basic_emotion_prototypes")
+  end
+
   def mock_login
     ApplicationController.any_instance.stubs(:current_user).returns(User.find_or_create_by_auth(mock_user_info))
     ApplicationController.any_instance.stubs(:access_token).returns("ya29.lwI69xOk_BgRvmV-xPKLiQllNHkO26TGAKXZJgWKRQ4F0hoA1Pjb9vH3SIZWfyBSZ0U")
