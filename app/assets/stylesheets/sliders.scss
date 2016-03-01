@@ -1,9 +1,38 @@
+
+.happy input[type=range] {
+    -webkit-appearance: none;
+    border-radius:10px;
+    background-color: #D6D965;
+    outline: none;
+    height: 5px;
+
+}
+
 .happy{
   // color: yellow;
   // color: white;
   color: #EAD9C3;
 
 }
+
+.sad input[type=range] {
+    -webkit-appearance: none;
+    border-radius:10px;
+    background-color: #1D1DB4;
+    outline: none;
+    height: 5px;
+
+}
+
+.angry input[type=range] {
+    -webkit-appearance: none;
+    border-radius:10px;
+    background-color: #951313;
+    outline: none;
+    height: 5px;
+
+}
+
 
 .sad{
   // color: blue;
