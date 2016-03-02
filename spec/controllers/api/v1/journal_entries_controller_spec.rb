@@ -5,7 +5,7 @@ RSpec.describe Api::V1::JournalEntriesController, type: :controller do
     seed_emotions_user
   end
 
-  it "redirects to google drive login with new" do
+  it "posts to drive, creates emotional content metadata in database" do
     VCR.use_cassette 'posting-from-controller' do
       user = mock_login
       emotion_selection = { happy: 0, sad: 5, angry: 10 }
@@ -25,7 +25,7 @@ RSpec.describe Api::V1::JournalEntriesController, type: :controller do
     end
   end
 
-  it "redirects to google drive login with new" do
+  it "bails if user ids don't match" do
     VCR.use_cassette 'posting-from-controller' do
       user = mock_login
       emotion_selection = { happy: 0, sad: 5, angry: 10 }
