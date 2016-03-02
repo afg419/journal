@@ -5,4 +5,8 @@ class JournalEntry < ActiveRecord::Base
   def datetime
     "#{created_at.month}/#{created_at.day}/#{created_at.year} #{created_at.hour}h"
   end
+
+  def self.in_month(month)
+
+  end
 end

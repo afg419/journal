@@ -15,8 +15,8 @@
     <tbody>
       <% @entries.each do |entry| %>
       <tr>
-        <td> <%= link_to entry.datetime, root_path %></td>
-        <td> <%= link_to entry.tag, root_path %></td>
+        <td> <%= link_to entry.datetime, journal_entry_path(entry) %></td>
+        <td> <%= link_to entry.tag,  journal_entry_path(entry) %></td>
       </tr>
       <% end %>
     </tbody>

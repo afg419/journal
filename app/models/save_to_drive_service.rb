@@ -11,8 +11,7 @@ class SaveToDriveService
   end
 
   def save_file_locally(body)
-    `touch #{file_name}`
-    `echo "#{body}" >> #{file_name}`
+    File.write(file_name, body)
   end
 
   def send_to_drive(file)
@@ -24,7 +23,7 @@ class SaveToDriveService
   end
 
   def delete_local_file
-    `rm #{file_name}`
+    File.delete(file_name)
   end
 
   def post_file_to_drive(tag, body)
