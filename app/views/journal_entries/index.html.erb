@@ -1,0 +1,24 @@
+<br>
+<h3 id="header" style="text-align:center">Past Journal Entries</h3>
+<br>
+
+<div class="container entry-form">
+  <table class="table journal-index table-bordered table-hover table-responsive">
+    <col width="20">
+    <col width="250">
+    <thead>
+      <tr>
+        <th>Created At</th>
+        <th>Entry Tag</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @entries.each do |entry| %>
+      <tr>
+        <td> <%= link_to entry.datetime, root_path %></td>
+        <td> <%= link_to entry.tag, root_path %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
