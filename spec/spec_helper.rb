@@ -34,7 +34,7 @@ RSpec.configure do |config|
   def mock_login
     user = User.find_or_create_by_auth(mock_user_info)
     ApplicationController.any_instance.stubs(:current_user).returns(user)
-    ApplicationController.any_instance.stubs(:access_token).returns("ya29.mAISxrBvDjRRmvluejMAd2QKo4kl9gM5AxXdz0jiwVzLUg-L55UTye1csMLxKf1o9mA")
+    ApplicationController.any_instance.stubs(:access_token).returns("ya29.mQJ3MFwT7hJMEzeUWaiA7OBKeVOhJ4q8yQyilPGrjVkssyyUnP7pw6DzDvZaAvoKO2E")
     @user = user
   end
 

@@ -17,5 +17,5 @@
 $(document).ready(function(){
   extractEntry();
   // $('.submit-entry').addClass('.happy')
-
+  $('.entry-form').delay(1000).fadeTo('slow', 1);
 })
