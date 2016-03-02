@@ -23,12 +23,19 @@ RSpec.configure do |config|
   # end
 
   def seed_emotions_user
-    User.create(email: "basic_emotion_prototypes")
+    emotion_prototypes = [
+      EmotionPrototype.create(name: "happy", description: " ", color: "#D6D965"),
+      EmotionPrototype.create(name: "sad", description: " ", color: "#D6D965"),
+      EmotionPrototype.create(name: "angry", description: " ", color: "#D6D965")
+    ]
+    User.create(email:"basic_emotion_prototypes", emotion_prototypes: emotion_prototypes)
   end
 
   def mock_login
-    ApplicationController.any_instance.stubs(:current_user).returns(User.find_or_create_by_auth(mock_user_info))
+    user = User.find_or_create_by_auth(mock_user_info)
+    ApplicationController.any_instance.stubs(:current_user).returns(user)
     ApplicationController.any_instance.stubs(:access_token).returns("ya29.mAISxrBvDjRRmvluejMAd2QKo4kl9gM5AxXdz0jiwVzLUg-L55UTye1csMLxKf1o9mA")
+    user
   end
 
   def mock_user_info

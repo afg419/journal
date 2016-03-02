@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
-  it "redirects to google drive login wiwth new" do
+  it "redirects to google drive login with new" do
     get :new
     expect(response.status).to eq 302
   end

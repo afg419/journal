@@ -22,13 +22,12 @@ RSpec.feature "New Journal Spec", type: :feature do
       visit new_journal_entry_path
 
       page.find(".submit-entry").click
-      sleep(2)
-
 
       expect(current_path).to eq new_journal_entry_path
       expect(page).to_not have_content("Submit Entry")
       expect(page).to have_content("Your Journal Entry has been Submitted")
-
+      expect("true").to eq find('#tag')['readonly']
+      expect("true").to eq find('#journal_entry_body')['readonly']
     end
   end
 end
