@@ -1,0 +1,51 @@
+.login{
+  text-align: center;
+  line-height: 800px;
+  .btn-default {
+    font-size: large;
+    background-color: rgba(0,0,0,0.45);
+    color: #CBC5D1;
+    border-width: 2px;
+    border-color: #62868E;
+    &:hover{
+      background: none;
+      color: white;
+      border-width: 2px;
+      border-color: white;
+    }
+  }
+}
+
+.new-entry{
+  text-align: center;
+  line-height: 620px;
+  .btn-default {
+    font-size: large;
+    background-color: rgba(0,0,0,0.25);
+    color: #FFD582;
+    border-width: 2px;
+    border-color: #99A199;
+    &:hover{
+      background: none;
+      color: white;
+      border-width: 2px;
+      border-color: white;
+    }
+  }
+}
+// 
+// .create-entry {
+//   input{
+//     font-size: large;
+//     background-color: rgba(0,0,0,0.45);
+//     color: #CBC5D1;
+//     border-width: 2px;
+//     border-color: #62868E;
+//     &:hover{
+//       background: none;
+//       color: white;
+//       border-width: 2px;
+//       border-color: white;
+//     }
+//   }
+// }

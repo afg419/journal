@@ -5,3 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+def seed_basic_emotion_prototypes
+  emotion_prototypes = [
+    EmotionPrototype.create(name: "happy", description: " ", color: "#D6D965"),
+    EmotionPrototype.create(name: "sad", description: " ", color: "#D6D965"),
+    EmotionPrototype.create(name: "angry", description: " ", color: "#D6D965")
+  ]
+  User.create(email:"basic_emotion_prototypes", emotion_prototypes: emotion_prototypes)
+  puts "seeded basic emotion prototypes"
+end
+
+seed_basic_emotion_prototypes
