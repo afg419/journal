@@ -12,7 +12,7 @@ var extractEntry = function (){
 
     $.ajax({
       type: "POST",
-      url: "/journal_entries",
+      url: "/api/v1/journal_entries",
       data: values,
       success: function(msg){
         lockPost(msg);

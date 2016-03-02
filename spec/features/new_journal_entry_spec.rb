@@ -4,7 +4,7 @@ RSpec.feature "New Journal Spec", type: :feature do
   before(:each) do
     seed_emotions_user
   end
-  
+
   scenario "A logged in user can get to new entry page" do
     VCR.use_cassette 'new entry' do
       mock_login
@@ -16,12 +16,19 @@ RSpec.feature "New Journal Spec", type: :feature do
     end
   end
 
-  # scenario "A logged in user can get to new entry page" do
-  #   VCR.use_cassette 'new entry' do
-  #     mock_login
-  #     visit dashboard_path
-  #     click_on "New Journal Entry"
-  #     expect(current_path).to eq new_entry_path
-  #   end
-  # end
+  scenario "A logged in user can get to new entry page", js: true do
+    VCR.use_cassette 'creates entry' do
+      mock_login
+      visit new_journal_entry_path
+
+      page.find(".submit-entry").click
+      sleep(2)
+
+
+      expect(current_path).to eq new_journal_entry_path
+      expect(page).to_not have_content("Submit Entry")
+      expect(page).to have_content("Your Journal Entry has been Submitted")
+
+    end
+  end
 end

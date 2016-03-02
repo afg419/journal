@@ -9,4 +9,10 @@ Rails.application.routes.draw do
 
   resource :dashboard, only: [:show]
   resources :journal_entries, only: [:new, :show, :index, :create]
+
+  namespace :api do
+    namespace :v1 do
+      resources :journal_entries, only: [:create]
+    end
+  end
 end

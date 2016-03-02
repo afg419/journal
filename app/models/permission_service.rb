@@ -22,6 +22,7 @@ private
     return [true, :ok] if controller == "dashboards"
     return [true, :ok] if controller == "sessions"
     return [true, :ok] if controller == "journal_entries"
+    return [true, :ok] if controller == "api/v1/journal_entries"
     [false, "/dashboard"]
   end
 
