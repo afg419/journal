@@ -29,12 +29,14 @@ var lockPost = function(msg){
   if (msg.created == "success"){
     $('.slider').each(function(index, slide){
       $(slide).attr('readonly', "readonly")
-      $(slide).css('background-color', "black")
+      // $(slide).css('background-color', "black")
     })
+    $('.entry-form').toggleClass('active')
+    $('.entry-form').toggleClass('inactive')
     $('#tag').attr('readonly', "readonly")
-    $('#tag').css('color', "#85A7D0")
+    // $('#tag').css('color', "#85A7D0")
     $('#journal_entry_body').attr('readonly', "readonly")
-    $('#journal_entry_body').css('color', "#85A7D0")
+    // $('#journal_entry_body').css('color', "#85A7D0")
     $('#header').empty()
     $('#header').append("Your Journal Entry has been Submitted")
     $('#new-entry-main-button').empty()

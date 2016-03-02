@@ -1,0 +1,44 @@
+
+<br>
+<h3 id="header" style="text-align:center"><%=@journal_entry[:entry].datetime%></h3>
+<br>
+
+<div class="container entry-form inactive">
+  <div class="row">
+    <div class="col-md-2 emotion-select">
+      <div class="row">
+        <div class="col-md-1">
+          <br>
+        </div>
+        <br>
+        <div class="col-md-10 emotions">
+          <div class="emotion-container">
+
+            <% @journal_entry[:entry].emotions.each do |emotion| %>
+              <% name = emotion.emotion_prototype.name %>
+              <div class="<%=name%>">
+                <p><%= name.capitalize %></p>
+                <input class="slider <%=name%>-slide" type="range" name="<%=name%>" min="0" max="10" value="<%= emotion.score %>" readonly="readonly"><br>
+              </div>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <%= form_for(@journal_entry[:entry], html:{autocomplete:"off"}) do |f| %>
+      <div class="form-group">
+          <%= f.text_field :tag, id: "tag", readonly: "readonly", value: @journal_entry[:entry].tag %>
+        <% if @journal_entry[:empty?] %>
+          <%= f.text_area :body, value: "Sorry, it appears this journal entry has been deleted from your Google Drive account.", readonly: "readonly" %>
+        <% else %>
+          <%= f.text_area :body, value: @journal_entry[:body], readonly: "readonly" %>
+        <% end %>
+      </div>
+      <% end %>
+      <div class="user" name="<%= @journal_entry[:entry].user.id %>">
+      </div>
+    </div>
+  </div>
+</div>

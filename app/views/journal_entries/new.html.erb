@@ -1,11 +1,8 @@
 <br>
-<h3 id="header" style="text-align:center">New Journal Entry</h3>
+  <h3 id="header" style="text-align:center">New Journal Entry</h3>
 <br>
 
-<div class="container entry-form">
-  <div id="new-entry-main-button">
-    <a href="#" style="font-size:large; color: black" class="btn btn-default submit-entry">Submit Entry</a>
-  </div>
+<div class="container entry-form active">
   <div class="row">
     <div class="col-md-2 emotion-select">
       <div class="row">
@@ -38,5 +35,11 @@
       <div class="user" name="<%= @entry.user.id %>">
       </div>
     </div>
+  </div>
+</div>
+
+<div class="footer2">
+  <div id="new-entry-main-button" class="send-entry">
+    <a href="#" class="btn btn-default submit-entry">Submit Entry</a>
   </div>
 </div>
