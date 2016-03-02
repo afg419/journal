@@ -5,4 +5,8 @@ class Emotion < ActiveRecord::Base
   def name
     emotion_prototype.name
   end
+
+  def self.belongs_to(user)
+    joins(:journal_entry).where(journal_entry: {user_id: 2})
+  end
 end

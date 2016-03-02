@@ -14,8 +14,12 @@
 //= require jquery_ujs
 //= require_tree .
 //= require bootstrap-sprockets
+
+//= require highcharts/highcharts
+//= require highcharts/highcharts-more
+//= require highcharts/highstock
+
 $(document).ready(function(){
   extractEntry();
-  // $('.submit-entry').addClass('.happy')
   $('.entry-form').delay(1000).fadeTo('slow', 1);
 })

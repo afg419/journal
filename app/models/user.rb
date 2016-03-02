@@ -15,4 +15,16 @@ class User < ActiveRecord::Base
   def self.basic_emotion_prototypes
     User.find_by(email: "basic_emotion_prototypes").emotion_prototypes
   end
+
+  def scores_for(emotion_prototype)
+    journal_entries.map do |x|
+      {
+        x: (x.created_at.to_f * 1000).to_i,
+        y: x.emotions.find_by(emotion_prototype: emotion_prototype).score,
+        name: x.tag
+      }
+    end
+  end
 end
+
+# happiness =>

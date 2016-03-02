@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   get 'login', to: "sessions#new"
   delete 'logout', to: "sessions#destroy"
 
+  get 'dashboard/plot', to: "dashboards#index"
   resource :dashboard, only: [:show]
+
   resources :journal_entries, only: [:new, :show, :index, :create]
 
   namespace :api do

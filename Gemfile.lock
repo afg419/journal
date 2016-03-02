@@ -96,6 +96,7 @@ GEM
       multi_json (~> 1.11)
       os (~> 0.9)
       signet (~> 0.7)
+    hash-deep-merge (0.1.1)
     hashdiff (0.3.0)
     httpclient (2.7.1)
     hurley (0.2)
@@ -111,6 +112,8 @@ GEM
     jwt (1.5.3)
     launchy (2.4.3)
       addressable (~> 2.3)
+    lazy_high_charts (1.5.5)
+      hash-deep-merge
     little-plugger (1.1.4)
     logging (2.0.0)
       little-plugger (~> 1.1)
@@ -223,7 +226,7 @@ GEM
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (3.0.3)
+    sprockets-rails (3.0.4)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
@@ -264,6 +267,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   launchy
+  lazy_high_charts
   mocha
   pg
   pry
