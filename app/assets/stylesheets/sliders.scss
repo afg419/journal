@@ -8,10 +8,9 @@
 // }
 
 
-.happy input[type=range] {
+input[type=range] {
     -webkit-appearance: none;
     border-radius:10px;
-    background-color: #D6D965;
     outline: none;
     height: 5px;
 }
@@ -23,21 +22,21 @@
 
 }
 
-.sad input[type=range] {
-    -webkit-appearance: none;
-    border-radius:10px;
-    background-color: #186991;
-    outline: none;
-    height: 5px;
-}
+// .sad input[type=range] {
+//     -webkit-appearance: none;
+//     border-radius:10px;
+//     background-color: #186991;
+//     outline: none;
+//     height: 5px;
+// }
 
-.angry input[type=range] {
-    -webkit-appearance: none;
-    border-radius:10px;
-    background-color: #951313;
-    outline: none;
-    height: 5px;
-}
+// .angry input[type=range] {
+//     -webkit-appearance: none;
+//     border-radius:10px;
+//     background-color: #951313;
+//     outline: none;
+//     height: 5px;
+// }
 
 
 .sad{

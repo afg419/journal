@@ -17,7 +17,6 @@
 
 //= require highcharts/highcharts
 //= require highcharts/highcharts-more
-//= require highcharts/highstock
 
 $(document).ready(function(){
   extractEntry();

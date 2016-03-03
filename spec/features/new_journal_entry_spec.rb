@@ -16,11 +16,10 @@ RSpec.feature "New Journal Spec", type: :feature do
     end
   end
 
-  scenario "A logged in user can get to new entry page", js: true do
+  scenario "A logged in user can get to and see new entries", js: true do
     VCR.use_cassette 'creates entry' do
       mock_login
       visit new_journal_entry_path
-
       page.find(".submit-entry").click
 
       expect(current_path).to eq new_journal_entry_path

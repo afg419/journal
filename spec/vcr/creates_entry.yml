@@ -16,22 +16,22 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Wed, 02 Mar 2016 00:01:23 GMT
+      - Thu, 03 Mar 2016 01:32:35 GMT
       Authorization:
-      - Bearer ya29.mAISxrBvDjRRmvluejMAd2QKo4kl9gM5AxXdz0jiwVzLUg-L55UTye1csMLxKf1o9mA
+      - Bearer ya29.mgLygYTY4d60AX7i8SfNQsaUc9swHiNwj2dYo2rD6QNdtFU1MRZHbdrbVce0hgV5apw
   response:
     status:
       code: 200
       message: OK
     headers:
       Expires:
-      - Wed, 02 Mar 2016 00:01:25 GMT
+      - Thu, 03 Mar 2016 01:32:36 GMT
       Date:
-      - Wed, 02 Mar 2016 00:01:25 GMT
+      - Thu, 03 Mar 2016 01:32:36 GMT
       Cache-Control:
       - private, max-age=0, must-revalidate, no-transform
       Etag:
-      - '"c-g_a-1OtaH-kNQ4WBoXLp3Zv9s/eG56f2TzUdYXVdwz23Og8MqRL7c"'
+      - '"c-g_a-1OtaH-kNQ4WBoXLp3Zv9s/KtyCCXXqePDzH1tZGegGDuySb5c"'
       Vary:
       - Origin
       - X-Origin
@@ -58,7 +58,7 @@ http_interactions:
       string: |
         {
          "kind": "drive#about",
-         "etag": "\"c-g_a-1OtaH-kNQ4WBoXLp3Zv9s/eG56f2TzUdYXVdwz23Og8MqRL7c\"",
+         "etag": "\"c-g_a-1OtaH-kNQ4WBoXLp3Zv9s/KtyCCXXqePDzH1tZGegGDuySb5c\"",
          "selfLink": "https://www.googleapis.com/drive/v2/about",
          "name": "Aaron Greenspan",
          "user": {
@@ -69,9 +69,9 @@ http_interactions:
           "emailAddress": "afg419@gmail.com"
          },
          "quotaBytesTotal": "16106127360",
-         "quotaBytesUsed": "784286522",
-         "quotaBytesUsedAggregate": "3393165493",
-         "quotaBytesUsedInTrash": "222422045",
+         "quotaBytesUsed": "784286871",
+         "quotaBytesUsedAggregate": "3393165842",
+         "quotaBytesUsedInTrash": "222422152",
          "quotaType": "LIMITED",
          "quotaBytesByService": [
           {
@@ -87,7 +87,7 @@ http_interactions:
            "bytesUsed": "0"
           }
          ],
-         "largestChangeId": "28314",
+         "largestChangeId": "28483",
          "rootFolderId": "0AKRbWURSvBBZUk9PVA",
          "domainSharingPolicy": "allowed",
          "permissionId": "18263496424187584795",
@@ -536,7 +536,7 @@ http_interactions:
          ]
         }
     http_version: 
-  recorded_at: Wed, 02 Mar 2016 00:01:24 GMT
+  recorded_at: Thu, 03 Mar 2016 01:32:36 GMT
 - request:
     method: post
     uri: https://www.googleapis.com/upload/drive/v2/files
@@ -553,9 +553,9 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Wed, 02 Mar 2016 00:01:24 GMT
+      - Thu, 03 Mar 2016 01:32:36 GMT
       Authorization:
-      - Bearer ya29.mAISxrBvDjRRmvluejMAd2QKo4kl9gM5AxXdz0jiwVzLUg-L55UTye1csMLxKf1o9mA
+      - Bearer ya29.mgLygYTY4d60AX7i8SfNQsaUc9swHiNwj2dYo2rD6QNdtFU1MRZHbdrbVce0hgV5apw
       Content-Type:
       - application/json
       X-Goog-Upload-Protocol:
@@ -563,7 +563,7 @@ http_interactions:
       X-Goog-Upload-Command:
       - start
       X-Goog-Upload-Header-Content-Length:
-      - '10'
+      - '9'
       X-Goog-Upload-Header-Content-Type:
       - text/plain
       Content-Length:
@@ -574,13 +574,13 @@ http_interactions:
       message: OK
     headers:
       X-Guploader-Uploadid:
-      - AEnB2UppxRiFAtccFCfemUTO66P0rWn_vfWjHILv6vZa4u0s8hBQg7bF3HJdi5wS4y8u8phEwPPEestGtkwSKybWORgh1GK_6w
+      - AEnB2Upjgp28FTsKsM31AEDuWpZXn4bJPW5VZ4c52V4jY2F2yVpxgnhW1mF1XQjt0t8p8kyY_oXYdxKrrT_HYDJbu1Vka6c4Fw
       X-Goog-Upload-Status:
       - active
       X-Goog-Upload-Url:
-      - https://www.googleapis.com/upload/drive/v2/files?upload_id=AEnB2UppxRiFAtccFCfemUTO66P0rWn_vfWjHILv6vZa4u0s8hBQg7bF3HJdi5wS4y8u8phEwPPEestGtkwSKybWORgh1GK_6w&upload_protocol=resumable
+      - https://www.googleapis.com/upload/drive/v2/files?upload_id=AEnB2Upjgp28FTsKsM31AEDuWpZXn4bJPW5VZ4c52V4jY2F2yVpxgnhW1mF1XQjt0t8p8kyY_oXYdxKrrT_HYDJbu1Vka6c4Fw&upload_protocol=resumable
       X-Goog-Upload-Control-Url:
-      - https://www.googleapis.com/upload/drive/v2/files?upload_id=AEnB2UppxRiFAtccFCfemUTO66P0rWn_vfWjHILv6vZa4u0s8hBQg7bF3HJdi5wS4y8u8phEwPPEestGtkwSKybWORgh1GK_6w&upload_protocol=resumable
+      - https://www.googleapis.com/upload/drive/v2/files?upload_id=AEnB2Upjgp28FTsKsM31AEDuWpZXn4bJPW5VZ4c52V4jY2F2yVpxgnhW1mF1XQjt0t8p8kyY_oXYdxKrrT_HYDJbu1Vka6c4Fw&upload_protocol=resumable
       X-Goog-Upload-Chunk-Granularity:
       - '262144'
       X-Goog-Upload-Header-Etag:
@@ -589,9 +589,9 @@ http_interactions:
       - Origin
       - X-Origin
       X-Goog-Upload-Header-X-Google-Backends:
-      - oigy10:4599
+      - oiww186:4812
       X-Goog-Upload-Header-X-Google-Session-Info:
-      - CODbuOmyDxoCGAYwADpsCg9kcml2ZS1yb3N5LXByb2QSBWRyaXZlGL_n4ebLESJINjA0NDYzNzIzNDU1LWpxZmFwaG50N3RtcnEwdmVnYm5sczNzdmc0cHIzZ3VjLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tMPEOSlsSSHlhMjkubUFJU3hyQnZEalJSbXZsdWVqTUFkMlFLbzRrbDlnTTVBeFhkejBqaXdWekxVZy1MNTVVVHllMWNzTUx4S2YxbzltQTAEOg0xL0VFd1dWZEtlV3J-
+      - CODbuOmyDxoCGAYwADpsCg9kcml2ZS1yb3N5LXByb2QSBWRyaXZlGL_n4ebLESJINjA0NDYzNzIzNDU1LWpxZmFwaG50N3RtcnEwdmVnYm5sczNzdmc0cHIzZ3VjLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tMPEOSlsSSHlhMjkubWdMeWdZVFk0ZDYwQVg3aThTZk5Rc2FVYzlzd0hpTndqMmRZbzJyRDZRTmR0RlUxTVJaSGJkcmJWY2UwaGdWNWFwdzAEOg0xL0VFd1dWZEtlV3J-
       X-Goog-Upload-Header-Cache-Control:
       - no-cache, no-store, max-age=0, must-revalidate
       X-Goog-Upload-Header-Pragma:
@@ -599,11 +599,11 @@ http_interactions:
       X-Goog-Upload-Header-Expires:
       - Fri, 01 Jan 1990 00:00:00 GMT
       X-Goog-Upload-Header-Date:
-      - Wed, 02 Mar 2016 00:01:25 GMT
+      - Thu, 03 Mar 2016 01:32:36 GMT
       Content-Length:
       - '0'
       Date:
-      - Wed, 02 Mar 2016 00:01:25 GMT
+      - Thu, 03 Mar 2016 01:32:36 GMT
       Server:
       - UploadServer
       Content-Type:
@@ -616,14 +616,13 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Wed, 02 Mar 2016 00:01:24 GMT
+  recorded_at: Thu, 03 Mar 2016 01:32:36 GMT
 - request:
     method: post
-    uri: https://www.googleapis.com/upload/drive/v2/files?upload_id=AEnB2UppxRiFAtccFCfemUTO66P0rWn_vfWjHILv6vZa4u0s8hBQg7bF3HJdi5wS4y8u8phEwPPEestGtkwSKybWORgh1GK_6w&upload_protocol=resumable
+    uri: https://www.googleapis.com/upload/drive/v2/files?upload_id=AEnB2Upjgp28FTsKsM31AEDuWpZXn4bJPW5VZ4c52V4jY2F2yVpxgnhW1mF1XQjt0t8p8kyY_oXYdxKrrT_HYDJbu1Vka6c4Fw&upload_protocol=resumable
     body:
       encoding: UTF-8
-      string: |
-        New Entry
+      string: New Entry
     headers:
       User-Agent:
       - |-
@@ -634,9 +633,9 @@ http_interactions:
       Accept-Encoding:
       - gzip,deflate
       Date:
-      - Wed, 02 Mar 2016 00:01:24 GMT
+      - Thu, 03 Mar 2016 01:32:36 GMT
       Authorization:
-      - Bearer ya29.mAISxrBvDjRRmvluejMAd2QKo4kl9gM5AxXdz0jiwVzLUg-L55UTye1csMLxKf1o9mA
+      - Bearer ya29.mgLygYTY4d60AX7i8SfNQsaUc9swHiNwj2dYo2rD6QNdtFU1MRZHbdrbVce0hgV5apw
       Content-Type:
       - application/json
       X-Goog-Upload-Command:
@@ -644,18 +643,18 @@ http_interactions:
       X-Goog-Upload-Offset:
       - '0'
       Content-Length:
-      - '10'
+      - '9'
   response:
     status:
       code: 200
       message: OK
     headers:
       X-Guploader-Uploadid:
-      - AEnB2UppxRiFAtccFCfemUTO66P0rWn_vfWjHILv6vZa4u0s8hBQg7bF3HJdi5wS4y8u8phEwPPEestGtkwSKybWORgh1GK_6w
+      - AEnB2Upjgp28FTsKsM31AEDuWpZXn4bJPW5VZ4c52V4jY2F2yVpxgnhW1mF1XQjt0t8p8kyY_oXYdxKrrT_HYDJbu1Vka6c4Fw
       X-Goog-Upload-Status:
       - final
       Etag:
-      - '"c-g_a-1OtaH-kNQ4WBoXLp3Zv9s/MTQ1Njg3Njg4NTg1Mg"'
+      - '"c-g_a-1OtaH-kNQ4WBoXLp3Zv9s/MTQ1Njk2ODc1Njc0Mg"'
       Vary:
       - Origin
       - X-Origin
@@ -668,9 +667,9 @@ http_interactions:
       Expires:
       - Fri, 01 Jan 1990 00:00:00 GMT
       Date:
-      - Wed, 02 Mar 2016 00:01:26 GMT
+      - Thu, 03 Mar 2016 01:32:37 GMT
       Content-Length:
-      - '2696'
+      - '2694'
       Server:
       - UploadServer
       Alternate-Protocol:
@@ -682,11 +681,11 @@ http_interactions:
       string: |
         {
          "kind": "drive#file",
-         "id": "0B6RbWURSvBBZTmpnaDhzZlp0TXM",
-         "etag": "\"c-g_a-1OtaH-kNQ4WBoXLp3Zv9s/MTQ1Njg3Njg4NTg1Mg\"",
-         "selfLink": "https://www.googleapis.com/drive/v2/files/0B6RbWURSvBBZTmpnaDhzZlp0TXM",
-         "webContentLink": "https://docs.google.com/uc?id=0B6RbWURSvBBZTmpnaDhzZlp0TXM&export=download",
-         "alternateLink": "https://drive.google.com/file/d/0B6RbWURSvBBZTmpnaDhzZlp0TXM/view?usp=drivesdk",
+         "id": "0B6RbWURSvBBZYWpENGF6dGNWSUk",
+         "etag": "\"c-g_a-1OtaH-kNQ4WBoXLp3Zv9s/MTQ1Njk2ODc1Njc0Mg\"",
+         "selfLink": "https://www.googleapis.com/drive/v2/files/0B6RbWURSvBBZYWpENGF6dGNWSUk",
+         "webContentLink": "https://docs.google.com/uc?id=0B6RbWURSvBBZYWpENGF6dGNWSUk&export=download",
+         "alternateLink": "https://drive.google.com/file/d/0B6RbWURSvBBZYWpENGF6dGNWSUk/view?usp=drivesdk",
          "iconLink": "https://ssl.gstatic.com/docs/doclist/images/icon_10_text_list.png",
          "title": "Tag your post with a descriptive title",
          "mimeType": "text/plain",
@@ -697,35 +696,35 @@ http_interactions:
           "restricted": false,
           "viewed": true
          },
-         "createdDate": "2016-03-02T00:01:25.852Z",
-         "modifiedDate": "2016-03-02T00:01:25.852Z",
-         "modifiedByMeDate": "2016-03-02T00:01:25.852Z",
-         "lastViewedByMeDate": "2016-03-02T00:01:25.852Z",
+         "createdDate": "2016-03-03T01:32:36.742Z",
+         "modifiedDate": "2016-03-03T01:32:36.742Z",
+         "modifiedByMeDate": "2016-03-03T01:32:36.742Z",
+         "lastViewedByMeDate": "2016-03-03T01:32:36.742Z",
          "markedViewedByMeDate": "1970-01-01T00:00:00.000Z",
-         "version": "28316",
+         "version": "28484",
          "parents": [
           {
            "kind": "drive#parentReference",
            "id": "0AKRbWURSvBBZUk9PVA",
-           "selfLink": "https://www.googleapis.com/drive/v2/files/0B6RbWURSvBBZTmpnaDhzZlp0TXM/parents/0AKRbWURSvBBZUk9PVA",
+           "selfLink": "https://www.googleapis.com/drive/v2/files/0B6RbWURSvBBZYWpENGF6dGNWSUk/parents/0AKRbWURSvBBZUk9PVA",
            "parentLink": "https://www.googleapis.com/drive/v2/files/0AKRbWURSvBBZUk9PVA",
            "isRoot": true
           }
          ],
-         "downloadUrl": "https://doc-0s-00-docs.googleusercontent.com/docs/securesc/2vqebim1tkcv5ku1huq6787nnmiolkcl/t0s8jqf4lqe1o88peb8t21ein7m7014q/1456876800000/18263496424187584795/18263496424187584795/0B6RbWURSvBBZTmpnaDhzZlp0TXM?e=download&gd=true",
+         "downloadUrl": "https://doc-0o-00-docs.googleusercontent.com/docs/securesc/2vqebim1tkcv5ku1huq6787nnmiolkcl/icj4f0aic152s6v66n0cbm6bbq9aq10v/1456963200000/18263496424187584795/18263496424187584795/0B6RbWURSvBBZYWpENGF6dGNWSUk?e=download&gd=true",
          "userPermission": {
           "kind": "drive#permission",
-          "etag": "\"c-g_a-1OtaH-kNQ4WBoXLp3Zv9s/H7YAekwRpJnFcvGA71qxN4BFpGM\"",
+          "etag": "\"c-g_a-1OtaH-kNQ4WBoXLp3Zv9s/vQrO_psIVdenS9ERSyP61tJXc14\"",
           "id": "me",
-          "selfLink": "https://www.googleapis.com/drive/v2/files/0B6RbWURSvBBZTmpnaDhzZlp0TXM/permissions/me",
+          "selfLink": "https://www.googleapis.com/drive/v2/files/0B6RbWURSvBBZYWpENGF6dGNWSUk/permissions/me",
           "role": "owner",
           "type": "user"
          },
          "originalFilename": "Tag your post with a descriptive title",
          "fileExtension": "",
-         "md5Checksum": "2925a964e3c79f4852737470ea949466",
-         "fileSize": "10",
-         "quotaBytesUsed": "10",
+         "md5Checksum": "076e417ed4e3d2f434f2fabeeb0ea25f",
+         "fileSize": "9",
+         "quotaBytesUsed": "9",
          "ownerNames": [
           "Aaron Greenspan"
          ],
@@ -752,11 +751,11 @@ http_interactions:
          "shared": false,
          "explicitlyTrashed": false,
          "appDataContents": false,
-         "headRevisionId": "0B6RbWURSvBBZZFF3akVYYWEzRGwwOHIwSGw5S1lpWFpndms4PQ",
+         "headRevisionId": "0B6RbWURSvBBZV25KcjgrQ1krWjQ0MEFFWlZWY3N6K0YycHlBPQ",
          "spaces": [
           "drive"
          ]
         }
     http_version: 
-  recorded_at: Wed, 02 Mar 2016 00:01:25 GMT
+  recorded_at: Thu, 03 Mar 2016 01:32:37 GMT
 recorded_with: VCR 3.0.1

@@ -4,6 +4,7 @@ class Api::V1::JournalEntriesController < ApplicationController
     if journal_params["user_id"].to_i == user_id
       save = SaveToDriveService.new(google_service, user_id)
       reply = save.post_file_to_drive(params[:tag], params[:body])
+      puts reply
       @entry = JournalEntry.create(tag: params[:tag],
                                file_id: reply.id,
                                user_id: user_id)

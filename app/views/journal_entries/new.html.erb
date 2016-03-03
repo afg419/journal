@@ -17,7 +17,7 @@
               <% name = emotion.name %>
               <div class="<%=name%>">
                 <p><%= name.capitalize %></p>
-                <input class="slider <%=name%>-slide" type="range" name="<%=name%>" min="0" max="10" value="0"><br>
+                <input style="background-color:<%= emotion.color %>" class="slider <%=name%>-slide" type="range" name="<%=name%>" min="0" max="10" value="0"><br>
               </div>
             <% end %>
 
