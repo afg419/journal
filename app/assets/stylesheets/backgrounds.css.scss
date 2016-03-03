@@ -1,5 +1,5 @@
 .application-body-home {
-  background-image: url("home.jpeg") no-repeat center center fixed;
+  background-image: image-url("home.jpeg");
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -8,7 +8,7 @@
 }
 
 .application-body-dashboard2 {
-  background-image: url("dashboard2.jpeg") no-repeat center center fixed;
+  background-image: image-url("dashboard2.jpeg");
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -17,7 +17,7 @@
 }
 
 .application-body-dashboard3 {
-  background-image: url("dashboard3.jpeg") no-repeat center center fixed;
+  background-image: image-url("dashboard3.jpeg");
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -28,7 +28,7 @@
 }
 
 .application-body-pool {
-  background-image: url("pool.jpeg") no-repeat center center fixed;
+  background-image: image-url("pool.jpeg");
   opacity: 10;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -38,7 +38,7 @@
 }
 
 .application-body-woods {
-  background-image: url("woods.jpeg") no-repeat center center fixed;
+  background-image: image-url("woods.jpeg");
   opacity: 10;
   -webkit-background-size: cover;
   -moz-background-size: cover;

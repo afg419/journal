@@ -2,6 +2,7 @@
   <h3 id="header" style="text-align:center">New Journal Entry</h3>
 <br>
 
+<!-- <a href="#" class="tip">Link<span>This is the CSS tooltip showing up when you mouse over the link</span></a> -->
 <div class="container entry-form active">
   <div class="row">
     <div class="col-md-2 emotion-select">
@@ -16,7 +17,7 @@
             <% current_user.emotion_prototypes.each do |emotion| %>
               <% name = emotion.name %>
               <div class="<%=name%>">
-                <p><%= name.capitalize %></p>
+                <p><a href="#", class="description"><span><strong><%= "#{name.capitalize}: "%></strong><%=" #{emotion.description}" %></span>?</a><span style="padding-left: 1em"></span><%= name.capitalize %></p>
                 <input style="background-color:<%= emotion.color %>" class="slider <%=name%>-slide" type="range" name="<%=name%>" min="0" max="10" value="0"><br>
               </div>
             <% end %>

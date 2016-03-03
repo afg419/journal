@@ -21,4 +21,5 @@
 $(document).ready(function(){
   extractEntry();
   $('.entry-form').delay(1000).fadeTo('slow', 1);
+  // alert2("Hey","shut","up");
 })
