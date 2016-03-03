@@ -16,7 +16,7 @@
             <% current_user.emotion_prototypes.each do |emotion| %>
               <% name = emotion.name %>
               <div class="<%=name%>">
-                <p><%= name.capitalize %></p>
+                <p><%= link_to "?", '#' , class:"description"%><span style="padding-left: 1em"></span><%= name.capitalize %></p>
                 <input style="background-color:<%= emotion.color %>" class="slider <%=name%>-slide" type="range" name="<%=name%>" min="0" max="10" value="0"><br>
               </div>
             <% end %>
