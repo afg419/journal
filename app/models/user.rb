@@ -17,14 +17,18 @@ class User < ActiveRecord::Base
   end
 
   def scores_for(emotion_prototype)
-    journal_entries.map do |x|
+    journal_entries.map do |je|
       {
-        x: (x.created_at.to_f * 1000).to_i,
-        y: x.emotions.find_by(emotion_prototype: emotion_prototype).score,
-        name: x.tag
+        created_at: je.created_at,
+        score: je.emotions.find_by(emotion_prototype: emotion_prototype).score,
+        tag: je.tag
       }
     end
   end
-end
 
-# happiness =>
+  def chart_emotion_data
+    {id => EmotionPrototype.all.reduce({}) do |acc, emotion_prototype|
+      acc.merge({emotion_prototype.name => {color: emotion_prototype.color, scores: scores_for(emotion_prototype)}})
+    end}
+  end
+end
