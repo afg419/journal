@@ -1,7 +1,8 @@
 class ChartService
-  attr_reader :emotion_data, :colors, :id
+  attr_reader :emotion_data, :colors, :id, :user
 
   def initialize(user)
+    @user = user
     @id = user.id
     @colors = []
   end
