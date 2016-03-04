@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301214509) do
+ActiveRecord::Schema.define(version: 20160304215253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,13 @@ ActiveRecord::Schema.define(version: 20160301214509) do
   end
 
   add_index "journal_entries", ["user_id"], name: "index_journal_entries_on_user_id", using: :btree
+
+  create_table "training_posts", force: :cascade do |t|
+    t.text     "entry"
+    t.string   "classification"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "user_emotion_prototypes", force: :cascade do |t|
     t.integer  "user_id"
