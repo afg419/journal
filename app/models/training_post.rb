@@ -1,8 +1,4 @@
 class TrainingPost < ActiveRecord::Base
-  def reddit_miner
-    @rm ||= RedditMiner.new
-  end
-
   def self.get_training_posts(subreddit, filter, api_calls, tag, continue_at = nil)
     puts "mining from #{subreddit}/#{filter}"
     puts "Initial TrainingPosts count: #{TrainingPost.count}"
