@@ -19,7 +19,7 @@ private
 
   def journal_params
     params.permit!
-    params.except("controller","action","tag","body")
+    params.except("tag","body","controller","action")
   end
 
   def process_emotion_params

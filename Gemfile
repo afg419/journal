@@ -12,6 +12,8 @@ gem 'google-api-client'
 gem 'rails_12factor', group: :production
 gem "figaro"
 gem 'lazy_high_charts'
+gem 'classifier'
+gem 'sentimental'
 
 group :development, :test do
   gem 'mocha'
