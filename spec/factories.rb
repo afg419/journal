@@ -1,4 +1,9 @@
 FactoryGirl.define do
+  factory :app_message do
+    message "MyText"
+    user nil
+    status 1
+  end
   factory :training_post do
     entry "MyText"
     classification "MyString"

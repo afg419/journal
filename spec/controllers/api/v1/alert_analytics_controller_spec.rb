@@ -18,8 +18,9 @@ RSpec.describe Api::V1::AlertAnalyticsController, type: :controller do
     TrainingPost.create(entry: "hate life", classification: "troubled")
 
     user = mock_login
-    post :show, mock_classifier_params
+    post :show, mock_classifier_params({"body" => "I hate life"})
 
+    expect(@user.app_messages.current_message).to eq AppMessage.national_suicide_prevention_hotline
     expect(response.body).to eq "{\"reply\":true}"
     expect(response.status).to eq 200
   end

@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :journal_entries
   has_many :user_emotion_prototypes
   has_many :emotion_prototypes, through: :user_emotion_prototypes
+  has_many :app_messages
 
   def self.find_or_create_by_auth(opts)
     user = User.find_or_create_by(email: opts["email"])

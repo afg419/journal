@@ -1,5 +1,4 @@
 require 'google/apis/drive_v2'
-# require 'chartkick'
 
 class ApplicationController < ActionController::Base
 

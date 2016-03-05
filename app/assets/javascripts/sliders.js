@@ -17,13 +17,14 @@ var extractEntry = function (){
 }
 
 var doAnalytics = function(data){
+  debugger
   $.ajax({
     type: "GET",
     url: "/api/v1/alert_analytics",
     data: data,
     success: function(msg){
       if(msg.reply){
-        postAlert("Your past few journal responses have seemed pretty down...");
+        postAlert(msg);
       }
     },
     error: function(error_message){
@@ -35,7 +36,6 @@ var doAnalytics = function(data){
 
 var postAlert = function(msg){
   alert(msg)
-  $(".message-box").append(msg);
 }
 
 
