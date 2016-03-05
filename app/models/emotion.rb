@@ -6,13 +6,9 @@ class Emotion < ActiveRecord::Base
     emotion_prototype.name
   end
 
-  def self.belongs_to(user)
-    joins(:journal_entry).where(journal_entry: {user_id: 2})
-  end
-
   def self.scores_to_hash
     all.reduce({}) do |acc, emotion|
-      acc.merge({emotion.emotion_prototype.name => emotion.score})
+      acc.merge({emotion.name => emotion.score})
     end
   end
 end
