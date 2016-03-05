@@ -11,6 +11,10 @@ class BayesSuicideClassifier
     classy
   end
 
+  def reset_classifier
+    @@classifier = nil
+  end
+
   def classify(string)
     classifier.classify(string)
   end
@@ -29,7 +33,7 @@ class BayesSuicideClassifier
   # end
 end
 
-class Classifier::Bayes
-  attr_reader :total_words, :categories
-  attr_accessor :category_counts
-end
+# class Classifier::Bayes
+#   attr_reader :total_words, :categories
+#   attr_accessor :category_counts
+# end

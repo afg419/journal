@@ -22,6 +22,20 @@ RSpec.configure do |config|
   #   ApplicationController.any_instance.stubs(:code).returns("4/ysYIdCady_uMbzRpWwrZxk6-i1mbpOfJt018Bc_7Le8")
   # end
 
+  def mock_classifier_params(opts={})
+    {
+       "happy"=>"7",
+       "sad"=>"0",
+       "angry"=>"0",
+       "anxious"=>"0",
+       "focused"=>"0",
+       "content"=>"0",
+       "tag"=>"For Fury!",
+       "body"=>"This is the journal body",
+       "user_id"=>"2"
+    }.merge(opts)
+  end
+
   def seed_emotions_user
     @emotion_prototypes = [
       EmotionPrototype.create(name: "happy", description: " ", color: "#D6D965"),
@@ -30,6 +44,19 @@ RSpec.configure do |config|
     ]
     User.create(email:"basic_emotion_prototypes", emotion_prototypes: @emotion_prototypes)
   end
+
+  def seed_emotions_user_expanded_defaults
+    @emotion_prototypes = [
+      EmotionPrototype.create(name: "happy", description: " ", color: "#D6D965"),
+      EmotionPrototype.create(name: "sad", description: " ", color: "#D6D965"),
+      EmotionPrototype.create(name: "angry", description: " ", color: "#D6D965"),
+      EmotionPrototype.create(name: "anxious", description: " ", color: "#D6D965"),
+      EmotionPrototype.create(name: "content", description: " ", color: "#D6D965"),
+      EmotionPrototype.create(name: "focused", description: " ", color: "#D6D965")
+    ]
+    User.create(email:"basic_emotion_prototypes", emotion_prototypes: @emotion_prototypes)
+  end
+
 
   def mock_login
     user = User.find_or_create_by_auth(mock_user_info)

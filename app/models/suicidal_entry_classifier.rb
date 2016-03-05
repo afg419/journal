@@ -1,4 +1,3 @@
-# require_relative 'bayes_suicide_classifier'
 class SuicidalEntryClassifier
   attr_reader :entry_data, :bayes_classifier, :sentiment_analyzer
 
