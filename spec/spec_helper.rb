@@ -38,11 +38,13 @@ RSpec.configure do |config|
     @user = user
   end
 
-  def create_journal_post(scores, tag)
+  def create_journal_post(scores, tag, time=nil)
     emotions = @emotion_prototypes.zip(scores).map do |emotion_prototype, score|
       emotion_prototype.emotions.create(score: score)
     end
-    JournalEntry.create(tag: tag, emotions: emotions, user: @user)
+    j = JournalEntry.create(tag: tag, emotions: emotions, user: @user)
+    j.created_at = time if time
+    j.save
   end
 
   def mock_user_info

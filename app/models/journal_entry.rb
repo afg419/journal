@@ -6,10 +6,6 @@ class JournalEntry < ActiveRecord::Base
     "#{created_at.month}/#{created_at.day}/#{created_at.year} #{created_at.hour}h"
   end
 
-  def self.in_month(month)
-
-  end
-
   def self.net_data
     all.reduce({}) do |acc, je|
       acc.merge(je.emotions.scores_to_hash){|k,v1,v2| v1 + v2}
