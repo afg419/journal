@@ -107,6 +107,7 @@ input[type="range"] {
 
 .emotion-container{
   height: 840px;
+  font-size: medium;
 }
 
 .journal-index{
@@ -124,4 +125,69 @@ input[type="range"] {
 .footer2{
   min-height: 15em;
   text-align: center;
+}
+
+.chart{
+  background-color: rgba(0,0,0,0.5)
+}
+
+#some_id{
+  color: red!important;
+}
+
+.emotion-container a.description{
+  color: #808898;
+  &:hover{
+    cursor: help;
+    position: relative;
+    span{
+      border: #c0c0c0 1px dotted;
+      padding: 5px 20px 5px 5px;
+      display: block;
+      font-size: medium;
+      z-index: 1000;
+      left: 8em;
+      width: 25em;
+      // bottom:0px;
+      margin: 10px;
+      color: rgb(20,30,40);
+      background-color: #97989F;
+      position: absolute;
+      top: -3.5em;
+      text-decoration: none
+    }
+  }
+  span {
+    display :none;
+  }
+}
+
+
+a.tip {
+    border-bottom: 1px dashed;
+    text-decoration: none
+}
+a.tip:hover {
+    cursor: help;
+    position: relative
+}
+a.tip span {
+    display: none
+}
+a.tip:hover span {
+    border: #c0c0c0 1px dotted;
+    padding: 5px 20px 5px 5px;
+    display: block;
+    z-index: 100;
+    left: 0px;
+    margin: 10px;
+    width: 250px;
+    position: absolute;
+    top: 10px;
+    text-decoration: none
+}
+
+.message-box{
+  min-height: 15em;
+  
 }

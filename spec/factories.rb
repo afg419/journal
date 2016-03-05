@@ -1,4 +1,8 @@
 FactoryGirl.define do
+  factory :training_post do
+    entry "MyText"
+    classification "MyString"
+  end
   factory :user_emotion_prototype do
     user nil
     emotion_prototype nil

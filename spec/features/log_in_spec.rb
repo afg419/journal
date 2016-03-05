@@ -10,7 +10,6 @@ RSpec.feature "LogInSpec", type: :feature do
     VCR.use_cassette 'login' do
       mock_login
       visit dashboard_path
-      expect(page).to have_content("afg419@gmail.com")
       expect(page).to have_content("Logout")
     end
   end

@@ -4,7 +4,6 @@ require 'google/api_client/client_secrets'
 
 class Auth
   attr_reader :client
-
   #three options: takes in {code => code}, or {access_token => access_token}
   def initialize(opts)
     @client = set_auth_client(opts)

@@ -5,4 +5,10 @@ class Emotion < ActiveRecord::Base
   def name
     emotion_prototype.name
   end
+
+  def self.scores_to_hash
+    all.reduce({}) do |acc, emotion|
+      acc.merge({emotion.name => emotion.score})
+    end
+  end
 end

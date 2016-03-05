@@ -1,6 +1,8 @@
 require 'google/apis/drive_v2'
+# require 'chartkick'
 
 class ApplicationController < ActionController::Base
+
   protect_from_forgery with: :exception
   helper_method :current_user, :google_service, :user_info
   before_action :authorize!

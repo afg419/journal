@@ -15,4 +15,20 @@ class User < ActiveRecord::Base
   def self.basic_emotion_prototypes
     User.find_by(email: "basic_emotion_prototypes").emotion_prototypes
   end
+
+  def scores_for(emotion_prototype)
+    journal_entries.map do |je|
+      {
+        created_at: je.created_at,
+        score: je.emotions.find_by(emotion_prototype: emotion_prototype).score,
+        tag: je.tag
+      }
+    end
+  end
+
+  def chart_emotion_data
+    {id => EmotionPrototype.all.reduce({}) do |acc, emotion_prototype|
+      acc.merge({emotion_prototype.name => {color: emotion_prototype.color, scores: scores_for(emotion_prototype)}})
+    end}
+  end
 end
