@@ -36,6 +36,15 @@ RSpec.configure do |config|
     }.merge(opts)
   end
 
+  def mock_emotion_params(opts={})
+    {
+      "name"=>"connection",
+      "description"=>"desc1",
+      "controller"=>"api/v1/emotions",
+      "action"=>"create"
+    }.merge(opts)
+  end
+
   def seed_emotions_user
     @emotion_prototypes = [
       EmotionPrototype.create(name: "happy", description: " ", color: "#D6D965"),

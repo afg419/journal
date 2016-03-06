@@ -21,6 +21,16 @@
         null,
         null,
         1,
+        7,
+        null,
+        null,
+        1,
+        5,
+        null,
+        null,
+        1,
+        6,
+        2,
         2,
         null,
         null,
@@ -79,10 +89,6 @@
         0
       ],
       "/Users/aarongreenspan/turing/3module/personal_project/journal/app/controllers/api/v1/emotions_controller.rb": [
-        0,
-        0,
-        0,
-        0,
         0,
         0,
         0,
@@ -631,6 +637,6 @@
         0
       ]
     },
-    "timestamp": 1457295361
+    "timestamp": 1457298562
   }
 }

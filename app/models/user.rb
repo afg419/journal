@@ -20,6 +20,16 @@ class User < ActiveRecord::Base
     user_emotion_prototypes.where(status: "active").map{|x| x.emotion_prototype}
   end
 
+  def inactive_emotion_prototypes
+    user_emotion_prototypes.where(status: "inactive").map{|x| x.emotion_prototype}
+  end
+
+  def set_emotion_prototype(status, name)
+    emp = user_emotion_prototypes.find{|x| x.emotion_prototype.name == name}
+    emp.status = status
+    emp.save
+  end
+
   def scores_for(emotion_prototype)
     journal_entries.map do |je|
       {

@@ -45,10 +45,27 @@ RSpec.describe User, type: :model do
     user = User.create("email" => "x", "name" => "y", "permission_id" => "z")
     happy = user.emotion_prototypes.create(name: "happy", description: "yaye!")
     sad = user.emotion_prototypes.create(name: "sad", description: "boohoo")
-    user_is_sad = UserEmotionPrototype.find_by(emotion_prototype_id: sad.id)
 
+    user_is_sad = UserEmotionPrototype.find_by(emotion_prototype_id: sad.id)
     user_is_sad.update_attributes(status: "inactive")
 
     expect(user.active_emotion_prototypes.map{|y| y.name}).to eq ["happy"]
+    expect(user.inactive_emotion_prototypes.map{|y| y.name}).to eq ["sad"]
+  end
+
+  it "sets emotion prototypes as active or inactive" do
+    user = User.create("email" => "x", "name" => "y", "permission_id" => "z")
+    happy = user.emotion_prototypes.create(name: "happy", description: "yaye!")
+    sad = user.emotion_prototypes.create(name: "sad", description: "boohoo")
+
+    user.set_emotion_prototype("inactive", "sad")
+
+    expect(user.active_emotion_prototypes.map{|y| y.name}).to eq ["happy"]
+    expect(user.inactive_emotion_prototypes.map{|y| y.name}).to eq ["sad"]
+
+    user.set_emotion_prototype("active", "sad")
+
+    expect(user.active_emotion_prototypes.map{|y| y.name}).to eq ["happy", "sad"]
+    expect(user.inactive_emotion_prototypes.map{|y| y.name}).to eq []
   end
 end
