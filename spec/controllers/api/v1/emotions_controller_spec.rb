@@ -22,5 +22,40 @@ RSpec.describe Api::V1::EmotionsController, type: :controller do
   it "recovers old emotion" do
     mock_login
 
+    expect(@user.active_emotion_prototypes.count).to eq 6
+    expect(@user.inactive_emotion_prototypes.count).to eq 0
+
+    @user.set_emotion_prototype("inactive", "sad")
+
+    expect(@user.active_emotion_prototypes.count).to eq 5
+    expect(@user.inactive_emotion_prototypes.count).to eq 1
+
+    sad = @emotion_prototypes[1]
+    post :create, mock_emotion_params({"name" => "sad"})
+
+    expect(@user.active_emotion_prototypes.count).to eq 6
+    expect(@user.inactive_emotion_prototypes.count).to eq 0
+
+    reply = "{\"reply\":\"created\",\"color\":\"#{sad.color}\",\"description\":\" \"}"
+
+    expect(response.body).to eq reply
+    expect(response.status).to eq 200
+  end
+
+  it "it refuses to render new emotion without name" do
+    mock_login
+
+    expect(@user.active_emotion_prototypes.count).to eq 6
+    expect(@user.inactive_emotion_prototypes.count).to eq 0
+
+    post :create, mock_emotion_params({"name" => ""})
+
+    expect(@user.active_emotion_prototypes.count).to eq 6
+    expect(@user.inactive_emotion_prototypes.count).to eq 0
+
+    reply = "{\"reply\":[\"Name can't be blank\"]}"
+
+    expect(response.body).to eq reply
+    expect(response.status).to eq 200
   end
 end
