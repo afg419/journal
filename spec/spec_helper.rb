@@ -57,7 +57,7 @@ RSpec.configure do |config|
   def seed_emotions_user_expanded_defaults
     @emotion_prototypes = [
       EmotionPrototype.create(name: "happy", description: " ", color: "#D6D965"),
-      @sad = EmotionPrototype.create(name: "sad", description: " ", color: "#D6D965"),
+      EmotionPrototype.create(name: "sad", description: " ", color: "#D6D965"),
       EmotionPrototype.create(name: "angry", description: " ", color: "#D6D965"),
       EmotionPrototype.create(name: "anxious", description: " ", color: "#D6D965"),
       EmotionPrototype.create(name: "content", description: " ", color: "#D6D965"),

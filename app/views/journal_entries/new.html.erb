@@ -18,7 +18,7 @@
               <% name = emotion.name %>
               <div class="emotion-text", id="<%= emotion.name %>">
                 <p>
-                  <a href="#", class="description"><span><strong><%= "#{name.capitalize}: "%></strong><%=" #{emotion.description}" %></span>?</a><span style="padding-left: 1em"></span><%= name.capitalize %>
+                  <a href="#", class="description"><span><strong><%= "#{name.capitalize}: "%></strong><%=" #{emotion.description}" %></span>?</a><span style="padding-left: 1em"></span><%= name.capitalize %><br>
                   <a href="#", class="remove" name="<%= emotion.name%>">Remove</a>
                 </p>
                 <input style="background-color:<%= emotion.color %>" class="slider <%=name%>-slide" type="range" name="<%=name%>" min="0" max="10" value="0"><br>

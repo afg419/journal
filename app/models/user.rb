@@ -32,9 +32,10 @@ class User < ActiveRecord::Base
 
   def scores_for(emotion_prototype)
     journal_entries.map do |je|
+      next unless emp = je.emotions.find_by(emotion_prototype: emotion_prototype)
       {
         created_at: je.created_at,
-        score: je.emotions.find_by(emotion_prototype: emotion_prototype).score,
+        score: emp.score,
         tag: je.tag
       }
     end
