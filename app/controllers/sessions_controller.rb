@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
     session[:access_token] = auth.client.access_token
     service = GoogleService.new(auth, {"access_token" => access_token})
     session[:user_info] = service.user_info
+    current_user.app_messages.set_all_inactive if current_user
     redirect_to dashboard_path
   end
 end
