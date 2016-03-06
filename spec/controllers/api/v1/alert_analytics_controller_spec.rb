@@ -16,7 +16,6 @@ RSpec.describe Api::V1::AlertAnalyticsController, type: :controller do
     BayesSuicideClassifier.new.reset_classifier
     TrainingPost.create(entry: "good", classification: "ok")
     TrainingPost.create(entry: "hate life", classification: "troubled")
-
     user = mock_login
     post :show, mock_classifier_params({"body" => "I hate life"})
 

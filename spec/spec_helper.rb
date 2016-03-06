@@ -36,6 +36,15 @@ RSpec.configure do |config|
     }.merge(opts)
   end
 
+  def mock_emotion_params(opts={})
+    {
+      "name"=>"connection",
+      "description"=>"desc1",
+      "controller"=>"api/v1/emotions",
+      "action"=>"create"
+    }.merge(opts)
+  end
+
   def seed_emotions_user
     @emotion_prototypes = [
       EmotionPrototype.create(name: "happy", description: " ", color: "#D6D965"),
@@ -57,11 +66,10 @@ RSpec.configure do |config|
     User.create(email:"basic_emotion_prototypes", emotion_prototypes: @emotion_prototypes)
   end
 
-
   def mock_login
     user = User.find_or_create_by_auth(mock_user_info)
     ApplicationController.any_instance.stubs(:current_user).returns(user)
-    ApplicationController.any_instance.stubs(:access_token).returns("ya29.nAJ4nt886xUAtaaFEbouQO3cUQxZHEVWGhKx0kzG2tQbBEFOVCZm0Yzf133d8_OoqZI")
+    ApplicationController.any_instance.stubs(:access_token).returns("ya29.nQKRWMi5eZ3pif1uHlcXH09CPzoI-x2d3Uo6mCxhk-D8hAq_lSDpt58xgopXxFYR_HA")
     @user = user
   end
 

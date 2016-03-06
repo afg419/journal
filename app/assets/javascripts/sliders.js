@@ -24,7 +24,7 @@ var doAnalytics = function(data){
     data: data,
     success: function(msg){
       if(msg.reply){
-        postAlert(msg);
+        postAlert();
       }
     },
     error: function(error_message){
@@ -34,10 +34,10 @@ var doAnalytics = function(data){
 }
 
 
-var postAlert = function(msg){
-  alert(msg)
+var postAlert = function(){
+  $('.js-alert').append(" (!)")
+  $('.js-alert').css("color","white")
 }
-
 
 var entryContent = function(){
   var values = {};
@@ -61,10 +61,12 @@ var lockPost = function(msg){
     $('.entry-form').toggleClass('inactive')
     $('#tag').attr('readonly', "readonly")
     $('#journal_entry_body').attr('readonly', "readonly")
-    $('#header').empty()
+    $('#header').empty();
     $('#header').append("Your Journal Entry has been Submitted")
-    $('#new-entry-main-button').empty()
+    $('#new-entry-main-button').empty();
     $('#new-entry-main-button').append("<a href='/dashboard'>To Dashboard</a>")
+    $(".add-emotion").empty();
+    $(".remove").empty();
   }else{
     console.log("message was not created")
   }

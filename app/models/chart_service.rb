@@ -37,7 +37,7 @@ class ChartService
 
   def relabel(scores)
     dict = {created_at: :x, score: :y, tag: :name}
-    scores.map do |hash|
+    scores.compact.map do |hash|
       hash.map do |k,v|
         [dict[k],adjust_date_times(v)]
       end.to_h
