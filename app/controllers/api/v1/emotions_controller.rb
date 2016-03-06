@@ -1,6 +1,6 @@
 class Api::V1::EmotionsController < ApplicationController
   def create
-    if default_emotion = current_user.inactive_emotion_prototypes.find{|emp| emp.name = params["name"]}
+    if default_emotion = current_user.inactive_emotion_prototypes.find{|emp| emp.name == params["name"]}
       current_user.set_emotion_prototype("active", params["name"])
       render json: {reply: "created", color: default_emotion.color, description: default_emotion.description}
     else
@@ -16,9 +16,9 @@ class Api::V1::EmotionsController < ApplicationController
   end
 
   def destroy
-    emotion = current_user.emotion_prototypes.find_by(name: params["id"])
+    emotion = current_user.active_emotion_prototypes.find{|emp| emp.name == params["id"]}
     if emotion
-      emotion.update_attributes(status: "inactive")
+      current_user.set_emotion_prototype("inactive", emotion.name)
       render json: {reply: "removed"}
     else
       render json: {reply: "You didn't have that emotion listed..."}

@@ -58,4 +58,29 @@ RSpec.describe Api::V1::EmotionsController, type: :controller do
     expect(response.body).to eq reply
     expect(response.status).to eq 200
   end
+
+  it "sets emotion prototype to inactive status" do
+    mock_login
+
+    expect(@user.active_emotion_prototypes.count).to eq 6
+    expect(@user.inactive_emotion_prototypes.count).to eq 0
+
+    delete :destroy, mock_emotion_params({"id" => "sad"})
+
+    expect(@user.active_emotion_prototypes.count).to eq 5
+    expect(@user.inactive_emotion_prototypes.count).to eq 1
+
+    reply = "{\"reply\":\"removed\"}"
+    expect(response.body).to eq reply
+    expect(response.status).to eq 200
+
+    delete :destroy, mock_emotion_params({"id" => "sad"})
+
+    expect(@user.active_emotion_prototypes.count).to eq 5
+    expect(@user.inactive_emotion_prototypes.count).to eq 1
+
+    reply ="{\"reply\":\"You didn't have that emotion listed...\"}"
+    expect(response.body).to eq reply
+    expect(response.status).to eq 200
+  end
 end
