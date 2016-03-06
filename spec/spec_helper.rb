@@ -24,15 +24,24 @@ RSpec.configure do |config|
 
   def mock_classifier_params(opts={})
     {
-       "happy"=>"7",
-       "sad"=>"0",
-       "angry"=>"0",
-       "anxious"=>"0",
+       "happy"=>"2",
+       "sad"=>"6",
+       "angry"=>"3",
+       "anxious"=>"7",
        "focused"=>"0",
        "content"=>"0",
        "tag"=>"For Fury!",
        "body"=>"This is the journal body",
        "user_id"=>"2"
+    }.merge(opts)
+  end
+
+  def mock_emotion_params(opts={})
+    {
+      "name"=>"connection",
+      "description"=>"desc1",
+      "controller"=>"api/v1/emotions",
+      "action"=>"create"
     }.merge(opts)
   end
 
@@ -57,20 +66,20 @@ RSpec.configure do |config|
     User.create(email:"basic_emotion_prototypes", emotion_prototypes: @emotion_prototypes)
   end
 
-
   def mock_login
     user = User.find_or_create_by_auth(mock_user_info)
     ApplicationController.any_instance.stubs(:current_user).returns(user)
-    ApplicationController.any_instance.stubs(:access_token).returns("ya29.mgLygYTY4d60AX7i8SfNQsaUc9swHiNwj2dYo2rD6QNdtFU1MRZHbdrbVce0hgV5apw")
+    ApplicationController.any_instance.stubs(:access_token).returns("ya29.nQKRWMi5eZ3pif1uHlcXH09CPzoI-x2d3Uo6mCxhk-D8hAq_lSDpt58xgopXxFYR_HA")
     @user = user
   end
 
-  def create_journal_post(scores, tag, time=nil)
+  def create_journal_post(scores, tag, time = nil, user = nil)
     emotions = @emotion_prototypes.zip(scores).map do |emotion_prototype, score|
       emotion_prototype.emotions.create(score: score)
     end
     j = JournalEntry.create(tag: tag, emotions: emotions, user: @user)
     j.created_at = time if time
+    j.user = user if user
     j.save
   end
 

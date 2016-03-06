@@ -17,13 +17,14 @@ var extractEntry = function (){
 }
 
 var doAnalytics = function(data){
+  debugger
   $.ajax({
     type: "GET",
     url: "/api/v1/alert_analytics",
     data: data,
     success: function(msg){
       if(msg.reply){
-        postAlert("Your past few journal responses have seemed pretty down...");
+        postAlert();
       }
     },
     error: function(error_message){
@@ -33,11 +34,10 @@ var doAnalytics = function(data){
 }
 
 
-var postAlert = function(msg){
-  alert(msg)
-  $(".message-box").append(msg);
+var postAlert = function(){
+  $('.js-alert').append(" (!)")
+  $('.js-alert').css("color","white")
 }
-
 
 var entryContent = function(){
   var values = {};
@@ -61,10 +61,12 @@ var lockPost = function(msg){
     $('.entry-form').toggleClass('inactive')
     $('#tag').attr('readonly', "readonly")
     $('#journal_entry_body').attr('readonly', "readonly")
-    $('#header').empty()
+    $('#header').empty();
     $('#header').append("Your Journal Entry has been Submitted")
-    $('#new-entry-main-button').empty()
+    $('#new-entry-main-button').empty();
     $('#new-entry-main-button').append("<a href='/dashboard'>To Dashboard</a>")
+    $(".add-emotion").empty();
+    $(".remove").empty();
   }else{
     console.log("message was not created")
   }

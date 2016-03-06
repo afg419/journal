@@ -1,7 +1,6 @@
 require 'csv'
 
 namespace :initialize do
-
   desc "Seeds database"
   task mine_reddit: :environment do
     TrainingPost.get_training_posts("suicidewatch","new",10,"Troubled")
@@ -20,5 +19,4 @@ namespace :initialize do
     puts "I want to fucking kill myself.: #{b.classifier.classify("I want to fucking kill myself.")}"
     puts "I want some milk at the store right now!.: #{b.classifier.classify("I want some milk at the store right now!")}"
   end
-
 end

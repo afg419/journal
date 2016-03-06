@@ -21,5 +21,16 @@
 $(document).ready(function(){
   extractEntry();
   $('.entry-form').delay(1000).fadeTo('slow', 1);
-  // alert2("Hey","shut","up");
+  $('#add-emotion').on('click',function(){
+    revealHideNewEmotion();
+  })
+
+  $('#create-emotion').on('click',function(){
+    createNewEmotion();
+  })
+  listenForRemove();
 })
+
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}

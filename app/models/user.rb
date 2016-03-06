@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :journal_entries
   has_many :user_emotion_prototypes
   has_many :emotion_prototypes, through: :user_emotion_prototypes
+  has_many :app_messages
 
   def self.find_or_create_by_auth(opts)
     user = User.find_or_create_by(email: opts["email"])
@@ -16,18 +17,33 @@ class User < ActiveRecord::Base
     User.find_by(email: "basic_emotion_prototypes").emotion_prototypes
   end
 
+  def active_emotion_prototypes
+    user_emotion_prototypes.where(status: "active").map{|x| x.emotion_prototype}
+  end
+
+  def inactive_emotion_prototypes
+    user_emotion_prototypes.where(status: "inactive").map{|x| x.emotion_prototype}
+  end
+
+  def set_emotion_prototype(status, name)
+    emp = user_emotion_prototypes.find{|x| x.emotion_prototype.name == name}
+    emp.status = status
+    emp.save
+  end
+
   def scores_for(emotion_prototype)
     journal_entries.map do |je|
+      next unless emp = je.emotions.find_by(emotion_prototype: emotion_prototype)
       {
         created_at: je.created_at,
-        score: je.emotions.find_by(emotion_prototype: emotion_prototype).score,
+        score: emp.score,
         tag: je.tag
       }
     end
   end
 
   def chart_emotion_data
-    {id => EmotionPrototype.all.reduce({}) do |acc, emotion_prototype|
+    {id => emotion_prototypes.all.reduce({}) do |acc, emotion_prototype|
       acc.merge({emotion_prototype.name => {color: emotion_prototype.color, scores: scores_for(emotion_prototype)}})
     end}
   end

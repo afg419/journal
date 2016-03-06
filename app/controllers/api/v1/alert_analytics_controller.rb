@@ -3,7 +3,10 @@ class Api::V1::AlertAnalyticsController < ApplicationController
   def show
     sc = SuicidalEntryClassifier.new(classifier_params)
     reply = sc.troubled?
-    render json: {reply: true}
+    if reply
+      current_user.app_messages.create(message: AppMessage.national_suicide_prevention_hotline, status: 1)
+    end
+    render json: {reply: reply}
   end
 
 private

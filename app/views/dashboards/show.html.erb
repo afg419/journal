@@ -2,9 +2,9 @@
   <br>
   <h3>Welcome <%= current_user.name %> </h3>
 </div>
-
-<div class="message-box">
-  
+<br><br><br>
+<div class="container <%='message-box' if current_user.app_messages.current_message %>">
+  <%= current_user.app_messages.current_message %>
 </div>
 
 <div class="new-entry">

@@ -6,6 +6,7 @@ RSpec.describe BayesSuicideClassifier, type: :model do
     TrainingPost.create(entry: "evil", classification: "troubled")
 
     b = BayesSuicideClassifier.new
+    b.reset_classifier
     b.train_on_training_posts
 
     expect(b.classifier.classify "good").to eq "Ok"

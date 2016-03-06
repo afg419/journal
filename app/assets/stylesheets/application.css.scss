@@ -148,7 +148,6 @@ input[type="range"] {
       z-index: 1000;
       left: 8em;
       width: 25em;
-      // bottom:0px;
       margin: 10px;
       color: rgb(20,30,40);
       background-color: #97989F;
@@ -162,32 +161,45 @@ input[type="range"] {
   }
 }
 
-
-a.tip {
-    border-bottom: 1px dashed;
-    text-decoration: none
-}
-a.tip:hover {
-    cursor: help;
-    position: relative
-}
-a.tip span {
-    display: none
-}
-a.tip:hover span {
-    border: #c0c0c0 1px dotted;
-    padding: 5px 20px 5px 5px;
-    display: block;
-    z-index: 100;
-    left: 0px;
-    margin: 10px;
-    width: 250px;
-    position: absolute;
-    top: 10px;
-    text-decoration: none
+.emotion-container a.remove{
+  color: #808898;
 }
 
 .message-box{
   min-height: 15em;
-  
+  width: 25em;
+  color: #EAD9C3;
+  font-family:sans-serif;
+  background-color: rgba(1, 5, 13, 0.25);
+  padding: 1em;
+  border: 2px;
+  border-color: red;
+}
+
+.add-emotion-form{
+  border: #c0c0c0 1px dotted;
+  padding: 5px 20px 5px 5px;
+  display: block;
+  font-size: medium;
+  z-index: 1000;
+  left: 8em;
+  width: 25em;
+  margin: 10px;
+  color: rgb(20,30,40);
+  background-color: #97989F;
+  position: relative;
+  top: -3.5em;
+  text-decoration: none;
+  #emotion-description {
+    font-family:sans-serif;
+    background-color: rgba(20,20,20,1);
+    width: 24.25em;
+    color: #CAE5FF
+  }
+
+  #emotion-name {
+    font-family:sans-serif;
+    background-color: rgba(20,20,20,1);
+    color: #CAE5FF
+  }
 }

@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160304215253) do
+ActiveRecord::Schema.define(version: 20160305222058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "app_messages", force: :cascade do |t|
+    t.text     "message"
+    t.integer  "user_id"
+    t.integer  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "app_messages", ["user_id"], name: "index_app_messages_on_user_id", using: :btree
 
   create_table "emotion_prototypes", force: :cascade do |t|
     t.string   "name"
@@ -56,8 +66,9 @@ ActiveRecord::Schema.define(version: 20160304215253) do
   create_table "user_emotion_prototypes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "emotion_prototype_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.string   "status",               default: "active"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
 
   add_index "user_emotion_prototypes", ["emotion_prototype_id"], name: "index_user_emotion_prototypes_on_emotion_prototype_id", using: :btree
@@ -71,6 +82,7 @@ ActiveRecord::Schema.define(version: 20160304215253) do
     t.datetime "updated_at",    null: false
   end
 
+  add_foreign_key "app_messages", "users"
   add_foreign_key "emotions", "emotion_prototypes"
   add_foreign_key "emotions", "journal_entries"
   add_foreign_key "journal_entries", "users"
