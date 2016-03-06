@@ -56,8 +56,9 @@ ActiveRecord::Schema.define(version: 20160304215253) do
   create_table "user_emotion_prototypes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "emotion_prototype_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.string   "status",               default: "active"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
 
   add_index "user_emotion_prototypes", ["emotion_prototype_id"], name: "index_user_emotion_prototypes_on_emotion_prototype_id", using: :btree

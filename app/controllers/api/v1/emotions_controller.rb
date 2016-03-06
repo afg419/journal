@@ -15,7 +15,6 @@ class Api::V1::EmotionsController < ApplicationController
          render json: {reply: emotion.errors.full_messages}
        end
     end
-
   end
 
   def destroy

@@ -41,6 +41,14 @@ RSpec.describe User, type: :model do
     expect(user3).to eq nil
   end
 
+  it "returns only active emotion prototypes" do
+    user = User.create("email" => "x", "name" => "y", "permission_id" => "z")
+    happy = user.emotion_prototypes.create(name: "happy", description: "yaye!")
+    sad = user.emotion_prototypes.create(name: "sad", description: "boohoo")
+    user_is_sad = UserEmotionPrototype.find_by(emotion_prototype_id: sad.id)
 
+    user_is_sad.update_attributes(status: "inactive")
 
+    expect(user.active_emotion_prototypes.map{|y| y.name}).to eq ["happy"]
+  end
 end

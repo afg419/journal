@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
     User.find_by(email: "basic_emotion_prototypes").emotion_prototypes
   end
 
+  def active_emotion_prototypes
+    user_emotion_prototypes.where(status: "active").map{|x| x.emotion_prototype}
+  end
+
   def scores_for(emotion_prototype)
     journal_entries.map do |je|
       {
