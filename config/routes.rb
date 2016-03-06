@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :journal_entries, only: [:create]
       resource :alert_analytics, only: [:show]
+      resources :emotions, only: [:create, :destroy]
     end
   end
 end

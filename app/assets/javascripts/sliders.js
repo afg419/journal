@@ -38,7 +38,6 @@ var postAlert = function(msg){
   $(".message-box").append(msg);
 }
 
-
 var entryContent = function(){
   var values = {};
   $('.slider').each(function(index, slide){
@@ -61,10 +60,12 @@ var lockPost = function(msg){
     $('.entry-form').toggleClass('inactive')
     $('#tag').attr('readonly', "readonly")
     $('#journal_entry_body').attr('readonly', "readonly")
-    $('#header').empty()
+    $('#header').empty();
     $('#header').append("Your Journal Entry has been Submitted")
-    $('#new-entry-main-button').empty()
+    $('#new-entry-main-button').empty();
     $('#new-entry-main-button').append("<a href='/dashboard'>To Dashboard</a>")
+    $(".add-emotion").empty();
+    $(".remove").empty();
   }else{
     console.log("message was not created")
   }

@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   end
 
   def chart_emotion_data
-    {id => EmotionPrototype.all.reduce({}) do |acc, emotion_prototype|
+    {id => emotion_prototypes.all.reduce({}) do |acc, emotion_prototype|
       acc.merge({emotion_prototype.name => {color: emotion_prototype.color, scores: scores_for(emotion_prototype)}})
     end}
   end

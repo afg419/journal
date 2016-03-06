@@ -57,7 +57,6 @@ RSpec.configure do |config|
     User.create(email:"basic_emotion_prototypes", emotion_prototypes: @emotion_prototypes)
   end
 
-
   def mock_login
     user = User.find_or_create_by_auth(mock_user_info)
     ApplicationController.any_instance.stubs(:current_user).returns(user)

@@ -13,15 +13,31 @@
         <br>
         <div class="col-md-10 emotions">
           <div class="emotion-container">
-
-            <% current_user.emotion_prototypes.each do |emotion| %>
+            <div class="emotion-sliders">
+              <% current_user.emotion_prototypes.each do |emotion| %>
               <% name = emotion.name %>
-              <div class="<%=name%>">
-                <p><a href="#", class="description"><span><strong><%= "#{name.capitalize}: "%></strong><%=" #{emotion.description}" %></span>?</a><span style="padding-left: 1em"></span><%= name.capitalize %></p>
+              <div class="emotion-text", id="<%= emotion.name %>">
+                <p>
+                  <a href="#", class="description"><span><strong><%= "#{name.capitalize}: "%></strong><%=" #{emotion.description}" %></span>?</a><span style="padding-left: 1em"></span><%= name.capitalize %>
+                  <a href="#", class="remove" name="<%= emotion.name%>">Remove</a>
+                </p>
                 <input style="background-color:<%= emotion.color %>" class="slider <%=name%>-slide" type="range" name="<%=name%>" min="0" max="10" value="0"><br>
               </div>
-            <% end %>
-
+              <% end %>
+            </div>
+            <div class="add-emotion">
+              <p><a id="add-emotion">Add new emotion</a></p>
+              <span class="hide add-emotion-form">
+                <label for="emotion_name">Emotion Name:</label>
+                <input id="emotion-name" type="text" name="emotion[name]">
+                <br>
+                <label for="emotion_description">Description for what low and high scores for this emotion mean:</label>
+                <textarea id="emotion-description" name="emotion[description]"></textarea>
+                <label for="default_emotion">Or select from a default emotion</label>
+                <%= collection_select(:user, :emotion_prototype_id, User.basic_emotion_prototypes - current_user.emotion_prototypes, :name, :name, prompt: "Default Emotions") %>
+                <a id="create-emotion" style="color: #083A65">Submit</a>
+              </span>
+            </div>
           </div>
         </div>
       </div>
