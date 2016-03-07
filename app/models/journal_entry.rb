@@ -16,4 +16,9 @@ class JournalEntry < ActiveRecord::Base
     JournalEntry.where("created_at >= :start_date AND created_at <= :end_date",
     {start_date: created_at-7.day, end_date: created_at})
   end
+
+  def self.closest_entry_to(time)
+    all.sort_by{|a| (a.created_at - time)**2}.first
+    # self.order("ABS(created_at - #{time.to_i})").first
+  end
 end

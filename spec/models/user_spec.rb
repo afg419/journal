@@ -111,10 +111,10 @@ RSpec.describe User, type: :model do
         {:color=>"#D6D965",
          :scores=>
             [{:created_at=> t1,
-              :score=>0,
+              :score=>3,
               :tag=>"post1"},
              {:created_at=>t2,
-              :score=>2,
+              :score=>6,
               :tag=>"post2"}]},
       "sad"=>
          {:color=>"#D6D965",
@@ -129,10 +129,10 @@ RSpec.describe User, type: :model do
           {:color=>"#D6D965",
            :scores=>
             [{:created_at=> t1,
-              :score=>3,
+              :score=>0,
               :tag=>"post1"},
              {:created_at=> t2,
-              :score=>6,
+              :score=>2,
               :tag=>"post2"}]}
           }
     }

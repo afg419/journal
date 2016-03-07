@@ -68,4 +68,7 @@ class User < ActiveRecord::Base
   def journal_entries?
     journal_entries.count > 0
   end
+
+  def scores_for_with_endpoints(emotion_prototype, start_time, end_time)
+  end
 end
