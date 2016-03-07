@@ -90,4 +90,19 @@ RSpec.describe EmotionScoresJudge, type: :model do
     quad = esj.best_fit(2, extracted_scores)
     expect(quad).to eq [1,0,1]
   end
+
+  it "returns best fit curve" do
+    extracted_scores = [{x: 0, :y=>1},
+                        {x: 1, :y=>2},
+                        {x: -1, :y=>2},
+                        {x: -2, :y=>5},
+                        {x: 2, :y=>5}]
+    esj = EmotionScoresJudge.new
+    quad = esj.best_curve(2, extracted_scores)
+    expect(quad[0]).to eq 1
+    expect(quad[1]).to eq 2
+    expect(quad[-1]).to eq 2
+    expect(quad[-2]).to eq 5
+    expect(quad[2]).to eq 5
+  end
 end

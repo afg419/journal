@@ -30,4 +30,8 @@ class EmotionScoresJudge
       end
     end
   end
+
+  def best_curve(n, extracted_scores)
+    hyp[best_fit(n, extracted_scores)]
+  end
 end
