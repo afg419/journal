@@ -43,14 +43,14 @@ RSpec.describe ChartService, type: :model do
 
     data = @cs.get_emotion_data_from_user
 
-    expect(data[@user.id]["happy"][:scores].first[:score]).to eq 1
-    expect(data[@user.id]["happy"][:scores][1][:score]).to eq 2
+    expect(data[@user.id]["happy"][:scores].first[:score]).to eq 3
+    expect(data[@user.id]["happy"][:scores][1][:score]).to eq 4
 
     expect(data[@user.id]["sad"][:scores].first[:score]).to eq 2
     expect(data[@user.id]["sad"][:scores][1][:score]).to eq 3
 
-    expect(data[@user.id]["angry"][:scores].first[:score]).to eq 3
-    expect(data[@user.id]["angry"][:scores][1][:score]).to eq 4
+    expect(data[@user.id]["angry"][:scores].first[:score]).to eq 1
+    expect(data[@user.id]["angry"][:scores][1][:score]).to eq 2
 
     expect(data[@user.id]["angry"][:scores][1][:tag]).to eq "Journal title2"
     expect(data[@user.id]["angry"][:scores][0][:tag]).to eq "Journal title1"

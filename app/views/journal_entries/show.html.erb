@@ -15,10 +15,14 @@
           <div class="emotion-container">
 
             <% @journal_entry[:entry].emotions.each do |emotion| %>
-              <% name = emotion.emotion_prototype.name %>
-              <div class="<%=name%>">
-                <p><%= name.capitalize %></p>
-                <input class="slider <%=name%>-slide" type="range" name="<%=name%>" min="0" max="10" value="<%= emotion.score %>" readonly="readonly"><br>
+              <% name = emotion.name %>
+              <% color = emotion.color %>
+              <% description = emotion.description %>
+              <div class="emotion-text", id="<%= emotion.name %>">
+                <p>
+                  <a href="#", class="description"><span><strong><%= "#{name.capitalize}: "%></strong><%=" #{description}" %></span>?</a><span style="padding-left: 1em"></span><%= name.capitalize %><br>
+                </p>
+                <input style="background-color:<%= color %>" class="slider <%=name%>-slide" type="range" name="<%=name%>" min="0" max="10" value="<%= emotion.score %>" readonly="readonly"><br>
               </div>
             <% end %>
 

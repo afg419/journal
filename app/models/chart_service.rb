@@ -5,10 +5,13 @@ class ChartService
     @user = user
     @id = user.id
     @colors = []
+    @emotion_data = {@id => []}
   end
 
-  def get_emotion_data_from_user
-    @emotion_data = user.chart_emotion_data
+  def get_emotion_data_from_user(start_time = nil, end_time = nil)
+    start_time ||= user.journal_entries.first.created_at - 1.day
+    end_time ||= user.journal_entries.last.created_at + 1.day
+    @emotion_data = user.chart_emotion_data(start_time, end_time)
   end
 
   def render_dashboard_plot
@@ -16,7 +19,8 @@ class ChartService
       emotion_data[id].each do |emotion_name, color_scores|
         f.series(name: emotion_name,
                 yAxis: 0,
-                 data: relabel(color_scores[:scores]))
+                 data: relabel(color_scores[:scores]),
+                 dataLabels: {enabled: true, format: "{name}"})
         colors << color_scores[:color]
       end
       dashboard_plot_styling(f)
@@ -24,7 +28,7 @@ class ChartService
   end
 
   def dashboard_plot_styling(f)
-    f.title(text: "Emotions", align: "center", style: {color: '#EAD9C3', fontSize: "large"})
+    f.title(text: "Emotions over Time", align: "center", style: {color: '#EAD9C3', fontSize: "large"})
     f.xAxis(type: 'datetime')
     f.colors(colors)
     f.yAxis [

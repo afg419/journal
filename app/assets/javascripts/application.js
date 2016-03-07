@@ -20,7 +20,7 @@
 
 $(document).ready(function(){
   extractEntry();
-  $('.entry-form').delay(1000).fadeTo('slow', 1);
+  $('.entry-form').delay(000).fadeTo('slow', 1);
   $('#add-emotion').on('click',function(){
     revealHideNewEmotion();
   })
