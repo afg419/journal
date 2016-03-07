@@ -71,3 +71,9 @@ var lockPost = function(msg){
     console.log("message was not created")
   }
 }
+
+function proRangeSlider(sliderid, outputid) {
+  var x = $("#"+sliderid)[0].value;
+  $("#"+outputid).empty();
+  $("#"+outputid).append(x);
+}

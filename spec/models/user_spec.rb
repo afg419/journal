@@ -69,28 +69,28 @@ RSpec.describe User, type: :model do
     expect(user.inactive_emotion_prototypes.map{|y| y.name}).to eq []
   end
 
-  # it "gets scores for emotion_prototype" do
-  #   seed_emotions_user
-  #   mock_login
-  #   create_journal_post([3,2,0], "post1", Time.now)
-  #   create_journal_post([6,1,2], "post2", Time.now)
-  #   reply = @user.scores_for(@emotion_prototypes[0], Time.now - 1.day, Time.now).map {|score|
-  #     score.except(:created_at)
-  #   }
-  #   expect(reply).to eq [{:score=>3, :tag=>"post1"}, {:score=>6, :tag=>"post2"}]
-  # end
-  #
-  # it "gets scores for emotion_prototype scoped by time" do
-  #   seed_emotions_user
-  #   mock_login
-  #   create_journal_post([3,2,0], "post1", Time.now)
-  #   create_journal_post([6,1,2], "post2", Time.now)
-  #   create_journal_post([5,1,2], "post2", Time.now - 7.day)
-  #   reply = @user.scores_for(@emotion_prototypes[0], Time.now - 1.day, Time.now).map {|score|
-  #     score.except(:created_at)
-  #   }
-  #   expect(reply).to eq [{:score=>3, :tag=>"post1"}, {:score=>6, :tag=>"post2"}]
-  # end
+  it "gets scores for emotion_prototype" do
+    seed_emotions_user
+    mock_login
+    create_journal_post([3,2,0], "post1", Time.now)
+    create_journal_post([6,1,2], "post2", Time.now)
+    reply = @user.scores_for(@user.emotion_prototypes[0], Time.now - 1.day, Time.now).map {|score|
+      score.except(:created_at)
+    }
+    expect(reply).to eq [{:score=>3, :tag=>"post1"}, {:score=>6, :tag=>"post2"}]
+  end
+
+  it "gets scores for emotion_prototype scoped by time" do
+    seed_emotions_user
+    mock_login
+    create_journal_post([3,2,0], "post1", Time.now)
+    create_journal_post([6,1,2], "post2", Time.now)
+    create_journal_post([5,1,2], "post2", Time.now - 7.day)
+    reply = @user.scores_for(@user.emotion_prototypes[0], Time.now - 1.day, Time.now).map {|score|
+      score.except(:created_at)
+    }
+    expect(reply).to eq [{:score=>3, :tag=>"post1"}, {:score=>6, :tag=>"post2"}]
+  end
 
   it "gets chart emotion data scoped by time" do
     seed_emotions_user

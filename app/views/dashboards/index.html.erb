@@ -1,6 +1,36 @@
-<div class="" style="min-height: 5em">
+<script>
+$(function() {
+  $( "#datepicker1" ).datepicker();
+  $( "#datepicker2" ).datepicker();
+});
+</script>
 
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<div class="" style="min-height: 5em">
 </div>
+<div class="container datepicks">
+  <div class="">
+    <br>
+  </div>
+  <form action="plot" style="text-align: center">
+    <span>
+      Start Date: <input type="text" class="datepicker" id="datepicker1" name="start_date">
+    </span>
+    <span>
+      End Date: <input type="text" class="datepicker" id="datepicker2" name="end_date">
+    </span>
+    <span>|||  <input type="submit" value="Send" class="datepickerbutton"></span>
+
+  </form>
+  <div class="">
+    <br>
+  </div>
+</div>
+<div class="" style="min-height: 2em">
+</div>
+
 <div class="container form-entry">
   <%= high_chart("some_id", @chart) %>
 </div>
+<br>

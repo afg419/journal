@@ -44,6 +44,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def first_entry_date
+    journal_entries.order(:created_at).first.created_at
+  end
+
+  def last_entry_date
+    journal_entries.order(:created_at).last.created_at
+  end
+
   def chart_emotion_data(start_time, end_time)
     {id => emotion_prototypes.all.reduce({}) do |acc, emotion_prototype|
       acc.merge({

@@ -203,3 +203,29 @@ input[type="range"] {
     color: #CAE5FF
   }
 }
+
+.datepicks{
+  color: #EAD9C3;
+  background-color: rgba(1, 5, 13, 0.25);
+  width: 54em;
+  border: aqua;
+  border-radius: 14px;
+}
+
+.datepicker{
+  background-color: rgba(1, 5, 13, 0.25);
+
+}
+
+.ui-datepicker{
+  background-color: rgba(40,40,40,1);
+  color: #EAD9C3;
+  padding: 1em;
+  border-radius: 10px;
+}
+
+.dashboard3 .nav-button:hover {
+    background-color: #8B8E9A;
+    color: white;
+    border-width: 2px;
+}
