@@ -18,7 +18,7 @@ class JournalEntry < ActiveRecord::Base
   end
 
   def self.closest_entry_to(time)
-    all.sort_by{|a| (a.created_at - time)**2}.first
+    all.sort_by{|je| (je.created_at - time)**2}.first
     # self.order("ABS(created_at - #{time.to_i})").first
   end
 end
