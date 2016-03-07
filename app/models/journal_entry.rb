@@ -21,4 +21,17 @@ class JournalEntry < ActiveRecord::Base
     all.sort_by{|je| (je.created_at - time)**2}.first
     # self.order("ABS(created_at - #{time.to_i})").first
   end
+
+  def self.scores_for(emotion_prototype, start_time, end_time)
+    entries = where("created_at >= :start_time AND created_at <= :end_time",
+    {start_time: start_time, end_time: end_time})
+    entries.map do |je|
+      next unless emp = je.emotions.find_by(emotion_prototype: emotion_prototype)
+      {
+        created_at: je.created_at,
+        score: emp.score,
+        tag: je.tag
+      }
+    end
+  end
 end

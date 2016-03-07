@@ -32,16 +32,7 @@ class User < ActiveRecord::Base
   end
 
   def scores_for(emotion_prototype, start_time, end_time)
-    entries = journal_entries.where("created_at >= :start_time AND created_at <= :end_time",
-    {start_time: start_time, end_time: end_time})
-    entries.map do |je|
-      next unless emp = je.emotions.find_by(emotion_prototype: emotion_prototype)
-      {
-        created_at: je.created_at,
-        score: emp.score,
-        tag: je.tag
-      }
-    end
+    journal_entries.scores_for(emotion_prototype, start_time, end_time)
   end
 
   def first_entry_date
