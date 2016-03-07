@@ -1,7 +1,8 @@
 # require 'app/models/minimization/nelder_mead.rb'
-class EmotionScoresJudge
+class CurveFit
   def best_fit(n, extracted_scores)
     initial_theta = (0..n).to_a.map{|i| rand(-1.0..1.0)}
+    # initial_theta = (0..n).to_a.map{|i| 0}
     j = cost(extracted_scores)
     min = NelderMead.minimize(j,initial_theta)
     min.x_minimum.map{|i| i.round(2)}
@@ -33,10 +34,13 @@ class EmotionScoresJudge
     hyp[best_fit(n, extracted_scores)]
   end
 
+  def translate_curve_left(lam, val) #val > 0
+    Proc.new{|x| lam[x+val]}
+  end
+
   def distance_between_curves(t0, t1, f, g)
-    Integration.integrate(t0, t1,
-        {:tolerance=>1e-10,:method=>:simpson}) do |x|
+    Integration.integrate(t0, t1, {:tolerance=>1e-10,:method=>:simpson}) do |x|
           [f[x],g[x]].max - [f[x],g[x]].min
-        end
+    end
   end
 end

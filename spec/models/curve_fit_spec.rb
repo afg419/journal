@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe EmotionScoresJudge, type: :model do
+RSpec.describe CurveFit, type: :model do
   before :each do
     seed_emotions_user
   end
@@ -17,20 +17,20 @@ RSpec.describe EmotionScoresJudge, type: :model do
 
     happy = @user.active_emotion_prototypes.first
     scores = @user.scores_for_emp_with_endpoints(happy, (Time.now-3.day), Time.now)
-    esj = EmotionScoresJudge.new
+    cv = CurveFit.new
     reply = [ {:x=>t2.to_i, :y=>0},
              {:x=>t1.to_i, :y=>0},
              {:x=>t0.to_i, :y=>0},
              {:x=>t0.to_i, :y=>0}]
-    expect(esj.extract_time_score(scores)).to eq reply
+    expect(cv.extract_time_score(scores)).to eq reply
   end
 
   it "creates a hypothesis function based on coefficients" do
     theta = [1, 1, 1]
-    esj = EmotionScoresJudge.new
-    expect(esj.hyp[theta][0]).to eq 1
-    expect(esj.hyp[theta][1]).to eq 3
-    expect(esj.hyp[theta][-1]).to eq 1
+    cv = CurveFit.new
+    expect(cv.hyp[theta][0]).to eq 1
+    expect(cv.hyp[theta][1]).to eq 3
+    expect(cv.hyp[theta][-1]).to eq 1
   end
 
   it "computes cost function" do
@@ -43,8 +43,8 @@ RSpec.describe EmotionScoresJudge, type: :model do
 
 
     theta = [1, 1, 1]
-    esj = EmotionScoresJudge.new
-    cost = esj.cost(extracted_scores)[theta]
+    cv = CurveFit.new
+    cost = cv.cost(extracted_scores)[theta]
     expect(cost).to eq 11/6.to_f
   end
 
@@ -55,8 +55,8 @@ RSpec.describe EmotionScoresJudge, type: :model do
 
 
     theta = [1, 0, 0, 1]
-    esj = EmotionScoresJudge.new
-    cost = esj.cost(extracted_scores)[theta]
+    cv = CurveFit.new
+    cost = cv.cost(extracted_scores)[theta]
     expect(cost).to eq 5/6.to_f
   end
 
@@ -64,8 +64,8 @@ RSpec.describe EmotionScoresJudge, type: :model do
     extracted_scores = [{x: 0, :y=>0},
                         {x: 1, :y=>0},
                         {x: -1, :y=>0}]
-    esj = EmotionScoresJudge.new
-    line = esj.best_fit(1,extracted_scores)
+    cv = CurveFit.new
+    line = cv.best_fit(1,extracted_scores)
     expect(line).to eq [0,0]
   end
 
@@ -75,8 +75,8 @@ RSpec.describe EmotionScoresJudge, type: :model do
                         {x: -1, :y=>1},
                         {x: -2, :y=>4},
                         {x: 2, :y=>4}]
-    esj = EmotionScoresJudge.new
-    quad = esj.best_fit(2, extracted_scores)
+    cv = CurveFit.new
+    quad = cv.best_fit(2, extracted_scores)
     expect(quad).to eq [0,0,1]
   end
 
@@ -86,8 +86,8 @@ RSpec.describe EmotionScoresJudge, type: :model do
                         {x: -1, :y=>2},
                         {x: -2, :y=>5},
                         {x: 2, :y=>5}]
-    esj = EmotionScoresJudge.new
-    quad = esj.best_fit(2, extracted_scores)
+    cv = CurveFit.new
+    quad = cv.best_fit(2, extracted_scores)
     expect(quad).to eq [1,0,1]
   end
 
@@ -97,8 +97,8 @@ RSpec.describe EmotionScoresJudge, type: :model do
                         {x: -1, :y=>2},
                         {x: -2, :y=>5},
                         {x: 2, :y=>5}]
-    esj = EmotionScoresJudge.new
-    quad = esj.best_curve(2, extracted_scores)
+    cv = CurveFit.new
+    quad = cv.best_curve(2, extracted_scores)
     expect(quad[0]).to eq 1
     expect(quad[1]).to eq 2
     expect(quad[-1]).to eq 2
@@ -106,11 +106,28 @@ RSpec.describe EmotionScoresJudge, type: :model do
     expect(quad[2]).to eq 5
   end
 
+  it "returns translated curve" do
+    extracted_scores = [{x: 0, :y=>1},
+                        {x: 1, :y=>2},
+                        {x: -1, :y=>2},
+                        {x: -2, :y=>5},
+                        {x: 2, :y=>5}]
+    cv = CurveFit.new
+    quad = cv.best_curve(2, extracted_scores)
+    trans_quad = cv.translate_curve_left(quad, 2)
+
+    expect(trans_quad[-2]).to eq 1
+    expect(trans_quad[-1]).to eq 2
+    expect(trans_quad[-3]).to eq 2
+    expect(trans_quad[-4]).to eq 5
+    expect(trans_quad[0]).to eq 5
+  end
+
   it "measures distance between curves" do
     f = Proc.new{|x| x}
     g = Proc.new{|x| 1}
-    esj = EmotionScoresJudge.new
-    dist = esj.distance_between_curves(0,2,f,g)
+    cv = CurveFit.new
+    dist = cv.distance_between_curves(0,2,f,g)
     expect(dist).to eq 1
   end
 end

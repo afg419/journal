@@ -19,7 +19,6 @@ class JournalEntry < ActiveRecord::Base
 
   def self.closest_entry_to(time)
     all.sort_by{|je| (je.created_at - time)**2}.first
-    # self.order("ABS(created_at - #{time.to_i})").first
   end
 
   def self.scores_for(emotion_prototype, start_time, end_time)
