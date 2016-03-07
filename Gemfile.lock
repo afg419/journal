@@ -104,6 +104,8 @@ GEM
     httpclient (2.7.1)
     hurley (0.2)
     i18n (0.7.0)
+    integration (0.1.4)
+      text-table (~> 1.2)
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -277,6 +279,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   figaro
   google-api-client
+  integration
   jbuilder (~> 2.0)
   jquery-rails
   launchy

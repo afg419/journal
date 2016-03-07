@@ -105,4 +105,12 @@ RSpec.describe EmotionScoresJudge, type: :model do
     expect(quad[-2]).to eq 5
     expect(quad[2]).to eq 5
   end
+
+  it "measures distance between curves" do
+    f = Proc.new{|x| x}
+    g = Proc.new{|x| 1}
+    esj = EmotionScoresJudge.new
+    dist = esj.distance_between_curves(0,2,f,g)
+    expect(dist).to eq 1
+  end
 end
