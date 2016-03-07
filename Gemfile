@@ -14,6 +14,7 @@ gem "figaro"
 gem 'lazy_high_charts'
 gem 'classifier'
 gem 'sentimental'
+gem 'minimization'
 
 group :development, :test do
   gem 'mocha'

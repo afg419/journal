@@ -1,8 +1,12 @@
+# require 'app/models/minimization/nelder_mead.rb'
+
 class EmotionScoresJudge
 
-  def best_fit_7d(extracted_scores)
-    theta = (0..7).to_a.map{|i| rand(-1.0..1.0)}
-
+  def best_fit(n, extracted_scores)
+    initial_theta = (0..n).to_a.map{|i| rand(-1.0..1.0)}
+    j = cost(extracted_scores)
+    min = NelderMead.minimize(j,initial_theta)
+    min.x_minimum.map{|i| i.round(2)}
   end
 
   def cost(extracted_scores)

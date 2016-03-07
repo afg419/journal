@@ -47,4 +47,47 @@ RSpec.describe EmotionScoresJudge, type: :model do
     cost = esj.cost(extracted_scores)[theta]
     expect(cost).to eq 11/6.to_f
   end
+
+  it "computes cost function for cubic poly" do
+    extracted_scores = [{x: 0, :y=>0},
+                        {x: 1, :y=>0},
+                        {x: -1, :y=>0}]
+
+
+    theta = [1, 0, 0, 1]
+    esj = EmotionScoresJudge.new
+    cost = esj.cost(extracted_scores)[theta]
+    expect(cost).to eq 5/6.to_f
+  end
+
+  it "fits linear poly to data" do
+    extracted_scores = [{x: 0, :y=>0},
+                        {x: 1, :y=>0},
+                        {x: -1, :y=>0}]
+    esj = EmotionScoresJudge.new
+    line = esj.best_fit(1,extracted_scores)
+    expect(line).to eq [0,0]
+  end
+
+  it "fits quadratic poly to data" do
+    extracted_scores = [{x: 0, :y=>0},
+                        {x: 1, :y=>1},
+                        {x: -1, :y=>1},
+                        {x: -2, :y=>4},
+                        {x: 2, :y=>4}]
+    esj = EmotionScoresJudge.new
+    quad = esj.best_fit(2, extracted_scores)
+    expect(quad).to eq [0,0,1]
+  end
+
+  it "fits quadratic poly to data with constant" do
+    extracted_scores = [{x: 0, :y=>1},
+                        {x: 1, :y=>2},
+                        {x: -1, :y=>2},
+                        {x: -2, :y=>5},
+                        {x: 2, :y=>5}]
+    esj = EmotionScoresJudge.new
+    quad = esj.best_fit(2, extracted_scores)
+    expect(quad).to eq [1,0,1]
+  end
 end
