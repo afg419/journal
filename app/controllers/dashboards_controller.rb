@@ -5,7 +5,9 @@ class DashboardsController < ApplicationController
 
   def index
     cs = ChartService.new(current_user)
-    cs.get_emotion_data_from_user(datetime_params[0], datetime_params[1])
+    if current_user.journal_entries?
+      cs.get_emotion_data_from_user(datetime_params[0], datetime_params[1])
+    end
     @chart = cs.render_dashboard_plot
     render layout: 'wide',  :locals => {:background => "dashboard3"}
   end

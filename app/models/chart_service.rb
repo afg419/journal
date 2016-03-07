@@ -5,6 +5,7 @@ class ChartService
     @user = user
     @id = user.id
     @colors = []
+    @emotion_data = {@id => []}
   end
 
   def get_emotion_data_from_user(start_time = nil, end_time = nil)

@@ -64,4 +64,8 @@ class User < ActiveRecord::Base
                 )
     end}
   end
+
+  def journal_entries?
+    journal_entries.count > 0
+  end
 end
