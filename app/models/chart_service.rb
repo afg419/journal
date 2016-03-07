@@ -16,7 +16,8 @@ class ChartService
       emotion_data[id].each do |emotion_name, color_scores|
         f.series(name: emotion_name,
                 yAxis: 0,
-                 data: relabel(color_scores[:scores]))
+                 data: relabel(color_scores[:scores]),
+                 dataLabels: {enabled: true, format: "{name}"})
         colors << color_scores[:color]
       end
       dashboard_plot_styling(f)

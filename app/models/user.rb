@@ -31,8 +31,10 @@ class User < ActiveRecord::Base
     emp.save
   end
 
-  def scores_for(emotion_prototype)
-    journal_entries.map do |je|
+  def scores_for(emotion_prototype, start_time, end_time)
+    entries = journal_entries.where("created_at >= :start_time AND created_at <= :end_time",
+    {start_time: start_time, end_time: end_time})
+    entries.map do |je|
       next unless emp = je.emotions.find_by(emotion_prototype: emotion_prototype)
       {
         created_at: je.created_at,
@@ -42,9 +44,16 @@ class User < ActiveRecord::Base
     end
   end
 
-  def chart_emotion_data
+  def chart_emotion_data(start_time, end_time)
     {id => emotion_prototypes.all.reduce({}) do |acc, emotion_prototype|
-      acc.merge({emotion_prototype.name => {color: emotion_prototype.color, scores: scores_for(emotion_prototype)}})
+      acc.merge({
+                  emotion_prototype.name =>
+                    {
+                     color: emotion_prototype.color,
+                    scores: scores_for(emotion_prototype, start_time, end_time)
+                    }
+                  }
+                )
     end}
   end
 end

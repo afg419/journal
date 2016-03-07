@@ -74,7 +74,7 @@ RSpec.configure do |config|
   end
 
   def create_journal_post(scores, tag, time = nil, user = nil)
-    emotions = @emotion_prototypes.zip(scores).map do |emotion_prototype, score|
+    emotions = @user.emotion_prototypes.zip(scores).map do |emotion_prototype, score|
       emotion_prototype.emotions.create(score: score)
     end
     j = JournalEntry.create(tag: tag, emotions: emotions, user: @user)
