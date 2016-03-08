@@ -56,6 +56,47 @@ RSpec.describe ChartService, type: :model do
     expect(data[@user.id]["angry"][:scores][0][:tag]).to eq "Journal title1"
   end
 
+  it "gets emotion data from user for just one emotion" do
+    seed_emotions_user
+    @user = mock_login
+    create_journal_post([3,2,1], "Journal title1")
+    create_journal_post([4,3,2], "Journal title2")
+    happy = @user.active_emotion_prototypes.find{|x| x.name == "happy"}
+    @cs = ChartService.new(@user)
+
+    data = @cs.get_emotion_data_from_user_for([happy])
+
+    expect(data[@user.id]["happy"][:scores].first[:score]).to eq 3
+    expect(data[@user.id]["happy"][:scores][1][:score]).to eq 4
+
+    expect(data[@user.id]["happy"][:scores][1][:tag]).to eq "Journal title2"
+    expect(data[@user.id]["happy"][:scores][0][:tag]).to eq "Journal title1"
+  end
+
+  it "gets emotion data from user for two emotions" do
+    seed_emotions_user
+    @user = mock_login
+    create_journal_post([3,2,1], "Journal title1")
+    create_journal_post([4,3,2], "Journal title2")
+    happy = @user.active_emotion_prototypes.find{|x| x.name == "happy"}
+    sad = @user.active_emotion_prototypes.find{|x| x.name == "sad"}
+    @cs = ChartService.new(@user)
+
+    data = @cs.get_emotion_data_from_user_for([happy,sad])
+
+    expect(data[@user.id]["happy"][:scores].first[:score]).to eq 3
+    expect(data[@user.id]["happy"][:scores][1][:score]).to eq 4
+
+    expect(data[@user.id]["sad"][:scores].first[:score]).to eq 2
+    expect(data[@user.id]["sad"][:scores][1][:score]).to eq 3
+
+    expect(data[@user.id]["angry"]).to eq nil
+    expect(data[@user.id]["angry"]).to eq nil
+
+    expect(data[@user.id]["happy"][:scores][1][:tag]).to eq "Journal title2"
+    expect(data[@user.id]["happy"][:scores][0][:tag]).to eq "Journal title1"
+  end
+
   it "renders dashboard plot" do
     seed_emotions_user
     @user = mock_login

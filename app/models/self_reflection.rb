@@ -6,7 +6,7 @@ class SelfReflection
     @user = user
     @refl = ReflectiveSimilarity.new
   end
-  #stupidly, interval times are in number of days.  so 7 is a week
+
   def distances_between_journal_and_journal_span(emotion_prototype, interval)
     i=0
     end_time = Time.now - interval

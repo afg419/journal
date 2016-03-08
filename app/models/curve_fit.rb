@@ -2,7 +2,6 @@
 class CurveFit
   def best_fit(n, extracted_scores)
     initial_theta = (0..n).to_a.map{|i| rand(-1.0..1.0)}
-    # initial_theta = (0..n).to_a.map{|i| 0}
     j = cost(extracted_scores)
     min = NelderMead.minimize(j,initial_theta)
     min.x_minimum.map{|i| i.round(2)}
@@ -40,7 +39,7 @@ class CurveFit
 
   def distance_between_curves(t0, t1, f, g)
     Integration.integrate(t0, t1, {:tolerance=>0.01,:method=>:simpson}) do |x|
-          [f[x],g[x]].max - [f[x],g[x]].min
+        (f[x]-g[x]).abs
     end
   end
 end

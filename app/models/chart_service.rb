@@ -1,17 +1,29 @@
 class ChartService
-  attr_reader :emotion_data, :colors, :id, :user
+  attr_reader :emotion_data, :colors, :id, :user, :opts
 
-  def initialize(user)
+  def initialize(user, opts = {})
     @user = user
     @id = user.id
     @colors = []
     @emotion_data = {@id => []}
+    @opts = {
+      title: "Emotions over Time",
+      y_title: "Emotion Scores",
+      x_min: nil,
+      x_max: nil
+    }.merge(opts)
   end
 
   def get_emotion_data_from_user(start_time = nil, end_time = nil)
     start_time ||= user.journal_entries.first.created_at - 1.day
     end_time ||= user.journal_entries.last.created_at + 1.day
     @emotion_data = user.chart_emotion_data(start_time, end_time)
+  end
+
+  def get_emotion_data_from_user_for(emotion_protos, start_time=nil, end_time=nil)
+    start_time ||= user.journal_entries.first.created_at - 1.day
+    end_time ||= user.journal_entries.last.created_at + 1.day
+    @emotion_data = user.chart_emotion_data(start_time, end_time, emotion_protos)
   end
 
   def render_dashboard_plot
@@ -28,11 +40,11 @@ class ChartService
   end
 
   def dashboard_plot_styling(f)
-    f.title(text: "Emotions over Time", align: "center", style: {color: '#EAD9C3', fontSize: "large"})
-    f.xAxis(type: 'datetime')
+    f.title(text: opts[:title], align: "center", style: {color: '#EAD9C3', fontSize: "large"})
+    f.xAxis(type: 'datetime', min: opts[:x_min], max: opts[:x_max])
     f.colors(colors)
     f.yAxis [
-      {title: {text: "Emotion Scores", margin: 10, style: {fontSize: "medium", color: '#EAD9C3'} }, min:0, max: 10 , gridLineColor: "rgb(70,70,70)"}
+      {title: {text: opts[:y_title], margin: 10, style: {fontSize: "medium", color: '#EAD9C3'} }, min:0, max: 10 , gridLineColor: "rgb(70,70,70)"}
     ]
     f.legend(align: 'right', verticalAlign: 'top', y: 75, x: -50, layout: 'vertical', backgroundColor: "rgba(75,75,75,0)" , itemStyle: {
       color: '#EAD9C3'})

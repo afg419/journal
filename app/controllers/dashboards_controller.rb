@@ -1,4 +1,6 @@
 class DashboardsController < ApplicationController
+  include ChartParamsService
+
   def show
     render layout: 'wide',  :locals => {:background => "dashboard3"}
   end
@@ -9,19 +11,43 @@ class DashboardsController < ApplicationController
       cs.get_emotion_data_from_user(datetime_params[0], datetime_params[1])
     end
     @chart = cs.render_dashboard_plot
+
+    if comparison_graph?
+      cs2 = ChartService.new(current_user, {title: "#{emotion_names}",
+      y_title: "",
+      x_min: time_interval[:start],
+      x_max: time_interval[:end]})
+
+      cs2.get_emotion_data_from_user_for(emotion_params,
+                                        datetime_params[0],
+                                        datetime_params[1])
+
+      sr = SelfReflection.new(current_user)
+      interval = params["emotions"]["days"].to_i
+      emo = emotion_params.first
+      comparisons = sr.distances_between_journal_and_journal_span(emo, interval.day)
+      comparisons << [0,0]
+      start, fin = comparisons.first[1], comparisons.first[1] + interval.day
+
+      cs3 = ChartService.new(current_user, {title: "Time similar to current #{emo.name}",
+      y_title: "",
+      x_min: start.to_i * 1000,
+      x_max: fin.to_i * 1000})
+
+      cs3.get_emotion_data_from_user_for(emotion_params,
+                                        datetime_params[0],
+                                        datetime_params[1])
+
+      @chart3 = cs3.render_dashboard_plot
+      @chart2 = cs2.render_dashboard_plot
+    end
+
     render layout: 'wide',  :locals => {:background => "dashboard3"}
   end
 
-  private
+private
 
-  def datetime_params
-    if (start = params["start_date"]) && (finish = params["end_date"])
-      start_date = Time.strptime(start, "%m/%d/%Y")
-      end_date =  Time.strptime(finish, "%m/%d/%Y")
-    else
-      start_date = current_user.first_entry_date
-      end_date =  current_user.last_entry_date
-    end
-      [start_date, end_date]
+  def comparison_graph?
+    !!params["emotions"] && !!params["emotions"]["days"] && !emotion_params.empty? && current_user.has_journal_entries?
   end
 end
