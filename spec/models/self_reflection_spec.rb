@@ -1,25 +1,37 @@
 require 'rails_helper'
 
-RSpec.describe ReflectiveSimilarity, type: :model do
+RSpec.describe SelfReflection, type: :model do
   before :each do
     seed_emotions_user
   end
 
-  it "extracts time scores from scores" do
-    mock_login
-    t0 = Time.now - 3.day
-    t1 = Time.now - 1.day
-    t2 = Time.now
+  def modified_sin(i)
+    (4.5) * (Math.sin(i) + 1).floor
+  end
 
-    j0 = create_journal_post([0,1,2], "title0", t0)
-    j1 = create_journal_post([1,1,2], "title1", t1)
-    j2 = create_journal_post([2,1,2], "title2", t2)
-    # binding.pry
+  it "extracts most similar start date" do
+    mock_login
+    times = (0..10).to_a.map{|i| Time.now - i.day}
+    times.each_index.each do |i|
+      create_journal_post([modified_sin(i),0,0], "title#{i}", times[i])
+    end
     happy = @user.active_emotion_prototypes.first
 
-    rs = ReflectiveSimilarity.new
-    curve = rs.entries_to_translated_curve(happy, t1, 1.day, @user, 7)
-    expect(curve[0]).to eq 1
-    expect(curve[1]).to eq 2
+    sr = SelfReflection.new(@user)
+    comparisons = sr.distances_between_journal_and_journal_span(happy, 2.day)
+    expect(comparisons.first[1].day).to eq 28
   end
+
+  # it "extracts most similar start date" do
+    # mock_login
+    # times = (0..100).to_a.map{|i| Time.now - i.day}
+    # times.each_index.each do |i|
+    #   create_journal_post([modified_sin(i),0,0], "title#{i}", times[i])
+    # end
+    # happy = @user.active_emotion_prototypes.first
+    #
+    # sr = SelfReflection.new(@user)
+    # comparisons = sr.distances_between_journal_and_journal_span(happy, 7.day)
+    # expect(comparisons.first[1]).to eq times[9]
+  # end
 end

@@ -6,27 +6,30 @@ class SelfReflection
     @user = user
     @refl = ReflectiveSimilarity.new
   end
-
-  def distances_between_journal_and_journal_span(emotion_prototype, interval, user)
-    end_time = Time.now.to_i - interval
+  #stupidly, interval times are in number of days.  so 7 is a week
+  def distances_between_journal_and_journal_span(emotion_prototype, interval)
+    i=0
+    end_time = Time.now - interval
     current_curve = refl.entries_to_translated_curve(emotion_prototype,
                                                       end_time,
                                                      interval,
                                                      user)
-    past_curves(emotion_prototype, end_time, interval, user).min do |curve|
-      refl.cf.distance_between_curves(0, interval, current_curve, curve)
-    end
+    past_curves(emotion_prototype, end_time, interval).map do |curve|
+      puts "working: #{i}"
+      i+=1
+      [refl.cf.distance_between_curves(0, 1, current_curve, curve[0]), curve[1]]
+    end.sort
   end
 
-  def past_curves(emotion_prototype, end_time, interval, user)
-    t0 = user.first_entry_date.to_i
-    t1 = interval
+  def past_curves(emotion_prototype, end_time, interval)
+    t0 = user.first_entry_date
     curves = []
-    while t1 < interval
-      curves << refl.entries_to_translated_curve(emotion_prototype, t0, t1 - t0, user)
+    while (t0 + interval).to_i < end_time.to_i
+      puts "t1: #{t0 + interval},  end_time: #{end_time.to_i}"
+      curves << [refl.entries_to_translated_curve(emotion_prototype, t0, interval, user) , t0]
       t0 += 1.day
-      t1 += 1.day
     end
+    curves
   end
 end
 

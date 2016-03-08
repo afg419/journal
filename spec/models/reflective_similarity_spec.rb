@@ -44,7 +44,7 @@ RSpec.describe ReflectiveSimilarity, type: :model do
     rs = ReflectiveSimilarity.new
     curve = rs.entries_to_translated_curve(happy, t0, 6.day, @user)
     expect(curve[0]).to be_within(0.5).of(0)
-    expect(curve[1/6.0]).to  be_within(0.5).of(1)
+    expect(curve[1/6.0]).to be_within(0.5).of(1)
     expect(curve[2/6.0]).to be_within(0.5).of(2)
     expect(curve[3/6.0]).to be_within(0.5).of(2)
     expect(curve[4/6.0]).to be_within(0.5).of(1)

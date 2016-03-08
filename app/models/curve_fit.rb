@@ -39,7 +39,7 @@ class CurveFit
   end
 
   def distance_between_curves(t0, t1, f, g)
-    Integration.integrate(t0, t1, {:tolerance=>1e-10,:method=>:simpson}) do |x|
+    Integration.integrate(t0, t1, {:tolerance=>0.01,:method=>:simpson}) do |x|
           [f[x],g[x]].max - [f[x],g[x]].min
     end
   end
