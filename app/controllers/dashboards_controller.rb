@@ -9,6 +9,8 @@ class DashboardsController < ApplicationController
       cs.get_emotion_data_from_user(datetime_params[0], datetime_params[1])
     end
     @chart = cs.render_dashboard_plot
+    
+    @chart2 = cs.render_dashboard_plot
     render layout: 'wide',  :locals => {:background => "dashboard3"}
   end
 

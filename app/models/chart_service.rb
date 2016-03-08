@@ -14,6 +14,20 @@ class ChartService
     @emotion_data = user.chart_emotion_data(start_time, end_time)
   end
 
+  def get_emotion_data_from_user_for(emotion_prototype, start_time=nil, end_time=nil)
+    start_time ||= user.journal_entries.first.created_at - 1.day
+    end_time ||= user.journal_entries.last.created_at + 1.day
+    {
+      id => {
+            emotion_prototype.name =>
+              {
+                color: emotion_prototype.color,
+                scores: user.scores_for(emotion_prototype, start_time, end_time)
+              }
+            }
+    }
+  end
+
   def render_dashboard_plot
     LazyHighCharts::HighChart.new('line') do |f|
       emotion_data[id].each do |emotion_name, color_scores|

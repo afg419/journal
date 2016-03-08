@@ -21,7 +21,6 @@ $(function() {
       End Date: <input type="text" class="datepicker" id="datepicker2" name="end_date">
     </span>
     <span>|||  <input type="submit" value="Send" class="datepickerbutton"></span>
-
   </form>
   <div class="">
     <br>
@@ -32,5 +31,32 @@ $(function() {
 
 <div class="container form-entry">
   <%= high_chart("some_id", @chart) %>
+</div>
+
+<div class="" style="min-height: 2em">
+</div>
+
+<div class="container datepicks">
+  <div class="">
+    <br>
+  </div>
+  <form action="plot" style="text-align: center">
+    <span>
+      Emotions: <input type="text" class="datepicker" id="datepicker1" name="start_date">
+    </span>
+    <span>
+      End Date: <input type="text" class="datepicker" id="datepicker2" name="end_date">
+    </span>
+    <span>|||  <input type="submit" value="Send" class="datepickerbutton"></span>
+  </form>
+  <div class="">
+    <br>
+  </div>
+</div>
+<div class="" style="min-height: 2em">
+</div>
+
+<div class="container past-week">
+  <%#= high_chart("some_other_id", @chart2) %>
 </div>
 <br>
