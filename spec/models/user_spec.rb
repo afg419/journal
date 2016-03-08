@@ -100,7 +100,6 @@ RSpec.describe User, type: :model do
     t2 = Time.now
     t3 = Time.now - 7.day
 
-
     create_journal_post([3,2,0], "post1", t1)
     create_journal_post([6,1,2], "post2", t2)
     create_journal_post([5,1,2], "post2", t3)
@@ -111,10 +110,10 @@ RSpec.describe User, type: :model do
         {:color=>"#D6D965",
          :scores=>
             [{:created_at=> t1,
-              :score=>0,
+              :score=>3,
               :tag=>"post1"},
              {:created_at=>t2,
-              :score=>2,
+              :score=>6,
               :tag=>"post2"}]},
       "sad"=>
          {:color=>"#D6D965",
@@ -129,14 +128,29 @@ RSpec.describe User, type: :model do
           {:color=>"#D6D965",
            :scores=>
             [{:created_at=> t1,
-              :score=>3,
+              :score=>0,
               :tag=>"post1"},
              {:created_at=> t2,
-              :score=>6,
+              :score=>2,
               :tag=>"post2"}]}
           }
     }
     expect(reply).to eq expected_reply
   end
 
+  it "gets scores for emotion with endpoint data" do
+    mock_login
+    t0 = Time.now
+    t1 = Time.now - 1.day
+    t2 = Time.now - 3.day
+
+    j0 = create_journal_post([0,1,2], "title0", t0)
+    j1 = create_journal_post([0,1,2], "title1", t1)
+    j2 = create_journal_post([0,1,2], "title2", t2)
+
+    happy = @user.active_emotion_prototypes.first
+    sleep(0.25)
+    scores = @user.scores_for_emp_with_endpoints(happy, (Time.now-3.day), Time.now)
+    expect(scores.map{|score| score[:tag]}.sort).to eq ["title0", "title0", "title1", "title2"].sort
+  end
 end

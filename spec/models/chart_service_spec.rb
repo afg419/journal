@@ -37,8 +37,8 @@ RSpec.describe ChartService, type: :model do
   it "gets emotion data from user " do
     seed_emotions_user
     @user = mock_login
-    create_journal_post([1,2,3], "Journal title1")
-    create_journal_post([2,3,4], "Journal title2")
+    create_journal_post([3,2,1], "Journal title1")
+    create_journal_post([4,3,2], "Journal title2")
     @cs = ChartService.new(@user)
 
     data = @cs.get_emotion_data_from_user

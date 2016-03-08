@@ -32,16 +32,7 @@ class User < ActiveRecord::Base
   end
 
   def scores_for(emotion_prototype, start_time, end_time)
-    entries = journal_entries.where("created_at >= :start_time AND created_at <= :end_time",
-    {start_time: start_time, end_time: end_time})
-    entries.map do |je|
-      next unless emp = je.emotions.find_by(emotion_prototype: emotion_prototype)
-      {
-        created_at: je.created_at,
-        score: emp.score,
-        tag: je.tag
-      }
-    end
+    journal_entries.scores_for(emotion_prototype, start_time, end_time)
   end
 
   def first_entry_date
@@ -67,5 +58,18 @@ class User < ActiveRecord::Base
 
   def journal_entries?
     journal_entries.count > 0
+  end
+
+  def scores_for_emp_with_endpoints(emotion_prototype, start_time, end_time)
+    scores = scores_for(emotion_prototype, start_time, end_time)
+    left = journal_entries.closest_entry_to(start_time)
+    right = journal_entries.closest_entry_to(end_time)
+
+    left_em = left.emotions.find_by(emotion_prototype: emotion_prototype)
+    right_em = right.emotions.find_by(emotion_prototype: emotion_prototype)
+
+    scores += [{created_at: start_time, score: left_em.score, tag: left.tag},
+               {created_at: end_time, score: right_em.score, tag: right.tag}]
+    scores.sort_by{|score| score[:created_at]}
   end
 end
