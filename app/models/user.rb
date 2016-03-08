@@ -33,10 +33,18 @@ class User < ActiveRecord::Base
   end
 
   def first_entry_date
-    journal_entries.order(:created_at).first.created_at
+    (@fed ||= journal_entries.order(:created_at).first.created_at) unless journal_entries.to_a.empty?
   end
 
   def last_entry_date
-    journal_entries.order(:created_at).last.created_at
+    (@led ||= journal_entries.order(:created_at).last.created_at) unless journal_entries.to_a.empty?
+  end
+
+  def mem_journal_entries
+    @mje ||= journal_entries.includes(:emotions)
+  end
+
+  def has_journal_entries?
+    !journal_entries.empty?
   end
 end

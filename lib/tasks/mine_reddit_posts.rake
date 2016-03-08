@@ -1,5 +1,3 @@
-require 'csv'
-
 namespace :initialize do
   desc "Seeds database"
   task mine_reddit: :environment do

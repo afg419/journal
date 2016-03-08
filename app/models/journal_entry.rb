@@ -12,6 +12,10 @@ class JournalEntry < ActiveRecord::Base
     end.merge({"total" => count})
   end
 
+  def mem_emotions
+    @mem ||= emotions.includes(:emotion_prototype)
+  end
+
   def prior_week_entries
     JournalEntry.where("created_at >= :start_date AND created_at <= :end_date",
     {start_date: created_at-7.day, end_date: created_at})
@@ -22,7 +26,7 @@ class JournalEntry < ActiveRecord::Base
   end
 
   def self.scores_for(emotion_prototype, start_time, end_time)
-    entries = where("created_at >= :start_time AND created_at <= :end_time",
+    entries = order(:created_at).where("created_at >= :start_time AND created_at <= :end_time",
     {start_time: start_time, end_time: end_time})
     entries.map do |je|
       next unless emp = je.emotions.find_by(emotion_prototype: emotion_prototype)
