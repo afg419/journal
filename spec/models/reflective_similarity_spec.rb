@@ -5,6 +5,26 @@ RSpec.describe ReflectiveSimilarity, type: :model do
     seed_emotions_user
   end
 
+  it "extracts time scores from scores" do
+    mock_login
+    t0 = Time.now
+    t1 = Time.now - 1.day
+    t2 = Time.now - 3.day
+
+    j0 = create_journal_post([0,1,2], "title0", t0)
+    j1 = create_journal_post([0,1,2], "title1", t1)
+    j2 = create_journal_post([0,1,2], "title2", t2)
+
+    happy = @user.active_emotion_prototypes.first
+    scores = @user.scores_for_emp_with_endpoints(happy, (Time.now-3.day), Time.now)
+    cv = CurveFit.new
+    reply = [ {:x=>t2.to_i, :y=>0},
+             {:x=>t1.to_i, :y=>0},
+             {:x=>t0.to_i, :y=>0},
+             {:x=>t0.to_i, :y=>0}]
+    expect(cv.extract_time_score(scores)).to eq reply
+  end
+
   it "fits a curve" do
     mock_login
     t0 = Time.now - 3.day

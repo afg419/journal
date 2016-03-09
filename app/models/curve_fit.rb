@@ -67,9 +67,18 @@ class CurveFit
   #   Proc.new{|x| lam[x+val]}
   # end
 
-  def distance_between_curves(t0, t1, f, g)
-    Integration.integrate(t0, t1, {:tolerance=>0.01,:method=>:simpson}) do |x|
-        (f[x]-g[x]).abs
-    end
+  #n is sample points
+  def distance_between_curves(t0, t1, f, g, n)
+    dx = (t1 - t0)/n.to_f
+    (1..n).to_a.reduce(0) do |acc, i|
+      x = t0 + i * dx
+      acc + (f[x] - g[x]).abs
+    end * dx
   end
+
+  # def distance_between_curves(t0, t1, f, g)
+  #   Integration.integrate(t0, t1, {:tolerance=>0.01,:method=>:simpson}) do |x|
+  #       (f[x]-g[x]).abs
+  #   end
+  # end
 end
