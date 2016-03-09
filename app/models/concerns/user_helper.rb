@@ -34,7 +34,6 @@ module UserHelper
 
     scores += [{created_at: start_time, score: left_em.score, tag: left.tag},
                {created_at: end_time, score: right_em.score, tag: right.tag}]
-               binding.pry
     scores.sort_by{|score| score[:created_at]}
   end
 

@@ -10,6 +10,12 @@ module ChartParamsService
       [start_date, end_date]
   end
 
+  def interval_params
+    end_date = Time.now
+    start_date = end_date - (params["emotions"]["days"].to_i).days
+    [start_date, end_date]
+  end
+
   def emotion_params
     return [] unless params["emotions"]
     params["emotions"].to_a.map do |emotion, value|

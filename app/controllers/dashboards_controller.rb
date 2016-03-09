@@ -18,14 +18,16 @@ class DashboardsController < ApplicationController
       x_min: time_interval[:start],
       x_max: time_interval[:end]})
 
+      binding.pry
+
       cs2.get_emotion_data_from_user_for(emotion_params,
-                                        datetime_params[0],
-                                        datetime_params[1])
+                                        interval_params[0],
+                                        interval_params[1])
 
       sr = SelfReflection.new(current_user)
       interval = params["emotions"]["days"].to_i
-      emo = emotion_params.first
-      comparisons = sr.distances_between_journal_and_journal_span(emo, interval.day)
+      emotion_prototype = emotion_params.first
+      comparisons = sr.distances_between_journal_and_journal_span(emotion_prototype, interval.day)
       binding.pry
       comparisons << [0,0]
       start, fin = comparisons.first[1], comparisons.first[1] + interval.day
@@ -36,8 +38,8 @@ class DashboardsController < ApplicationController
         x_max: fin.to_i * 1000})
 
       cs3.get_emotion_data_from_user_for(emotion_params,
-                                        datetime_params[0],
-                                        datetime_params[1])
+                                        start,
+                                        fin)
 
       @chart3 = cs3.render_dashboard_plot
       @chart2 = cs2.render_dashboard_plot
