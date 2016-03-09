@@ -11,8 +11,11 @@ class SelfReflection
   def distances_between_current_interval_and_past_intervals(emotion_prototype, interval)
     tcbi = refl.translated_curves_by_interval(emotion_prototype, interval, user)
     current = tcbi[-1][0]
-
+    binding.pry
+    i=0
     tcbi[0..-2].map do |c|
+      puts "#{i}"
+      i+=1
       [cf.distance_between_curves(0, 1, c[0], current), c[1]]
     end
   end
