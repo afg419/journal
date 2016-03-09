@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe ReflectiveSimilarity, type: :model do
   before :each do
     seed_emotions_user
+    @rs = ReflectiveSimilarity.new
   end
 
   it "extracts time scores from scores" do
@@ -17,57 +18,112 @@ RSpec.describe ReflectiveSimilarity, type: :model do
 
     happy = @user.active_emotion_prototypes.first
     scores = @user.scores_for_emp_with_endpoints(happy, (Time.now-3.day), Time.now)
-    cv = CurveFit.new
     reply = [ {:x=>t2.to_i, :y=>0},
              {:x=>t1.to_i, :y=>0},
              {:x=>t0.to_i, :y=>0},
              {:x=>t0.to_i, :y=>0}]
-    expect(cv.extract_time_score(scores)).to eq reply
+    expect(@rs.extract_time_score(scores)).to eq reply
   end
 
-  it "fits a curve" do
+  it "converts scores to intervals" do
     mock_login
-    t0 = Time.now - 3.day
-    t1 = Time.now - 1.day
-    t2 = Time.now
-
-    j0 = create_journal_post([0,1,2], "title0", t0)
-    j1 = create_journal_post([1,1,2], "title1", t1)
-    j2 = create_journal_post([2,1,2], "title2", t2)
-    happy = @user.active_emotion_prototypes.first
-
-    rs = ReflectiveSimilarity.new
-    curve = rs.entries_to_translated_curve(happy, t1, 1.day, @user)
-    expect(curve[0]).to eq 1
-    expect(curve[1]).to eq 2
-  end
-
-  it "fits a more interesting curve" do
-    mock_login
-    t0 = Time.now - 5.day
-    t1 = Time.now - 4.day
-    t2 = Time.now - 3.day
-    t3 = Time.now - 2.day
-    t4 = Time.now - 1.day
-    t5 = Time.now
+    now = Time.now
+    t0 = now - 15.day
+    t1 = now - 12.day
+    t2 = now - 9.day
+    t3 = now - 6.day
+    t4 = now - 3.day
+    t5 = now
 
     j0 = create_journal_post([0,0,0], "title0", t0)
     j1 = create_journal_post([1,0,0], "title1", t1)
     j2 = create_journal_post([2,0,0], "title2", t2)
-    j3 = create_journal_post([2,0,0], "title3", t3)
-    j4 = create_journal_post([1,0,0], "title4", t4)
-    j5 = create_journal_post([0,0,0], "title5", t5)
-    happy = @user.active_emotion_prototypes.first
-
-    rs = ReflectiveSimilarity.new
-    curve = rs.entries_to_translated_curve(happy, t0, 6.day, @user)
-    expect(curve[0]).to be_within(0.5).of(0)
-    expect(curve[1/6.0]).to be_within(0.5).of(1)
-    expect(curve[2/6.0]).to be_within(0.5).of(2)
-    expect(curve[3/6.0]).to be_within(0.5).of(2)
-    expect(curve[4/6.0]).to be_within(0.5).of(1)
-    expect(curve[5/6.0]).to be_within(0.5).of(0)
-    expect(curve[1]).to be_within(0.5).of(0)
+    j3 = create_journal_post([3,0,0], "title3", t3)
+    j4 = create_journal_post([4,0,0], "title4", t4)
+    j5 = create_journal_post([5,0,0], "title5", t5)
+    happy = @user.emotion_prototypes.find_by(name: "happy")
+    intervals = @rs.scores_by_interval(happy, 7, @user).map{|interval| interval.map{|day| day[:tag]}}
+    expected_intervals = [["title0", "title1", "title2"], ["title1", "title2", "title3"], ["title2", "title3", "title4"]]
+    expect(intervals).to eq expected_intervals
   end
+
+  it "translates and scales extracted scores" do
+    t0 = Time.now
+    t1 = t0 + 1.day
+    t2 = t0 + 3.day
+
+    extracted_scores = [ {:x=>t2.to_i, :y=>0},
+                         {:x=>t1.to_i, :y=>1},
+                         {:x=>t0.to_i, :y=>0}].reverse
+    reply = @rs.translate_scale_extracted_scores(extracted_scores, t0.to_i, 3).sort_by{|score| score[:x]}
+    expect(reply.first[:x]).to eq 0
+    expect(reply.first[:y]).to eq 0
+    expect(reply[1][:x]).to eq 1/3.0
+    expect(reply[1][:y]).to eq 1
+    expect(reply.last[:x]).to eq 1
+    expect(reply.last[:y]).to eq 0
+  end
+
+  it "translates scores to translated piece-wise linear" do
+    t0 = Time.now
+    t1 = t0 + 1.day
+    t2 = t0 + 3.day
+
+    scores =  [{:created_at=>t2.to_i, :score=>0, tag: "title2"},
+               {:created_at=>t1.to_i, :score=>1, tag: "title1"},
+               {:created_at=>t0.to_i, :score=>0, tag: "title0"}].reverse
+    plc = @rs.scores_to_translated_curve(scores, t0.to_i, 3)
+    expect(plc.class).to eq Proc
+    expect(plc[0]).to eq 0
+    expect(plc[1/6.0].round(2)).to eq 0.5
+    expect(plc[(1/3.0)]).to eq 1
+    expect(plc[(2/3.0)].round(2)).to eq 0.5
+    expect(plc[1]).to eq 0
+  end
+
+  # it "fits a curve" do
+  #   mock_login
+  #   t0 = Time.now - 3.day
+  #   t1 = Time.now - 1.day
+  #   t2 = Time.now
+  #
+  #   j0 = create_journal_post([0,1,2], "title0", t0)
+  #   j1 = create_journal_post([1,1,2], "title1", t1)
+  #   j2 = create_journal_post([2,1,2], "title2", t2)
+  #   happy = @user.active_emotion_prototypes.first
+  #
+  #   rs = ReflectiveSimilarity.new
+  #   curve = rs.entries_to_translated_curve(happy, t1, 1.day, @user)
+  #   expect(curve[0]).to eq 1
+  #   expect(curve[1]).to eq 2
+  # end
+  #
+  # it "fits a more interesting curve" do
+  #   mock_login
+  #   t0 = Time.now - 5.day
+  #   t1 = Time.now - 4.day
+  #   t2 = Time.now - 3.day
+  #   t3 = Time.now - 2.day
+  #   t4 = Time.now - 1.day
+  #   t5 = Time.now
+  #
+  #   j0 = create_journal_post([0,0,0], "title0", t0)
+  #   j1 = create_journal_post([1,0,0], "title1", t1)
+  #   j2 = create_journal_post([2,0,0], "title2", t2)
+  #   j3 = create_journal_post([2,0,0], "title3", t3)
+  #   j4 = create_journal_post([1,0,0], "title4", t4)
+  #   j5 = create_journal_post([0,0,0], "title5", t5)
+  #   happy = @user.active_emotion_prototypes.first
+  #
+  #   rs = ReflectiveSimilarity.new
+  #   curve = rs.entries_to_translated_curve(happy, t0, 6.day, @user)
+  #   expect(curve[0]).to be_within(0.5).of(0)
+  #   expect(curve[1/6.0]).to be_within(0.5).of(1)
+  #   expect(curve[2/6.0]).to be_within(0.5).of(2)
+  #   expect(curve[3/6.0]).to be_within(0.5).of(2)
+  #   expect(curve[4/6.0]).to be_within(0.5).of(1)
+  #   expect(curve[5/6.0]).to be_within(0.5).of(0)
+  #   expect(curve[1]).to be_within(0.5).of(0)
+  # end
 
 end

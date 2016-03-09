@@ -26,8 +26,6 @@ class DashboardsController < ApplicationController
       interval = params["emotions"]["days"].to_i
       emotion_prototype = emotion_params.first
       comparisons = sr.distances_between_current_interval_and_past_intervals(emotion_prototype, interval).sort
-      binding.pry
-      # comparisons = sr.distances_between_journal_and_journal_span(emotion_prototype, interval.day)
       comparisons << [0,0]
       start, fin = comparisons.first[1] - 1.day, comparisons.first[1] + interval.day + 1.day
 
