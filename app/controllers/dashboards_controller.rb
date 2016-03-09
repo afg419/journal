@@ -10,7 +10,6 @@ class DashboardsController < ApplicationController
     if current_user.journal_entries?
       cs.get_emotion_data_from_user(datetime_params[0], datetime_params[1])
     end
-    binding.pry
     @chart = cs.render_dashboard_plot
 
     if comparison_graph?
@@ -50,6 +49,6 @@ class DashboardsController < ApplicationController
 private
 
   def comparison_graph?
-    !!params["emotions"] && !!params["emotions"]["days"] && !emotion_params.empty? && current_user.has_journal_entries?
+    !!params["emotions"] && params["emotions"]["days"].to_i > 0 && !emotion_params.empty? && current_user.has_journal_entries?
   end
 end
