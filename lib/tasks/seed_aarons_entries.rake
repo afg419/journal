@@ -8,7 +8,6 @@ end
 
 def modified_sin(i)
   (3*Math.sin(0.15*i) + 5 + rand(-2.0..2.9)).floor
-  # (5 * (Math.sin(0.25*i)*rand(0.7..1.3) + 1.3)).floor
 end
 
 namespace :initialize do
@@ -16,9 +15,9 @@ namespace :initialize do
   task aaron_sin_posts: :environment do
     aaron = User.find_by(email: "afg419@gmail.com")
     aaron.journal_entries.delete_all
-    tf = Time.now
+    tf = Time.now - 301.days
     times = (0..300).to_a.map do |i|
-      tf - i.days
+      tf + i.days
     end
 
     times.each_index do |i|

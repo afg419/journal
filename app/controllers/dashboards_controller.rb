@@ -10,6 +10,7 @@ class DashboardsController < ApplicationController
     if current_user.journal_entries?
       cs.get_emotion_data_from_user(datetime_params[0], datetime_params[1])
     end
+    binding.pry
     @chart = cs.render_dashboard_plot
 
     if comparison_graph?
