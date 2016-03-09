@@ -17,7 +17,7 @@ namespace :initialize do
     aaron.journal_entries.delete_all
     tf = Time.now
     times = (0..300).to_a.map do |i|
-      tf - (rand(0.9..1.1)*i).days
+      tf - i.days
     end
 
     times.each_index do |i|

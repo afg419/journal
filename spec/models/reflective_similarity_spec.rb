@@ -14,7 +14,6 @@ RSpec.describe ReflectiveSimilarity, type: :model do
     j0 = create_journal_post([0,1,2], "title0", t0)
     j1 = create_journal_post([1,1,2], "title1", t1)
     j2 = create_journal_post([2,1,2], "title2", t2)
-    # binding.pry
     happy = @user.active_emotion_prototypes.first
 
     rs = ReflectiveSimilarity.new
@@ -38,7 +37,6 @@ RSpec.describe ReflectiveSimilarity, type: :model do
     j3 = create_journal_post([2,0,0], "title3", t3)
     j4 = create_journal_post([1,0,0], "title4", t4)
     j5 = create_journal_post([0,0,0], "title5", t5)
-    # binding.pry
     happy = @user.active_emotion_prototypes.first
 
     rs = ReflectiveSimilarity.new

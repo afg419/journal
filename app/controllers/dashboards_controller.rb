@@ -26,13 +26,14 @@ class DashboardsController < ApplicationController
       interval = params["emotions"]["days"].to_i
       emo = emotion_params.first
       comparisons = sr.distances_between_journal_and_journal_span(emo, interval.day)
+      binding.pry
       comparisons << [0,0]
       start, fin = comparisons.first[1], comparisons.first[1] + interval.day
 
-      cs3 = ChartService.new(current_user, {title: "Time similar to current #{emo.name}",
-      y_title: "",
-      x_min: start.to_i * 1000,
-      x_max: fin.to_i * 1000})
+        cs3 = ChartService.new(current_user, {title: "Time similar to current #{emo.name}",
+        y_title: "",
+        x_min: start.to_i * 1000,
+        x_max: fin.to_i * 1000})
 
       cs3.get_emotion_data_from_user_for(emotion_params,
                                         datetime_params[0],

@@ -1,5 +1,5 @@
 require 'google/apis/drive_v2'
-# require 'google/api_client/client_secrets'
+require 'google/api_client/client_secrets'
 
 class Auth
   attr_reader :client

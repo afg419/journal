@@ -10,11 +10,13 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'google-api-client'
 gem 'rails_12factor', group: :production
+gem 'sidekiq'
 gem "figaro"
 gem 'lazy_high_charts'
 gem 'classifier'
 gem 'sentimental'
 gem 'minimization'
+gem 'newrelic_rpm'
 gem 'integration'
 
 group :development, :test do

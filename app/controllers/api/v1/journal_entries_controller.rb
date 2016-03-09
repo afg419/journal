@@ -5,8 +5,8 @@ class Api::V1::JournalEntriesController < ApplicationController
       save = SaveToDriveService.new(google_service, user_id)
       reply = save.post_file_to_drive(params[:tag], params[:body])
       @entry = JournalEntry.create(tag: params[:tag],
-                               file_id: reply.id,
-                               user_id: user_id)
+                              file_id: reply.id,
+                              user_id: user_id)
       process_emotion_params
       render json: {created: "success"}
     else
