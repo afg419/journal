@@ -77,7 +77,7 @@ RSpec.describe User, type: :model do
     reply = @user.scores_for(@user.emotion_prototypes[0], Time.now - 1.day, Time.now).map {|score|
       score.except(:created_at)
     }
-    expect(reply).to eq [{:score=>3, :tag=>"post1"}, {:score=>6, :tag=>"post2"}]
+    expect(reply.sort_by{|x| x[:score]}).to eq [{:score=>3, :tag=>"post1"}, {:score=>6, :tag=>"post2"}]
   end
 
   it "gets scores for emotion_prototype scoped by time" do
@@ -89,7 +89,7 @@ RSpec.describe User, type: :model do
     reply = @user.scores_for(@user.emotion_prototypes[0], Time.now - 1.day, Time.now).map {|score|
       score.except(:created_at)
     }
-    expect(reply).to eq [{:score=>3, :tag=>"post1"}, {:score=>6, :tag=>"post2"}]
+    expect(reply.sort_by{|x| x[:score]}).to eq [{:score=>3, :tag=>"post1"}, {:score=>6, :tag=>"post2"}]
   end
 
   it "gets chart emotion data scoped by time" do
@@ -109,12 +109,12 @@ RSpec.describe User, type: :model do
       "happy"=>
         {:color=>"#D6D965",
          :scores=>
-            [{:created_at=> t1,
-              :score=>3,
+            [{:created_at => t1,
+              :score => 3,
               :tag=>"post1"},
-             {:created_at=>t2,
+             {:created_at => t2,
               :score=>6,
-              :tag=>"post2"}]},
+              :tag=>"post2"}].reverse},
       "sad"=>
          {:color=>"#D6D965",
           :scores=>
@@ -123,7 +123,7 @@ RSpec.describe User, type: :model do
               :tag=>"post1"},
              {:created_at=> t2,
               :score=>1,
-              :tag=>"post2"}]},
+              :tag=>"post2"}].reverse},
       "angry"=>
           {:color=>"#D6D965",
            :scores=>
@@ -132,7 +132,7 @@ RSpec.describe User, type: :model do
               :tag=>"post1"},
              {:created_at=> t2,
               :score=>2,
-              :tag=>"post2"}]}
+              :tag=>"post2"}].reverse}
           }
     }
     expect(reply).to eq expected_reply

@@ -13,6 +13,7 @@ gem 'rails_12factor', group: :production
 gem 'sidekiq'
 gem "figaro"
 gem 'lazy_high_charts'
+gem 'parallel'
 gem 'classifier'
 gem 'sentimental'
 gem 'minimization'

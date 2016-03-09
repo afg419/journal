@@ -7,7 +7,8 @@ def create_journal_post(scores, tag, time, user)
 end
 
 def modified_sin(i)
-  (5 * (Math.sin(0.12*i)*rand(0.95..1.05) + 1.05)).floor
+  (3*Math.sin(0.15*i) + 5 + rand(-2.0..2.9)).floor
+  # (5 * (Math.sin(0.25*i)*rand(0.7..1.3) + 1.3)).floor
 end
 
 namespace :initialize do
@@ -21,7 +22,7 @@ namespace :initialize do
     end
 
     times.each_index do |i|
-      create_journal_post([modified_sin(i),0,0,0,0,0], "title#{i}", times[i], aaron)
+      create_journal_post([modified_sin(i),modified_sin(i+1),modified_sin(i-4),0,0,0], "title#{i}", times[i], aaron)
       puts "#{i}"
     end
   end

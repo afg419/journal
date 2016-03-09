@@ -13,7 +13,7 @@ module ChartParamsService
   def interval_params
     end_date = Time.now
     start_date = end_date - (params["emotions"]["days"].to_i).days
-    [start_date, end_date]
+    [start_date - 1.day, end_date + 1.day]
   end
 
   def emotion_params

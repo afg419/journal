@@ -26,12 +26,16 @@ class JournalEntry < ActiveRecord::Base
 
   def self.scores_for(emotion_prototype, start_time, end_time)
     entries = where("created_at >= :start_time AND created_at <= :end_time",  {start_time: start_time, end_time: end_time}).all
-    emps = Emotion.order(:created_at).includes(:journal_entry).includes(:emotion_prototype).where(emotion_prototype: emotion_prototype, journal_entry: entries).map do |emp|
-      {
-        created_at: emp.journal_entry.created_at,
-        score: emp.score,
-        tag: emp.journal_entry.tag
-      }
-    end
+    emps = Emotion.order(created_at: :desc)
+                  .includes(:journal_entry)
+                  .includes(:emotion_prototype)
+                  .where(emotion_prototype: emotion_prototype, journal_entry: entries)
+                  .map do |emp|
+                    {
+                      created_at: emp.journal_entry.created_at,
+                      score: emp.score,
+                      tag: emp.journal_entry.tag
+                    }
+                  end
   end
 end
