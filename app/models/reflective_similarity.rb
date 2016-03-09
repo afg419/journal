@@ -1,75 +1,60 @@
 class ReflectiveSimilarity
-  attr_reader :cf
-
-  def initialize(cf = nil)
+  attr_reader :cf, :interval, :user, :emotion_prototype
+  #interval is an integer, number of days
+  def initialize(user, interval, emotion_prototype = nil, cf = nil)
     @cf = cf || CurveFit.new
+    @interval = interval
+    @emotion_prototype = emotion_prototype
+    @user = user
   end
-
-  # def entries_to_translated_curve(emotion_prototype, start_time, interval, user)
-  #   scores = user.scores_for_emp_with_endpoints(emotion_prototype, start_time, start_time + interval)
-  #   extracted_scores = translate_scale_extracted_scores(cf.extract_time_score(scores), start_time.to_i, interval.to_i)
-  #   n = [[extracted_scores.count - 1 , 7].min, 0].max
-  #   cf.best_curve(n, extracted_scores)
-  # end
-
-#############################3.......................
 
   def extract_time_score(scores)
     scores.map{|score| {x: score[:created_at].to_i, y: score[:score]}}
   end
 
-  def translate_scale_extracted_scores(extracted_scores, start_time, interval)
+  def translate_scale_extracted_scores(extracted_scores, start_time)
     extracted_scores.map do |score|
       {x: (score[:x] - start_time)/(interval.days.to_f), y: score[:y]}
     end
   end
 
-  def scores_to_translated_curve(scores, start_time, interval)
-    extracted_scores = translate_scale_extracted_scores(extract_time_score(scores), start_time.to_i, interval.to_i)
+  def scores_to_translated_curve(scores, start_time)
+    extracted_scores = translate_scale_extracted_scores(extract_time_score(scores), start_time.to_i)
     cf.ordered_points_to_piece_wise_line(extracted_scores)
   end
 
-  def scores_by_interval(emotion_prototype, interval, user)
-    scores = user.scores_for(emotion_prototype, user.first_entry_date, user.last_entry_date).sort_by{|x| x[:created_at]}
-    scores_by_day = scores.slice_when{|i,j| i[:created_at].day != j[:created_at].day}.to_a
-
-    last_day = user.last_entry_date
-    scores_by_day.each_with_index.map do |day, i|
-      current_day = day.first[:created_at]
-      next if last_day - current_day < interval.day
-      scores_by_day[i..-1].select{|day2| (day2.first[:created_at] - current_day).abs < interval.days}.flatten
-    end.compact
-
-    # last_day = user.last_entry_date
-    # scores_by_interval = scores_by_day.each_index.map do |i|
-    #   interval_start = scores_by_day[i].first[:created_at]
-    #   next if (last_day - interval_start).abs < interval.day
-    #   j = scores_by_day.find_index do |score_interval|
-    #     (interval_start - score_interval.first[:created_at]).abs > interval.day
-    #   end
-    #   scores_by_day[i..j-1].flatten
-    # end.compact
-    #
-    # last_day = user.last_entry_date
-    # scores_by_interval = scores_by_day.each_index.map do |i|
-    #   interval_start = scores_by_day[i].first[:created_at]
-    #   next if (last_day - interval_start).abs < interval.day
-    #   j = scores_by_day[i..-1].find_index do |score_interval|
-    #     (interval_start - score_interval.first[:created_at]).abs > interval.day
-    #   end || 0
-    #   scores_by_day[i..-1][0..j-1].flatten
-    # end.compact
+  def unix_day
+    1.day.to_i
   end
-  #interval is an integer, number of days
 
-  def translated_curves_by_interval(emotion_prototype, interval, user)
+  def unix_between_by_day(unix1, unix2)
+    (unix1 - unix2).abs/unix_day
+  end
+
+  def scores_by_interval
+    scores = user.scores_for(emotion_prototype, user.first_entry_date, user.last_entry_date).sort_by{|x| x[:created_at]}
+    first_day = user.first_entry_date.beginning_of_day.to_i
+    last_day = user.last_entry_date.beginning_of_day.to_i
+    scores_by_day = []
+    scores.each do |score|
+      current_day = score[:created_at].beginning_of_day.to_i
+      index = unix_between_by_day(current_day,first_day)
+      scores_by_day[index] ||= []
+      scores_by_day[index] << score
+    end
+
+    x = scores_by_day.each_index.map do |i|
+      next if scores_by_day.count - i < 7
+      scores_by_day[i..i+interval-1].compact.flatten
+    end.compact
+  end
+
+  def translated_curves_by_interval
     initial = user.first_entry_date
-    sbi = scores_by_interval(emotion_prototype, interval, user)
+    sbi = scores_by_interval
     sbi.each_index.map do |i|
       puts "#{i} of 300"
-      [scores_to_translated_curve(sbi[i], initial + i.days, interval),sbi[i].first[:created_at]]
+      [scores_to_translated_curve(sbi[i], initial + i.days),sbi[i].first[:created_at]]
     end
   end
-
-
 end

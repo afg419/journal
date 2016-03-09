@@ -7,7 +7,7 @@ def create_journal_post(scores, tag, time, user)
 end
 
 def modified_sin(i)
-  (3*Math.sin(0.15*i) + 5 + rand(-2.0..2.9)).floor
+  (4*Math.sin(0.10*i) + 5 + rand(-1.0..1.9)).floor
 end
 
 namespace :initialize do

@@ -1,15 +1,18 @@
 class SelfReflection
 
-  attr_reader :user, :refl, :cf
+  attr_reader :user, :refl, :cf, :interval, :emotion_prototype
 
-  def initialize(user)
+  def initialize(user, interval, emotion_prototype)
     @user = user
-    @refl = ReflectiveSimilarity.new
+    @refl = ReflectiveSimilarity.new(user, interval, emotion_prototype)
     @cf = CurveFit.new
+    @interval = interval
+    @emotion_prototype = emotion_prototype
   end
 
-  def distances_between_current_interval_and_past_intervals(emotion_prototype, interval)
-    tcbi = refl.translated_curves_by_interval(emotion_prototype, interval, user)
+  def distances_between_current_interval_and_past_intervals
+    tcbi = refl.translated_curves_by_interval
+    binding.pry
     current = tcbi[-1][0]
     i=0
     tcbi[0..-2].map do |c|
@@ -18,31 +21,6 @@ class SelfReflection
       [cf.distance_between_curves(0, 1, c[0], current, 2*interval), c[1]]
     end
   end
-
-  # def distances_between_journal_and_journal_span(emotion_prototype, interval)
-  #   i=0
-  #   end_time = Time.now - interval
-  #   current_curve = refl.entries_to_translated_curve(emotion_prototype,
-  #                                                     end_time,
-  #                                                    interval,
-  #                                                    user)
-  #   past_curves(emotion_prototype, end_time, interval).map do |curve|
-  #     puts "working: #{i}"
-  #     i+=1
-  #     [refl.cf.distance_between_curves(0, 1, current_curve, curve[0]), curve[1]]
-  #   end.sort
-  # end
-  #
-  # def past_curves(emotion_prototype, end_time, interval)
-  #   t0 = user.first_entry_date
-  #   curves = []
-  #   while (t0 + interval).to_i < end_time.to_i
-  #     puts "t1: #{t0 + interval},  end_time: #{end_time.to_i}"
-  #     curves << [refl.entries_to_translated_curve(emotion_prototype, t0, interval, user) , t0]
-  #     t0 += 1.day
-  #   end
-  #   curves
-  # end
 end
 
 

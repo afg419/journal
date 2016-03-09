@@ -1,6 +1,4 @@
-# require 'app/models/minimization/nelder_mead.rb'
 class CurveFit
-
   def line_between(p1, p2)
     Proc.new do |x|
       y  = slope(p1,p2)*(x-p1[:x]) + p1[:y]
