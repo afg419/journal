@@ -41,7 +41,7 @@ RSpec.describe ChartService, type: :model do
     create_journal_post([4,3,2], "Journal title2")
     @cs = ChartService.new(@user)
 
-    data = @cs.get_emotion_data_from_user
+    data = @cs.get_emotion_data_from_user.emotion_data
 
     expect(data[@user.id]["happy"][:scores].first[:score]).to eq 4
     expect(data[@user.id]["happy"][:scores][1][:score]).to eq 3
@@ -64,7 +64,7 @@ RSpec.describe ChartService, type: :model do
     happy = @user.active_emotion_prototypes.find{|x| x.name == "happy"}
     @cs = ChartService.new(@user)
 
-    data = @cs.get_emotion_data_from_user_for([happy])
+    data = @cs.get_emotion_data_from_user_for([happy]).emotion_data
 
     expect(data[@user.id]["happy"][:scores].first[:score]).to eq 4
     expect(data[@user.id]["happy"][:scores][1][:score]).to eq 3
@@ -82,7 +82,7 @@ RSpec.describe ChartService, type: :model do
     sad = @user.active_emotion_prototypes.find{|x| x.name == "sad"}
     @cs = ChartService.new(@user)
 
-    data = @cs.get_emotion_data_from_user_for([happy,sad])
+    data = @cs.get_emotion_data_from_user_for([happy,sad]).emotion_data
 
     expect(data[@user.id]["happy"][:scores].first[:score]).to eq 4
     expect(data[@user.id]["happy"][:scores][1][:score]).to eq 3

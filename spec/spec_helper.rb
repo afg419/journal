@@ -16,6 +16,11 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+
+#Fixes database if database error (no role 'root') But first, vim .rbenv-vars delete all
+#beneath google hash
+
+#ruby ~/DevOpsOne/create_db_yml_server.rb turingcomplete
 RSpec.configure do |config|
 
   # def mock_oauth
