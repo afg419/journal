@@ -1,7 +1,6 @@
 class JournalEntry < ActiveRecord::Base
   belongs_to :user
   has_many :emotions
-  before_save :adjust_for_mountain_time
 
   def datetime
     "#{created_at.month}/#{created_at.day}/#{created_at.year} #{created_at.hour}h"
@@ -15,8 +14,8 @@ class JournalEntry < ActiveRecord::Base
     @mem ||= emotions.includes(:emotion_prototype)
   end
 
-  def adjust_for_mountain_time
-    self.created_at -= 7.hour
+  def mt_created_at
+    created_at -= 7.hour
   end
 
   def prior_week_entries

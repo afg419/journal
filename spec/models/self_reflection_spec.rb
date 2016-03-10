@@ -20,20 +20,6 @@ RSpec.describe SelfReflection, type: :model do
 
     sr = SelfReflection.new(@user, 2, happy)
     comparisons = sr.distances_between_current_interval_and_past_intervals
-    binding.pry
-    expect(comparisons.first[1].day).to eq 28
+    expect(comparisons.first[1].day).to eq 29
   end
-
-  # it "extracts most similar start date" do
-    # mock_login
-    # times = (0..100).to_a.map{|i| Time.now - i.day}
-    # times.each_index.each do |i|
-    #   create_journal_post([modified_sin(i),0,0], "title#{i}", times[i])
-    # end
-    # happy = @user.active_emotion_prototypes.first
-    #
-    # sr = SelfReflection.new(@user)
-    # comparisons = sr.distances_between_journal_and_journal_span(happy, 7.day)
-    # expect(comparisons.first[1]).to eq times[9]
-  # end
 end
