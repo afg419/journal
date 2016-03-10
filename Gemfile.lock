@@ -107,8 +107,6 @@ GEM
     httpclient (2.7.1)
     hurley (0.2)
     i18n (0.7.0)
-    integration (0.1.4)
-      text-table (~> 1.2)
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -135,8 +133,6 @@ GEM
     method_source (0.8.2)
     mime-types (2.99.1)
     mini_portile2 (2.0.0)
-    minimization (0.2.3)
-      text-table (~> 1.2)
     minitest (5.8.4)
     mocha (1.1.0)
       metaclass (~> 0.0.1)
@@ -253,7 +249,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    text-table (1.2.4)
     thin (1.6.4)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
@@ -293,12 +288,10 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   figaro
   google-api-client
-  integration
   jbuilder (~> 2.0)
   jquery-rails
   launchy
   lazy_high_charts
-  minimization
   mocha
   newrelic_rpm
   parallel

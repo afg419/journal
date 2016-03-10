@@ -17,9 +17,7 @@ gem 'lazy_high_charts'
 gem 'parallel'
 gem 'classifier'
 gem 'sentimental'
-gem 'minimization'
 gem 'newrelic_rpm'
-gem 'integration'
 
 group :development, :test do
   gem 'mocha'
