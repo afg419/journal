@@ -11,6 +11,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'google-api-client'
 gem 'rails_12factor', group: :production
 gem 'sidekiq'
+gem 'thin'
 gem "figaro"
 gem 'lazy_high_charts'
 gem 'parallel'
