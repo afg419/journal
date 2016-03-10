@@ -14,7 +14,7 @@
       </thead>
       <div class="tbody">
         <tbody>
-          <% @entries.each do |entry| %>
+          <% @entries.reverse.each do |entry| %>
           <tr>
             <td> <%= link_to entry.datetime, journal_entry_path(entry) %></td>
             <td> <%= link_to entry.tag,  journal_entry_path(entry) %></td>
