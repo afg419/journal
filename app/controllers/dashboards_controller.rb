@@ -17,8 +17,6 @@ class DashboardsController < ApplicationController
                                       )
       @chart2 = ccs.populate_current_chart.render_dashboard_plot
       @chart3 = ccs.populate_target_chart.render_dashboard_plot
-    elsif params["emotions"] && params["emotions"]["days"].to_i < 2
-      flash[:error] = "Sorry, range cannot be less than two days!"
     end
     render layout: 'wide',  :locals => {:background => "dashboard3"}
   end

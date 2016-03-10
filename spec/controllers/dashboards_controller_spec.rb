@@ -57,11 +57,4 @@ RSpec.describe Api::V1::DashboardsController, type: :controller do
 
     expect(response.status).to eq 200
   end
-
 end
-
-
-# cs = ChartService.new(current_user)
-# cs.get_emotion_data_from_user(datetime_params[0], datetime_params[1])
-# @chart = cs.render_dashboard_plot
-# render layout: 'wide',  :locals => {:background => "dashboard3"}

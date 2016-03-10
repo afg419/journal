@@ -20,9 +20,8 @@ class ChartParamsService
 
   def comparison_graph?
                    !!params["emotions"] &&
-    params["emotions"]["days"].to_i > 1 &&
+    params["emotions"]["days"].to_i > 0 &&
                  !emotion_params.empty? && current_user.has_journal_entries?
-
   end
 
   def emotion_params

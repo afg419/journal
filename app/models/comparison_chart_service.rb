@@ -8,10 +8,12 @@ class ComparisonChartService
   end
 
   def current_chart
-    ChartService.new(user, {title: "#{emotion_names}",
+    ChartService.new(user, {title: "Past #{interval} day period for: #{emotion_names}",
                           y_title: "",
                             x_min: current_time_interval_js[:start],
-                            x_max: current_time_interval_js[:end]})
+                            x_max: current_time_interval_js[:end],
+                            size: "medium"}
+                     )
   end
 
   def populate_current_chart
@@ -35,23 +37,20 @@ class ComparisonChartService
   end
 
   def target_chart(start, fin)
-    ChartService.new(user, {title: "Time similar to current",
+    ChartService.new(user, {title: "Most similar #{interval} day period for: #{emotion_names} ",
                           y_title: "",
                             x_min: start.to_i * 1000,
-                            x_max: fin.to_i * 1000})
+                            x_max: fin.to_i * 1000,
+                             size: "medium"}
+                    )
   end
 
   def similarity_to_current_interval(emotion_prototype)
     sr = SelfReflection.new(user, interval, emotion_prototype)
     comp = sr.distances_between_current_interval_and_past_intervals << [1000,0]
-    # comp.min_by{|x| x[0]}
   end
 
   def populate_target_chart
-    # emotion_prototype = emotion_prototypes.first
-    # sim = similarity_to_current_interval(emotion_prototype).min_by{|x| x[0]}
-
-
     similarities = emotion_prototypes.reduce([]) do |acc, emp|
       acc + similarity_to_current_interval(emp)
     end
@@ -79,6 +78,6 @@ class ComparisonChartService
   end
 
   def emotion_names
-    emotion_prototypes.map{|emp| emp.name}.join(", ")
+    emotion_prototypes.map{|emp| emp.name.capitalize}.join(", ")
   end
 end

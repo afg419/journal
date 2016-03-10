@@ -66,6 +66,7 @@ var lockPost = function(msg){
     $('#new-entry-main-button').append("<a href='/dashboard' class='add-new-emotion btn btn-default' >To Dashboard</a>")
     $(".add-emotion").empty();
     $(".remove").empty();
+    stop_spins();
   }else{
     console.log("message was not created")
   }
