@@ -17,7 +17,6 @@ var extractEntry = function (){
 }
 
 var doAnalytics = function(data){
-  debugger
   $.ajax({
     type: "GET",
     url: "/api/v1/alert_analytics",
@@ -64,7 +63,7 @@ var lockPost = function(msg){
     $('#header').empty();
     $('#header').append("Your Journal Entry has been Submitted")
     $('#new-entry-main-button').empty();
-    $('#new-entry-main-button').append("<a href='/dashboard'>To Dashboard</a>")
+    $('#new-entry-main-button').append("<a href='/dashboard' class='add-new-emotion btn btn-default' >To Dashboard</a>")
     $(".add-emotion").empty();
     $(".remove").empty();
   }else{

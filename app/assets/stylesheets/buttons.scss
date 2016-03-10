@@ -1,7 +1,9 @@
 .login{
   text-align: center;
-  line-height: 800px;
   .btn-default {
+    position: absolute;
+    left: 43.65%;
+    top: 55%;
     font-size: large;
     background-color: rgba(0,0,0,0.45);
     color: #CBC5D1;
@@ -18,13 +20,16 @@
 
 .new-entry{
   text-align: center;
-  line-height: 15em;
+  line-height: 5em;
   .btn-default {
     font-size: large;
     background-color: rgba(0,0,0,0.25);
     color: #FFD582;
     border-width: 2px;
     border-color: #99A199;
+    position: fixed;
+    left: 45.3%;
+    top: 36em;
     &:hover{
       background: none;
       color: white;
@@ -50,7 +55,42 @@
   }
 }
 
+
+a#add-emotion {
+    background-color: rgba(0,0,0,0.25);
+    font-size: large;
+    background-color: rgba(0,0,0,0.25);
+    color: #FBCE94;
+    border-width: 2px;
+    border-color: #738DA0;
+    max-width: 130%;
+    &:hover{
+      background: none;
+      color: white;
+      border-width: 2px;
+      border-color: white;
+    }
+}
+
+
+.add-new-emotion{
+  .btn-default {
+    font-size: large;
+    background-color: rgba(0,0,0,0.25);
+    color: #FBCE94;
+    border-width: 2px;
+    border-color: #738DA0;
+    &:hover{
+      background: none;
+      color: white;
+      border-width: 2px;
+      border-color: white;
+    }
+  }
+}
+
+
 .datepickerbutton{
   background-color: rgba(1, 5, 13, 0.25);
-  color: #EAD9C3; 
+  color: #EAD9C3;
 }

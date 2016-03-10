@@ -233,3 +233,25 @@ input[type="range"] {
 #ui-datepicker-div{
   display: none;
 }
+
+img.logo{
+  opacity: 0.77;
+  width: 32em;
+  position: absolute;
+  padding-top: 29.7em;
+  padding-left: 5%;
+}
+
+.browse-journal table {
+  display: -webkit-box;
+  height: 600px;
+  overflow-y: scroll;
+}
+
+.tbody{
+  width: 100%;
+}
+
+.browse-journal table td{
+  width:20%
+}

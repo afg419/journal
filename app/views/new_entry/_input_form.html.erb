@@ -1,0 +1,10 @@
+<div class="col-md-10">
+  <%= form_for(@entry, html:{autocomplete:"off"}) do |f| %>
+  <div class="form-group">
+    <%= f.text_field :tag, id: "tag", placeholder: "Tag your post with a descriptive title" %>
+    <%= f.text_area :body, placeholder: "New Entry" %>
+  </div>
+  <% end %>
+  <div class="user" name="<%= @entry.user.id %>">
+  </div>
+</div>

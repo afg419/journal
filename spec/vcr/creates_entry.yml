@@ -758,4 +758,81 @@ http_interactions:
         }
     http_version: 
   recorded_at: Thu, 03 Mar 2016 01:32:37 GMT
+- request:
+    method: post
+    uri: https://www.googleapis.com/upload/drive/v2/files
+    body:
+      encoding: UTF-8
+      string: '{"title":""}'
+    headers:
+      User-Agent:
+      - |-
+        unknown/0.0.0 google-api-ruby-client/0.9.3 Mac OS X/10.11.2
+         (gzip)
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Thu, 10 Mar 2016 04:10:04 GMT
+      Authorization:
+      - Bearer ya29.nQKRWMi5eZ3pif1uHlcXH09CPzoI-x2d3Uo6mCxhk-D8hAq_lSDpt58xgopXxFYR_HA
+      Content-Type:
+      - application/json
+      X-Goog-Upload-Protocol:
+      - resumable
+      X-Goog-Upload-Command:
+      - start
+      X-Goog-Upload-Header-Content-Length:
+      - '0'
+      X-Goog-Upload-Header-Content-Type:
+      - text/plain
+      Content-Length:
+      - '12'
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      X-Guploader-Uploadid:
+      - AEnB2UoJ44jL3wufWKn-PNLLKGoIJ_L88P6noPq63y6YGU5wHyHJvAG-84klL7xhrKjwgZ3gceQ37Uqy_tpC0BZDeczZbkuiPw
+      X-Goog-Upload-Status:
+      - final
+      Vary:
+      - Origin
+      - X-Origin
+      Www-Authenticate:
+      - Bearer realm="https://accounts.google.com/", error=invalid_token
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '249'
+      Date:
+      - Thu, 10 Mar 2016 04:10:05 GMT
+      Server:
+      - UploadServer
+      Alternate-Protocol:
+      - 443:quic,p=1
+      Alt-Svc:
+      - quic=":443"; ma=2592000; v="30,29,28,27,26,25"
+    body:
+      encoding: UTF-8
+      string: |
+        {
+         "error": {
+          "errors": [
+           {
+            "domain": "global",
+            "reason": "authError",
+            "message": "Invalid Credentials",
+            "locationType": "header",
+            "location": "Authorization"
+           }
+          ],
+          "code": 401,
+          "message": "Invalid Credentials"
+         }
+        }
+    http_version: 
+  recorded_at: Thu, 10 Mar 2016 04:10:05 GMT
 recorded_with: VCR 3.0.1

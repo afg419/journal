@@ -19,24 +19,30 @@ class DashboardsController < ApplicationController
       x_max: time_interval[:end]})
 
       cs2.get_emotion_data_from_user_for(emotion_params,
-                                        datetime_params[0],
-                                        datetime_params[1])
+                                        interval_params[0] - 1.day,
+                                        interval_params[1] + 1.day)
 
-      sr = SelfReflection.new(current_user)
+      emotion_prototype = emotion_params.first
       interval = params["emotions"]["days"].to_i
-      emo = emotion_params.first
-      comparisons = sr.distances_between_journal_and_journal_span(emo, interval.day)
-      comparisons << [0,0]
-      start, fin = comparisons.first[1], comparisons.first[1] + interval.day
 
-      cs3 = ChartService.new(current_user, {title: "Time similar to current #{emo.name}",
-      y_title: "",
-      x_min: start.to_i * 1000,
-      x_max: fin.to_i * 1000})
+
+      sr = SelfReflection.new(current_user, interval, emotion_prototype)
+      comparisons = sr.distances_between_current_interval_and_past_intervals
+
+
+      comparisons << [1000,0]
+      min = comparisons.min_by{|x| x[0]}
+      start, fin = min[1] - 1.day, min[1] + interval.day + 1.day
+
+
+        cs3 = ChartService.new(current_user, {title: "Time similar to current #{emotion_prototype.name}",
+        y_title: "",
+        x_min: start.to_i * 1000,
+        x_max: fin.to_i * 1000})
 
       cs3.get_emotion_data_from_user_for(emotion_params,
-                                        datetime_params[0],
-                                        datetime_params[1])
+                                        start,
+                                        fin)
 
       @chart3 = cs3.render_dashboard_plot
       @chart2 = cs2.render_dashboard_plot
@@ -48,6 +54,6 @@ class DashboardsController < ApplicationController
 private
 
   def comparison_graph?
-    !!params["emotions"] && !!params["emotions"]["days"] && !emotion_params.empty? && current_user.has_journal_entries?
+    !!params["emotions"] && params["emotions"]["days"].to_i > 0 && !emotion_params.empty? && current_user.has_journal_entries?
   end
 end

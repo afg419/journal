@@ -19,11 +19,11 @@ class User < ActiveRecord::Base
   end
 
   def active_emotion_prototypes
-    user_emotion_prototypes.where(status: "active").map{|x| x.emotion_prototype}
+    emotion_prototypes.joins(:user_emotion_prototypes).where(user_emotion_prototypes: {status: "active"}).uniq
   end
 
   def inactive_emotion_prototypes
-    user_emotion_prototypes.where(status: "inactive").map{|x| x.emotion_prototype}
+    emotion_prototypes.joins(:user_emotion_prototypes).where(user_emotion_prototypes: {status: "inactive"}).uniq
   end
 
   def set_emotion_prototype(status, name)

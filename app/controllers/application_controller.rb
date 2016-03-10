@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.find_or_create_by_auth(google_service.user_info) if access_token
+    @current_user ||= User.includes(:emotion_prototypes).find_or_create_by_auth(google_service.user_info) if access_token
   end
 
   def authorize!

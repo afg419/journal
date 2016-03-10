@@ -13,11 +13,13 @@ $(function() {
     <br>
   </div>
   <form action="plot" style="text-align: center">
+    <h4>Scope your journal entries: What time range would you like to see?</h4>
     <span>
-      Start Date: <input type="text" class="datepicker" id="datepicker1" name="start_date">
+      <input type="text" class="datepicker" id="datepicker1" name="start_date" placeholder="Start Date">
     </span>
+    <span>&nbsp;</span>
     <span>
-      End Date: <input type="text" class="datepicker" id="datepicker2" name="end_date">
+      <input type="text" class="datepicker" id="datepicker2" name="end_date" placeholder="End Date">
     </span>
     <span>|||  <input type="submit" value="Send" class="datepickerbutton"></span>
   </form>
@@ -41,20 +43,26 @@ $(function() {
       <br>
     </div>
     <%= form_for :emotions, url: "/dashboard/plot", method: :get do |f|  %>
-      Find journal entries similar to recent ones: Give a number of days for a range for comparison, and emotion(s) to compare.
-      <% current_user.active_emotion_prototypes.each do |emp| %>
-        <%= f.label "#{emp.name.capitalize}" %>
-        <%= f.check_box "#{emp.name}" %>
-      <% end %>
+      <h4 style="text-align: center">
+        Search for similar journal entries:  How many days back and which emotions would you like to compare?
+      </h4>
+      <div style="text-align: center">
+        <% current_user.active_emotion_prototypes.each do |emp| %>
+          <%= f.label "#{emp.name.capitalize}" %>:
+          <%= f.check_box "#{emp.name}" %> &nbsp;&nbsp;
+        <% end %>
+        <br>
+        <%= f.number_field "days", class: "datepicker", placeholder:"Days back" %> |||
+        <%= f.submit "Send", class: "datepicker" %>
+      </div>
       <br>
-      <%= f.number_field "days", class: "datepicker" %>
-      <%= f.label "days back" %>
-
-      <%= f.submit "Submit" %>
     <% end %>
     <div class="">
       <br>
     </div>
+  </div>
+  <div class="row">
+    <br>
   </div>
   <div class="row">
     <div class="col-md-6">
