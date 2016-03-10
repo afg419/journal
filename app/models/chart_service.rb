@@ -10,7 +10,8 @@ class ChartService
       title: "Emotions over Time",
       y_title: "Emotion Scores",
       x_min: nil,
-      x_max: nil
+      x_max: nil,
+      size: "large"
     }.merge(opts)
   end
 
@@ -42,7 +43,7 @@ class ChartService
   end
 
   def dashboard_plot_styling(f)
-    f.title(text: opts[:title], align: "center", style: {color: '#EAD9C3', fontSize: "large"})
+    f.title(text: opts[:title], align: "center", style: {color: '#EAD9C3', fontSize: opts[:size]})
     f.xAxis(type: 'datetime', min: opts[:x_min], max: opts[:x_max])
     f.colors(colors)
     f.yAxis [

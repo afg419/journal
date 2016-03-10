@@ -33,10 +33,28 @@ RSpec.describe Api::V1::DashboardsController, type: :controller do
     expect(response.status).to eq 200
   end
 
+  it "replies with rendered graphs given comparison_graph query " do
+    user = mock_login
+    create_journal_post([1,7,6,0,0,0],"Post1", Time.now)
+    create_journal_post([1,7,6,0,0,0],"Post2", Time.now - 3.day)
+    create_journal_post([1,7,6,0,0,0],"Post3", Time.now - 5.day)
+
+    params = {"emotions" => {"days" => 2, "happy" => 1}}
+
+    get :index, params
+
+    expect(response.status).to eq 200
+  end
+
+  it "replies with error if no day query " do
+    user = mock_login
+    create_journal_post([1,7,6,0,0,0],"Post1", Time.now)
+    create_journal_post([1,7,6,0,0,0],"Post2", Time.now)
+
+    params = {"emotions" => {"happy" => 1}}
+
+    get :index, params
+
+    expect(response.status).to eq 200
+  end
 end
-
-
-# cs = ChartService.new(current_user)
-# cs.get_emotion_data_from_user(datetime_params[0], datetime_params[1])
-# @chart = cs.render_dashboard_plot
-# render layout: 'wide',  :locals => {:background => "dashboard3"}

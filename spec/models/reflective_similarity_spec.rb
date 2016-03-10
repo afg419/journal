@@ -81,7 +81,7 @@ RSpec.describe ReflectiveSimilarity, type: :model do
     t0 = Time.now
     t1 = t0 + 1.day
     t2 = t0 + 3.day
-
+    
     scores =  [{:created_at=>t2.to_i, :score=>0, tag: "title2"},
                {:created_at=>t1.to_i, :score=>1, tag: "title1"},
                {:created_at=>t0.to_i, :score=>0, tag: "title0"}].reverse
