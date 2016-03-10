@@ -9,6 +9,7 @@ class DashboardsController < ApplicationController
       cs.get_emotion_data_from_user(cps.datetime_params[0], cps.datetime_params[1])
     end
     @chart = cs.render_dashboard_plot
+
     if cps.comparison_graph?
       ccs = ComparisonChartService.new(current_user,
                                         params["emotions"]["days"].to_i,
@@ -16,6 +17,8 @@ class DashboardsController < ApplicationController
                                       )
       @chart2 = ccs.populate_current_chart.render_dashboard_plot
       @chart3 = ccs.populate_target_chart.render_dashboard_plot
+    elsif params["emotions"]["days"].to_i < 2
+      flash[:error] = "Sorry, range cannot be less than two days!"
     end
     render layout: 'wide',  :locals => {:background => "dashboard3"}
   end
