@@ -20,7 +20,11 @@ class ReflectiveSimilarity
 
   def scores_to_translated_curve(scores, start_time)
     extracted_scores = translate_scale_extracted_scores(extract_time_score(scores), start_time.to_i)
-    cf.ordered_points_to_piece_wise_line(extracted_scores)
+    if extracted_scores.count > 1
+      cf.ordered_points_to_piece_wise_line(extracted_scores)
+    elsif extracted_scores.count == 1
+      Proc.new{|x| extracted_scores[0][:y]}
+    end
   end
 
   def unix_day
@@ -51,7 +55,7 @@ class ReflectiveSimilarity
 
   def translated_curves_by_interval
     initial = user.first_entry_date
-    sbi = scores_by_interval
+    sbi = scores_by_interval.reject{|x| x.count == 0}
     sbi.each_index.map do |i|
       puts "#{i} of 300"
       [scores_to_translated_curve(sbi[i], initial + i.days),sbi[i].first[:created_at]]

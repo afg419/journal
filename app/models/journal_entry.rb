@@ -10,13 +10,9 @@ class JournalEntry < ActiveRecord::Base
     Emotion.where(journal_entry: self.all).scores_to_hash.merge({"total" => count})
   end
 
-  def mem_emotions
-    @mem ||= emotions.includes(:emotion_prototype)
-  end
-
-  def mt_created_at
-    created_at -= 7.hour
-  end
+  # def mt_created_at
+  #   created_at -= 7.hour
+  # end
 
   def prior_week_entries
     JournalEntry.where("created_at >= :start_date AND created_at <= :end_date",
