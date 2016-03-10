@@ -12,8 +12,8 @@ class ChartParamsService
       start_date = Time.strptime(start, "%m/%d/%Y")
       end_date =  Time.strptime(finish, "%m/%d/%Y")
     else
-      start_date = current_user.first_entry_date
       end_date =  current_user.last_entry_date
+      start_date = end_date - 1.month
     end
       [start_date, end_date]
   end
