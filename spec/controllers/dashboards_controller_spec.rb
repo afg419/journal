@@ -33,6 +33,30 @@ RSpec.describe Api::V1::DashboardsController, type: :controller do
     expect(response.status).to eq 200
   end
 
+  it "replies with rendered graphs given comparison_graph query " do
+    user = mock_login
+    create_journal_post([1,7,6,0,0,0],"Post1", Time.now)
+    create_journal_post([1,7,6,0,0,0],"Post2", Time.now)
+
+    params = {"emotions" => {"days" => 1, "happy" => 1}}
+
+    get :index, params
+
+    expect(response.status).to eq 200
+  end
+
+  it "replies with error if no day query " do
+    user = mock_login
+    create_journal_post([1,7,6,0,0,0],"Post1", Time.now)
+    create_journal_post([1,7,6,0,0,0],"Post2", Time.now)
+
+    params = {"emotions" => {"happy" => 1}}
+
+    get :index, params
+
+    expect(response.status).to eq 200
+  end
+
 end
 
 

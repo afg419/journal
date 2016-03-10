@@ -6,7 +6,7 @@ RSpec.describe ChartParamsService, type: :model do
     seed_emotions_user
     mock_login
     create_journal_post([1,7,6],"Post1", Time.now)
-    @cps = ChartParamsService.new(@user)
+    @cps = ChartParamsService.new(@user,{})
   end
 
   it "checks whether comparison graph queried" do
@@ -14,11 +14,27 @@ RSpec.describe ChartParamsService, type: :model do
     expect(@cps.comparison_graph?)
   end
 
-  # it "checks datetime params" do
-  #   t0 = Time.now
-  #   t1 = t0 + 1
-  #   @cps.params = {"start_date" => t0, "end_date" => t1}
-  #   expect(@cps.datetime_params)
-  # end
+  it "checks datetime params when passed params" do
+    t0 = "4/19/1989"
+    t1 = "4/29/1989"
+    @cps.params = {"start_date" => t0, "end_date" => t1}
+
+    expected = [t0,t1].map{|t| Time.strptime(t, "%m/%d/%Y")}
+    expect(@cps.datetime_params).to eq expected
+  end
+
+  it "checks datetime params when not passed params" do
+    t1 = JournalEntry.last.created_at
+    t0 = t1 - 1.month
+    expect(@cps.datetime_params).to eq [t0,t1]
+  end
+
+  it "computes emotion params" do
+    t1 = JournalEntry.last.created_at
+    t0 = t1 - 1.month
+  
+    @cps.params = {"emotions" => {"happy" => 1, "sad" => 0}}
+    expect(@cps.emotion_params).to eq [happy]
+  end
 
 end

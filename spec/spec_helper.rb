@@ -23,9 +23,6 @@
 #ruby ~/DevOpsOne/create_db_yml_server.rb turingcomplete
 RSpec.configure do |config|
 
-  # def mock_oauth
-  #   ApplicationController.any_instance.stubs(:code).returns("4/ysYIdCady_uMbzRpWwrZxk6-i1mbpOfJt018Bc_7Le8")
-  # end
 
   def mock_classifier_params(opts={})
     {
@@ -76,6 +73,10 @@ RSpec.configure do |config|
     ApplicationController.any_instance.stubs(:current_user).returns(user)
     ApplicationController.any_instance.stubs(:access_token).returns("ya29.oQKCIxYoKHHuTwQ9ytHTLEfPidcpH8VzU1gdM2WJ4QbJutK6gotH3t3WloC6bNOgsRU")
     @user = user
+  end
+
+  def happy
+    @user.emotion_prototypes.find_by(name: "happy")
   end
 
   def create_journal_post(scores, tag, time = nil, user = nil)
