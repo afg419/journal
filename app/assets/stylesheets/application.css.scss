@@ -234,7 +234,24 @@ input[type="range"] {
   display: none;
 }
 
-.logo{
-  opacity: 0.5;
-  
+img.logo{
+  opacity: 0.77;
+  width: 32em;
+  position: absolute;
+  padding-top: 29.7em;
+  padding-left: 5%;
+}
+
+table {
+  display: -webkit-box;
+  height: 600px;
+  overflow-y: scroll;
+}
+
+.tbody{
+  width: 100%;
+}
+
+table td{
+  width:20%
 }

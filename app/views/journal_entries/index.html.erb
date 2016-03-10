@@ -1,24 +1,26 @@
 <br>
-<h3 id="header" style="text-align:center">Past Journal Entries</h3>
+  <h3 id="header" style="text-align:center">Past Journal Entries</h3>
 <br>
 
 <div class="container browse-journal">
-  <table class="table journal-index table-bordered table-hover table-responsive">
-    <col width="20">
-    <col width="250">
-    <thead>
-      <tr>
-        <th>Created At</th>
-        <th>Entry Tag</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @entries.each do |entry| %>
-      <tr>
-        <td> <%= link_to entry.datetime, journal_entry_path(entry) %></td>
-        <td> <%= link_to entry.tag,  journal_entry_path(entry) %></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+    <table class="table journal-index table-bordered table-hover table-responsive">
+      <col width="20">
+      <col width="250">
+      <thead>
+        <tr>
+          <th>Created At</th>
+          <th>Entry Tag</th>
+        </tr>
+      </thead>
+      <div class="tbody">
+        <tbody>
+          <% @entries.each do |entry| %>
+          <tr>
+            <td> <%= link_to entry.datetime, journal_entry_path(entry) %></td>
+            <td> <%= link_to entry.tag,  journal_entry_path(entry) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </div>
+    </table>
 </div>
