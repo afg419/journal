@@ -55,6 +55,41 @@
   }
 }
 
+
+a#add-emotion {
+    background-color: rgba(0,0,0,0.25);
+    font-size: large;
+    background-color: rgba(0,0,0,0.25);
+    color: #FBCE94;
+    border-width: 2px;
+    border-color: #738DA0;
+    max-width: 130%;
+    &:hover{
+      background: none;
+      color: white;
+      border-width: 2px;
+      border-color: white;
+    }
+}
+
+
+.add-new-emotion{
+  .btn-default {
+    font-size: large;
+    background-color: rgba(0,0,0,0.25);
+    color: #FBCE94;
+    border-width: 2px;
+    border-color: #738DA0;
+    &:hover{
+      background: none;
+      color: white;
+      border-width: 2px;
+      border-color: white;
+    }
+  }
+}
+
+
 .datepickerbutton{
   background-color: rgba(1, 5, 13, 0.25);
   color: #EAD9C3;

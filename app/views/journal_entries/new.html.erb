@@ -1,6 +1,7 @@
 <br>
   <h3 id="header" style="text-align:center">New Journal Entry</h3>
 <br>
+
 <div class="container entry-form active">
   <div class="row">
     <div class="col-md-2 emotion-select">
@@ -10,51 +11,10 @@
         </div>
         <br>
         <div class="col-md-10 emotions">
-          <div class="emotion-container">
-            <div class="emotion-sliders">
-              <% current_user.active_emotion_prototypes.each do |emotion| %>
-              <% name = emotion.name %>
-              <div class="emotion-text", id="<%= emotion.name %>">
-                <p>
-                  <a href="#", class="description"><span><strong><%= "#{name.capitalize}: "%></strong><%=" #{emotion.description}" %></span>?</a><span style="padding-left: 1em"></span><span><%= name.capitalize %>: <span id="output-<%= name %>">0</span></span>
-                  <a href="#", class="remove" name="<%= emotion.name%>">Remove</a>
-                </p>
-                <input id="input-<%=name%>" oninput="proRangeSlider(this.id, 'output-<%= name %>')" style="background-color:<%= emotion.color %>" class="slider <%=name%>-slide" type="range" name="<%=name%>" min="0" max="9" value="0"><br>
-              </div>
-              <% end %>
-            </div>
-            <div class="add-emotion">
-              <p><a id="add-emotion">Add new emotion</a></p>
-              <span class="hide add-emotion-form">
-                <label for="emotion_name">Emotion Name:</label>
-                <input id="emotion-name" type="text" name="emotion[name]">
-                <br>
-                <label for="emotion_description">Description for what low and high scores for this emotion mean:</label>
-                <textarea id="emotion-description" name="emotion[description]"></textarea>
-                <label for="default_emotion">Or select from a default emotion</label>
-                <%= collection_select(:user, :emotion_prototype_id, current_user.inactive_emotion_prototypes, :name, :name, prompt: "Default Emotions") %>
-                <a id="create-emotion" style="color: #083A65">Submit</a>
-              </span>
-            </div>
-          </div>
+          <%= render(partial: 'new_entry/sliders') %>
         </div>
       </div>
     </div>
-    <div class="col-md-10">
-      <%= form_for(@entry, html:{autocomplete:"off"}) do |f| %>
-      <div class="form-group">
-        <%= f.text_field :tag, id: "tag", placeholder: "Tag your post with a descriptive title" %>
-        <%= f.text_area :body, placeholder: "New Entry" %>
-      </div>
-      <% end %>
-      <div class="user" name="<%= @entry.user.id %>">
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="footer2">
-  <div id="new-entry-main-button" class="send-entry">
-    <a href="#" class="btn btn-default submit-entry">Submit Entry</a>
+    <%= render(partial: 'new_entry/input_form') %>
   </div>
 </div>
