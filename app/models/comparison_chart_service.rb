@@ -41,18 +41,38 @@ class ComparisonChartService
                             x_max: fin.to_i * 1000})
   end
 
-  def similar_to_current_interval(emotion_prototype)
+  def similarity_to_current_interval(emotion_prototype)
     sr = SelfReflection.new(user, interval, emotion_prototype)
     comp = sr.distances_between_current_interval_and_past_intervals << [1000,0]
-    comp.min_by{|x| x[0]}
+    # comp.min_by{|x| x[0]}
   end
 
   def populate_target_chart
-    emotion_prototype = emotion_prototypes.first
-    sim = similar_to_current_interval(emotion_prototype)
-    start, fin = sim[1] - 1.day, sim[1] + interval.day + 1.day
+    # emotion_prototype = emotion_prototypes.first
+    # sim = similarity_to_current_interval(emotion_prototype).min_by{|x| x[0]}
+
+
+    similarities = emotion_prototypes.reduce([]) do |acc, emp|
+      acc + similarity_to_current_interval(emp)
+    end
+
+    sims_by_time = similarities.group_by do |similarity_measure|
+      similarity_measure[1]
+    end.to_a
+
+    sim_almost = sims_by_time.min_by do |time_sims|
+      time_sims[1].reduce(0) do |acc, score_time|
+        acc + score_time[0]
+      end
+    end
+
+    sim = [sim_almost[0], sim_almost[1].reduce(0) do |acc, score_time|
+      acc + score_time[0]
+    end]
+
+    start, fin = sim[0] - 1.day, sim[0] + interval.day + 1.day
     target_chart(start, fin).get_emotion_data_from_user_for(
-                                                             [emotion_prototype],
+                                                             emotion_prototypes,
                                                              start,
                                                              fin
                                                             )
