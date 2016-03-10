@@ -10,6 +10,15 @@ def modified_sin(i)
   (4*Math.sin(0.10*i) + 5 + rand(-1.0..1.9)).floor
 end
 
+def scale_down(i)
+  (5/(i+1))
+end
+
+def scale_up(i)
+  11 - (10/(i+1))
+end
+
+
 namespace :initialize do
   desc "Seeds database"
   task aaron_sin_posts: :environment do
@@ -25,4 +34,19 @@ namespace :initialize do
       puts "#{i}"
     end
   end
+
+  task troubled_user: :environment do
+    aaron = User.find_by(email: "afg419@gmail.com")
+    aaron.journal_entries.delete_all
+    tf = Time.now - 100.days
+    times = (0..99).to_a.map do |i|
+      tf + i.days
+    end
+
+    times.each_index do |i|
+      create_journal_post([scale_down(i), rand(0.9..1.0) * scale_up(i), rand(0.9..1.0) * scale_up(i),rand(0.9..1.0) * scale_up(i), modified_sin(i), rand(0.9..1.0) * scale_down(i) ], "title#{i}", times[i], aaron)
+      puts "#{i}"
+    end
+  end
+
 end

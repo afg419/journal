@@ -16,7 +16,7 @@ class Emotion < ActiveRecord::Base
 
   def self.scores_to_hash
     all.reduce({}) do |acc, emotion|
-      acc.merge({emotion.name => emotion.score}){|k, v1, v2| v1 + v2}
+      acc.merge({emotion.name => emotion.score}){|k, v1, v2| v1.to_i + v2.to_i}
     end
   end
 end
