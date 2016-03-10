@@ -24,11 +24,16 @@ class DashboardsController < ApplicationController
 
       emotion_prototype = emotion_params.first
       interval = params["emotions"]["days"].to_i
+
+
       sr = SelfReflection.new(current_user, interval, emotion_prototype)
       comparisons = sr.distances_between_current_interval_and_past_intervals
+
+
       comparisons << [1000,0]
       min = comparisons.min_by{|x| x[0]}
       start, fin = min[1] - 1.day, min[1] + interval.day + 1.day
+
 
         cs3 = ChartService.new(current_user, {title: "Time similar to current #{emotion_prototype.name}",
         y_title: "",
