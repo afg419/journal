@@ -53,10 +53,7 @@ RSpec.describe ReflectiveSimilarity, type: :model do
                           ["title1", "title2", "title3"],
                           ["title2", "title3"],
                           ["title2", "title3"],
-                          ["title2", "title3", "title4"],
-                          ["title3", "title4"],
-                          ["title3", "title4"],
-                          ["title3", "title4", "title5"]]
+                          ["title2", "title3", "title4"]]
     expect(intervals).to eq expected_intervals
   end
 

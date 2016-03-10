@@ -14,7 +14,7 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2016-03-09T23:41:42-07:00">2016-03-09T23:41:42-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2016-03-10T00:05:23-07:00">2016-03-10T00:05:23-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,7 +25,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         10.14
+         9.9
        </span>
     </span> hits/line)
   </h2>
@@ -67,7 +67,7 @@
         <td>15</td>
         <td>15</td>
         <td>0</td>
-        <td>1.9</td>
+        <td>2.2</td>
       </tr>
       
       <tr>
@@ -207,7 +207,7 @@
         <td>25</td>
         <td>25</td>
         <td>0</td>
-        <td>63.6</td>
+        <td>59.8</td>
       </tr>
       
       <tr>
@@ -277,7 +277,7 @@
         <td>38</td>
         <td>38</td>
         <td>0</td>
-        <td>13.7</td>
+        <td>12.4</td>
       </tr>
       
       <tr>
@@ -297,7 +297,7 @@
         <td>16</td>
         <td>16</td>
         <td>0</td>
-        <td>2.5</td>
+        <td>2.3</td>
       </tr>
       
       <tr>
@@ -353,7 +353,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         3.05
+         3.09
        </span>
     </span> hits/line)
   </h2>
@@ -395,7 +395,7 @@
         <td>15</td>
         <td>15</td>
         <td>0</td>
-        <td>1.9</td>
+        <td>2.2</td>
       </tr>
       
       <tr>
@@ -470,7 +470,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         11.95
+         11.63
        </span>
     </span> hits/line)
   </h2>
@@ -572,7 +572,7 @@
         <td>25</td>
         <td>25</td>
         <td>0</td>
-        <td>63.6</td>
+        <td>59.8</td>
       </tr>
       
       <tr>
@@ -642,7 +642,7 @@
         <td>38</td>
         <td>38</td>
         <td>0</td>
-        <td>13.7</td>
+        <td>12.4</td>
       </tr>
       
       <tr>
@@ -662,7 +662,7 @@
         <td>16</td>
         <td>16</td>
         <td>0</td>
-        <td>2.5</td>
+        <td>2.3</td>
       </tr>
       
       <tr>
@@ -1116,8 +1116,8 @@
           <code class="ruby">  def destroy</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="19">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="13" data-linenumber="19">
+          <span class="hits">13</span>
           
           <code class="ruby">    emotion = current_user.active_emotion_prototypes.find{|emp| emp.name == params[&quot;id&quot;]}</code>
         </li>
@@ -4284,14 +4284,14 @@
           <code class="ruby">  def line_between(p1, p2)</code>
         </li>
       
-        <li class="covered" data-hits="39" data-linenumber="3">
-          <span class="hits">39</span>
+        <li class="covered" data-hits="34" data-linenumber="3">
+          <span class="hits">34</span>
           
           <code class="ruby">    Proc.new do |x|</code>
         </li>
       
-        <li class="covered" data-hits="148" data-linenumber="4">
-          <span class="hits">148</span>
+        <li class="covered" data-hits="140" data-linenumber="4">
+          <span class="hits">140</span>
           
           <code class="ruby">      y  = slope(p1,p2)*(x-p1[:x]) + p1[:y]</code>
         </li>
@@ -4320,8 +4320,8 @@
           <code class="ruby">  def slope(p1, p2)</code>
         </li>
       
-        <li class="covered" data-hits="151" data-linenumber="9">
-          <span class="hits">151</span>
+        <li class="covered" data-hits="143" data-linenumber="9">
+          <span class="hits">143</span>
           
           <code class="ruby">    (p1[:y]-p2[:y]).to_f/(p1[:x]-p2[:x])</code>
         </li>
@@ -4344,8 +4344,8 @@
           <code class="ruby">  def segment(p1,p2)</code>
         </li>
       
-        <li class="covered" data-hits="35" data-linenumber="13">
-          <span class="hits">35</span>
+        <li class="covered" data-hits="30" data-linenumber="13">
+          <span class="hits">30</span>
           
           <code class="ruby">    {a: p1, ab: line_between(p1,p2), b: p2}</code>
         </li>
@@ -4368,26 +4368,26 @@
           <code class="ruby">  def piece_wise_line(segments)</code>
         </li>
       
-        <li class="covered" data-hits="23" data-linenumber="17">
-          <span class="hits">23</span>
+        <li class="covered" data-hits="19" data-linenumber="17">
+          <span class="hits">19</span>
           
           <code class="ruby">    Proc.new do |x|</code>
         </li>
       
-        <li class="covered" data-hits="106" data-linenumber="18">
-          <span class="hits">106</span>
+        <li class="covered" data-hits="98" data-linenumber="18">
+          <span class="hits">98</span>
           
           <code class="ruby">      value = segments[0][:ab][x] if x &lt; segments[0][:a][:x]</code>
         </li>
       
-        <li class="covered" data-hits="106" data-linenumber="19">
-          <span class="hits">106</span>
+        <li class="covered" data-hits="98" data-linenumber="19">
+          <span class="hits">98</span>
           
           <code class="ruby">      segments.each do |s|</code>
         </li>
       
-        <li class="covered" data-hits="208" data-linenumber="20">
-          <span class="hits">208</span>
+        <li class="covered" data-hits="200" data-linenumber="20">
+          <span class="hits">200</span>
           
           <code class="ruby">        value = s[:ab][x] if s[:a][:x] &lt;= x &amp;&amp; x &lt;= s[:b][:x]</code>
         </li>
@@ -4398,14 +4398,14 @@
           <code class="ruby">      end</code>
         </li>
       
-        <li class="covered" data-hits="106" data-linenumber="22">
-          <span class="hits">106</span>
+        <li class="covered" data-hits="98" data-linenumber="22">
+          <span class="hits">98</span>
           
           <code class="ruby">      value = segments[-1][:ab][x] if segments[-1][:b][:x] &lt; x</code>
         </li>
       
-        <li class="covered" data-hits="106" data-linenumber="23">
-          <span class="hits">106</span>
+        <li class="covered" data-hits="98" data-linenumber="23">
+          <span class="hits">98</span>
           
           <code class="ruby">      value</code>
         </li>
@@ -4434,14 +4434,14 @@
           <code class="ruby">  def ordered_points_to_piece_wise_line(points)</code>
         </li>
       
-        <li class="covered" data-hits="22" data-linenumber="28">
-          <span class="hits">22</span>
+        <li class="covered" data-hits="18" data-linenumber="28">
+          <span class="hits">18</span>
           
           <code class="ruby">    segments = points[0..-2].each_index.map do |i|</code>
         </li>
       
-        <li class="covered" data-hits="32" data-linenumber="29">
-          <span class="hits">32</span>
+        <li class="covered" data-hits="27" data-linenumber="29">
+          <span class="hits">27</span>
           
           <code class="ruby">      segment(points[i], points[i+1])</code>
         </li>
@@ -4452,8 +4452,8 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="22" data-linenumber="31">
-          <span class="hits">22</span>
+        <li class="covered" data-hits="18" data-linenumber="31">
+          <span class="hits">18</span>
           
           <code class="ruby">    piece_wise_line(segments)</code>
         </li>
@@ -4476,32 +4476,32 @@
           <code class="ruby">  def distance_between_curves(t0, t1, f, g, n)</code>
         </li>
       
-        <li class="covered" data-hits="17" data-linenumber="35">
-          <span class="hits">17</span>
+        <li class="covered" data-hits="16" data-linenumber="35">
+          <span class="hits">16</span>
           
           <code class="ruby">    dx = (t1 - t0)/n.to_f</code>
         </li>
       
-        <li class="covered" data-hits="17" data-linenumber="36">
-          <span class="hits">17</span>
+        <li class="covered" data-hits="16" data-linenumber="36">
+          <span class="hits">16</span>
           
           <code class="ruby">    (1..n).to_a.reduce(0) do |acc, i|</code>
         </li>
       
-        <li class="covered" data-hits="214" data-linenumber="37">
-          <span class="hits">214</span>
+        <li class="covered" data-hits="210" data-linenumber="37">
+          <span class="hits">210</span>
           
           <code class="ruby">      x = t0 + i * dx</code>
         </li>
       
-        <li class="covered" data-hits="214" data-linenumber="38">
-          <span class="hits">214</span>
+        <li class="covered" data-hits="210" data-linenumber="38">
+          <span class="hits">210</span>
           
           <code class="ruby">      acc + (f[x] - g[x]).abs</code>
         </li>
       
-        <li class="covered" data-hits="17" data-linenumber="39">
-          <span class="hits">17</span>
+        <li class="covered" data-hits="16" data-linenumber="39">
+          <span class="hits">16</span>
           
           <code class="ruby">    end * dx</code>
         </li>
@@ -5856,8 +5856,8 @@
           <code class="ruby">  def extract_time_score(scores)</code>
         </li>
       
-        <li class="covered" data-hits="73" data-linenumber="12">
-          <span class="hits">73</span>
+        <li class="covered" data-hits="60" data-linenumber="12">
+          <span class="hits">60</span>
           
           <code class="ruby">    scores.map{|score| {x: score[:created_at].to_i, y: score[:score]}}</code>
         </li>
@@ -5880,14 +5880,14 @@
           <code class="ruby">  def translate_scale_extracted_scores(extracted_scores, start_time)</code>
         </li>
       
-        <li class="covered" data-hits="22" data-linenumber="16">
-          <span class="hits">22</span>
+        <li class="covered" data-hits="18" data-linenumber="16">
+          <span class="hits">18</span>
           
           <code class="ruby">    extracted_scores.map do |score|</code>
         </li>
       
-        <li class="covered" data-hits="50" data-linenumber="17">
-          <span class="hits">50</span>
+        <li class="covered" data-hits="41" data-linenumber="17">
+          <span class="hits">41</span>
           
           <code class="ruby">      {x: (score[:x] - start_time)/(interval.days.to_f), y: score[:y]}</code>
         </li>
@@ -5916,14 +5916,14 @@
           <code class="ruby">  def scores_to_translated_curve(scores, start_time)</code>
         </li>
       
-        <li class="covered" data-hits="21" data-linenumber="22">
-          <span class="hits">21</span>
+        <li class="covered" data-hits="17" data-linenumber="22">
+          <span class="hits">17</span>
           
           <code class="ruby">    extracted_scores = translate_scale_extracted_scores(extract_time_score(scores), start_time.to_i)</code>
         </li>
       
-        <li class="covered" data-hits="21" data-linenumber="23">
-          <span class="hits">21</span>
+        <li class="covered" data-hits="17" data-linenumber="23">
+          <span class="hits">17</span>
           
           <code class="ruby">    cf.ordered_points_to_piece_wise_line(extracted_scores)</code>
         </li>
@@ -6069,11 +6069,11 @@
         <li class="covered" data-hits="43" data-linenumber="47">
           <span class="hits">43</span>
           
-          <code class="ruby">      next if scores_by_day.count - i &lt; interval</code>
+          <code class="ruby">      next if scores_by_day.count - i &lt; interval + interval/3.0</code>
         </li>
       
-        <li class="covered" data-hits="30" data-linenumber="48">
-          <span class="hits">30</span>
+        <li class="covered" data-hits="23" data-linenumber="48">
+          <span class="hits">23</span>
           
           <code class="ruby">      scores_by_day[i..i+interval-1].compact.flatten</code>
         </li>
@@ -6120,14 +6120,14 @@
           <code class="ruby">    sbi.each_index.map do |i|</code>
         </li>
       
-        <li class="covered" data-hits="20" data-linenumber="56">
-          <span class="hits">20</span>
+        <li class="covered" data-hits="16" data-linenumber="56">
+          <span class="hits">16</span>
           
           <code class="ruby">      puts &quot;#{i} of 300&quot;</code>
         </li>
       
-        <li class="covered" data-hits="20" data-linenumber="57">
-          <span class="hits">20</span>
+        <li class="covered" data-hits="16" data-linenumber="57">
+          <span class="hits">16</span>
           
           <code class="ruby">      [scores_to_translated_curve(sbi[i], initial + i.days),sbi[i].first[:created_at]]</code>
         </li>
@@ -6504,20 +6504,20 @@
           <code class="ruby">    tcbi[0..-2].map do |c|</code>
         </li>
       
-        <li class="covered" data-hits="9" data-linenumber="18">
-          <span class="hits">9</span>
+        <li class="covered" data-hits="8" data-linenumber="18">
+          <span class="hits">8</span>
           
           <code class="ruby">      puts &quot;#{i}&quot;</code>
         </li>
       
-        <li class="covered" data-hits="9" data-linenumber="19">
-          <span class="hits">9</span>
+        <li class="covered" data-hits="8" data-linenumber="19">
+          <span class="hits">8</span>
           
           <code class="ruby">      i+=1</code>
         </li>
       
-        <li class="covered" data-hits="9" data-linenumber="20">
-          <span class="hits">9</span>
+        <li class="covered" data-hits="8" data-linenumber="20">
+          <span class="hits">8</span>
           
           <code class="ruby">      [cf.distance_between_curves(0, 1, c[0], current, 2*interval), c[1]]</code>
         </li>
