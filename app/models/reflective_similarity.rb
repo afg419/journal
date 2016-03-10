@@ -44,7 +44,7 @@ class ReflectiveSimilarity
     end
 
     x = scores_by_day.each_index.map do |i|
-      next if scores_by_day.count - i < interval
+      next if scores_by_day.count - i < interval + interval/3.0
       scores_by_day[i..i+interval-1].compact.flatten
     end.compact
   end
