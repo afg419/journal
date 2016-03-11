@@ -2,13 +2,16 @@
   text-align: center;
   .btn-default {
     position: absolute;
-    left: 43.65%;
-    top: 55%;
+    left: 0;
+    right: 0;
     font-size: large;
-    background-color: rgba(0,0,0,0.45);
+    background-color: rgba(0, 0, 0, 0.45);
     color: #CBC5D1;
     border-width: 2px;
     border-color: #62868E;
+    width: 215px;
+    margin: auto;
+    top: 50%;
     &:hover{
       background: none;
       color: white;
@@ -18,18 +21,25 @@
   }
 }
 
+
+
 .new-entry{
   text-align: center;
   line-height: 5em;
   .btn-default {
     font-size: large;
-    background-color: rgba(0,0,0,0.25);
+    background-color: rgba(0, 0, 0, 0.25);
     color: #FFD582;
     border-width: 2px;
     border-color: #99A199;
     position: fixed;
     left: 45.3%;
-    top: 36em;
+    top: 63%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 225px;
+    margin: auto;
     &:hover{
       background: none;
       color: white;
@@ -38,6 +48,7 @@
     }
   }
 }
+
 
 .send-entry{
   .btn-default {

@@ -13,6 +13,13 @@
   </div>
   <div class="add-emotion">
     <p><a id="add-emotion" class="add-new-emotion btn btn-default">New Emotion</a></p>
+  </div>
+  <div class="footer2">
+    <div id="new-entry-main-button" class="send-entry">
+      <a href="#" class="btn btn-default submit-entry" onclick="make_it_spin()">Submit Entry</a>
+    </div>
+  </div>
+  <div class="add-emotion">
     <span class="hide add-emotion-form" style="z-index:1000">
       <label for="emotion_name">Emotion Name:</label>
       <input id="emotion-name" type="text" name="emotion[name]">
@@ -23,11 +30,6 @@
       <%= collection_select(:user, :emotion_prototype_id, current_user.inactive_emotion_prototypes, :name, :name, prompt: "Default Emotions") %>
       <a id="create-emotion" style="color: #083A65">Submit</a>
     </span>
-  </div>
-  <div class="footer2">
-    <div id="new-entry-main-button" class="send-entry">
-      <a href="#" class="btn btn-default submit-entry" onclick="make_it_spin()">Submit Entry</a>
-    </div>
   </div>
   <div id="spins">
   </div>
