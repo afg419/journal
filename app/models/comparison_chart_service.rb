@@ -7,47 +7,22 @@ class ComparisonChartService
     @emotion_prototypes = emotion_prototypes
   end
 
-  def current_chart
-    ChartService.new(user, {title: "Past #{interval} day period for: #{emotion_names}",
-                          y_title: "",
-                            x_min: current_time_interval_js[:start],
-                            x_max: current_time_interval_js[:end],
-                            size: "medium"}
-                     )
+  def populate_comparison_charts
+    if render_comparison_graph?
+      current_plot = populate_current_chart.render_dashboard_plot
+      target_plot = populate_target_chart.render_dashboard_plot
+      [current_plot, target_plot]
+    else
+      [nil, nil]
+    end
   end
 
   def populate_current_chart
     current_chart.get_emotion_data_from_user_for(
-                                       emotion_prototypes,
-                                       current_time_interval[:start] - 1.day,
-                                       current_time_interval[:end] + 1.day
-                                                )
-  end
-
-  def current_time_interval_js
-    current_time_interval.map do |k,v|
-      [k, v.to_i * 1000]
-    end.to_h
-  end
-
-  def current_time_interval
-    end_time = user.last_entry_date
-    start_time = end_time - interval.days
-    {start: start_time, end: end_time}
-  end
-
-  def target_chart(start, fin)
-    ChartService.new(user, {title: "Most similar #{interval} day period for: #{emotion_names} ",
-                          y_title: "",
-                            x_min: start.to_i * 1000,
-                            x_max: fin.to_i * 1000,
-                             size: "medium"}
-                    )
-  end
-
-  def similarity_to_current_interval(emotion_prototype)
-    sr = SelfReflection.new(user, interval, emotion_prototype)
-    comp = sr.distances_between_current_interval_and_past_intervals << [1000,0]
+      emotion_prototypes,
+      current_time_interval[:start] - 1.day,
+      current_time_interval[:end] + 1.day
+    )
   end
 
   def populate_target_chart
@@ -70,11 +45,53 @@ class ComparisonChartService
     end]
 
     start, fin = sim[0] - 1.day, sim[0] + interval.day + 1.day
+
     target_chart(start, fin).get_emotion_data_from_user_for(
-                                                             emotion_prototypes,
-                                                             start,
-                                                             fin
-                                                            )
+      emotion_prototypes,
+      start,
+      fin
+    )
+  end
+
+  def current_chart
+    ChartService.new(user,
+      {title: "Past #{interval} day period for: #{emotion_names}",
+       y_title: "",
+       x_min: current_time_interval_js[:start],
+       x_max: current_time_interval_js[:end],
+       size: "medium"}
+    )
+  end
+
+  def target_chart(start, fin)
+    ChartService.new(user,
+     {title: "Most similar #{interval} day period for: #{emotion_names} ",
+      y_title: "",
+      x_min: start.to_i * 1000,
+      x_max: fin.to_i * 1000,
+      size: "medium"}
+    )
+  end
+
+  def render_comparison_graph?
+    interval > 0 && !emotion_prototypes.empty? && user.has_journal_entries?
+  end
+
+  def current_time_interval_js
+    current_time_interval.map do |k,v|
+      [k, v.to_i * 1000]
+    end.to_h
+  end
+
+  def current_time_interval
+    end_time = user.last_entry_date
+    start_time = end_time - interval.days
+    {start: start_time, end: end_time}
+  end
+
+  def similarity_to_current_interval(emotion_prototype)
+    sr = SelfReflection.new(user, interval, emotion_prototype)
+    comp = sr.distances_between_current_interval_and_past_intervals << [1000,0]
   end
 
   def emotion_names

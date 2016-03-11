@@ -19,20 +19,22 @@ RSpec.describe ChartParamsService, type: :model do
     t1 = "4/29/1989"
     @cps.params = {"start_date" => t0, "end_date" => t1}
 
-    expected = [t0,t1].map{|t| Time.strptime(t, "%m/%d/%Y")}
+    expected =  {start: Time.strptime(t0, "%m/%d/%Y"),
+                   end: Time.strptime(t1, "%m/%d/%Y")}
+
     expect(@cps.datetime_params).to eq expected
   end
 
   it "checks datetime params when not passed params" do
     t1 = JournalEntry.last.created_at
     t0 = t1 - 1.month
-    expect(@cps.datetime_params).to eq [t0,t1]
+    expect(@cps.datetime_params).to eq ({start: t0, end: t1})
   end
 
   it "computes emotion params" do
     t1 = JournalEntry.last.created_at
     t0 = t1 - 1.month
-  
+
     @cps.params = {"emotions" => {"happy" => 1, "sad" => 0}}
     expect(@cps.emotion_params).to eq [happy]
   end

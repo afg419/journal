@@ -9,8 +9,8 @@ class SuicidalEntryClassifier
   end
 
   def troubled_past_week?
-    entry_data = JournalEntry.last.prior_week_entries.net_data
-    4*entry_data["content"] + 2*entry_data["happy"] < entry_data["sad"] + entry_data["angry"] + entry_data["anxious"]
+    entry_data = Hash.new(0).merge(JournalEntry.last.prior_week_entries.net_data)
+    4 * entry_data["content"] + 2*entry_data["happy"] < entry_data["sad"] + entry_data["angry"] + entry_data["anxious"]
   end
 
   def troubled_classification?
