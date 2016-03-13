@@ -5,7 +5,7 @@ class ChartService
     @user = user
     @id = user.id
     @colors = []
-    @dates = dates || {start: ,end:  }
+    @dates = dates
     @emotion_data = {@id => []}
     @opts = {
       title: "Emotions over Time",
@@ -14,10 +14,6 @@ class ChartService
       x_max: nil,
       size: "large"
     }.merge(opts)
-  end
-
-  def default_start
-
   end
 
   def get_emotion_data_from_user(start_time = nil, end_time = nil)
