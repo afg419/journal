@@ -29,7 +29,7 @@
 #
 #       page.find(".submit-entry").click
 #       sleep(3)
-#       binding.pry
+#       
 #     end
 #   end
 # end

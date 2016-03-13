@@ -60,7 +60,7 @@ RSpec.describe ReflectiveSimilarity, type: :model do
     t0 = DateTime.now
     t1 = t0 + 1.day
     t2 = t0 + 3.day
-    binding.pry
+    
     extracted_scores =  [{:x => t2.to_i, :y=>0},
                          {:x => t1.to_i, :y=>1},
                          {:x => t0.to_i, :y=>0}].reverse
