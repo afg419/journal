@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe ReflectiveSimilarity, type: :model do
   before :each do
     seed_emotions_user
-    # @rs = ReflectiveSimilarity.new
   end
 
   it "extracts time scores from scores" do
@@ -58,30 +57,31 @@ RSpec.describe ReflectiveSimilarity, type: :model do
   end
 
   it "translates and scales extracted scores" do
-    t0 = Time.now
+    t0 = DateTime.now
     t1 = t0 + 1.day
     t2 = t0 + 3.day
 
-    extracted_scores = [ {:x=>t2.to_i, :y=>0},
-                         {:x=>t1.to_i, :y=>1},
-                         {:x=>t0.to_i, :y=>0}].reverse
+    extracted_scores =  [{:x => t2.to_i, :y=>0},
+                         {:x => t1.to_i, :y=>1},
+                         {:x => t0.to_i, :y=>0}].reverse
 
     rs = ReflectiveSimilarity.new(nil, 3)
 
     reply = rs.translate_scale_extracted_scores(extracted_scores, t0.to_i).sort_by{|score| score[:x]}
-    expect(reply.first[:x]).to eq 0
-    expect(reply.first[:y]).to eq 0
+
+    expect(reply.first[:x].round(1)).to eq 0
+    expect(reply.first[:y].round(1)).to eq 0
     expect(reply[1][:x]).to eq 1/3.0
-    expect(reply[1][:y]).to eq 1
-    expect(reply.last[:x]).to eq 1
-    expect(reply.last[:y]).to eq 0
+    expect(reply[1][:y].round(1)).to eq 1
+    expect(reply.last[:x].round(1)).to eq 1
+    expect(reply.last[:y].round(1)).to eq 0
   end
 
   it "translates scores to translated piece-wise linear" do
     t0 = Time.now
     t1 = t0 + 1.day
     t2 = t0 + 3.day
-    
+
     scores =  [{:created_at=>t2.to_i, :score=>0, tag: "title2"},
                {:created_at=>t1.to_i, :score=>1, tag: "title1"},
                {:created_at=>t0.to_i, :score=>0, tag: "title0"}].reverse
@@ -93,10 +93,10 @@ RSpec.describe ReflectiveSimilarity, type: :model do
     # the y value of the last time.
     expect(plc.class).to eq Proc
     expect(plc[0]).to eq 0
-    expect(plc[1/6.0].round(2)).to eq 0.5
+    expect(plc[1/6.0].round(1)).to eq 0.5
     expect(plc[(1/3.0)]).to eq 1
-    expect(plc[(2/3.0)].round(2)).to eq 0.5
-    expect(plc[1]).to eq 0
+    expect(plc[(2/3.0)].round(1)).to eq 0.5
+    expect(plc[1].round(1)).to eq 0
   end
 
   it "translates an emp, interval, and user, to a collection of curves" do

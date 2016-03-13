@@ -1,10 +1,11 @@
 class ChartService
-  attr_reader :emotion_data, :colors, :id, :user, :opts
+  attr_reader :emotion_data, :colors, :id, :user, :opts, :dates
 
-  def initialize(user, opts = {})
+  def initialize(user, opts = {}, dates = {})
     @user = user
     @id = user.id
     @colors = []
+    @dates = dates
     @emotion_data = {@id => []}
     @opts = {
       title: "Emotions over Time",
@@ -52,6 +53,10 @@ class ChartService
     f.legend(align: 'right', verticalAlign: 'top', y: 75, x: -50, layout: 'vertical', backgroundColor: "rgba(75,75,75,0)" , itemStyle: {
       color: '#EAD9C3'})
     f.chart({defaultSeriesType: "line", backgroundColor: "rgba(0,0,0,0.65)"})
+    f.plotOptions({
+                        dataLabels: { enabled: true},
+               enableMouseTracking: true
+                          })
   end
 
   def relabel(scores)
@@ -69,5 +74,12 @@ class ChartService
     else
       dt
     end
+  end
+
+  def populate_overall_chart(date_range)
+    if user.journal_entries?
+      get_emotion_data_from_user(date_range[:start], date_range[:end])
+    end
+    render_dashboard_plot
   end
 end

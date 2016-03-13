@@ -25,15 +25,4 @@ class BayesSuicideClassifier
       "troubled" => :train_troubled
     }
   end
-
-  # def train_on_db
-  #   classy = Classifier::Bayes.new 'ok', 'troubled'
-  #   classy.categories = WatchClassifier.first.categories
-  #   classy
-  # end
 end
-
-# class Classifier::Bayes
-#   attr_reader :total_words, :categories
-#   attr_accessor :category_counts
-# end

@@ -4,26 +4,28 @@ class DashboardsController < ApplicationController
   end
 
   def index
-    cs = ChartService.new(current_user)
-    if current_user.journal_entries?
-      cs.get_emotion_data_from_user(cps.datetime_params[0], cps.datetime_params[1])
-    end
-    @chart = cs.render_dashboard_plot
-
-    if cps.comparison_graph?
-      ccs = ComparisonChartService.new(current_user,
-                                        params["emotions"]["days"].to_i,
-                                        cps.emotion_params
-                                      )
-      @chart2 = ccs.populate_current_chart.render_dashboard_plot
-      @chart3 = ccs.populate_target_chart.render_dashboard_plot
-    end
+    @chart = cs.populate_overall_chart(dates_for_overall_chart)
+    @chart2, @chart3 = ccs.populate_comparison_charts
     render layout: 'wide',  :locals => {:background => "dashboard3"}
   end
 
-  private
+private
 
   def cps
     @cps ||= ChartParamsService.new(current_user, params)
+  end
+
+  def cs
+    @cs ||= ChartService.new(current_user, dates_for_overall_chart)
+  end
+
+  def ccs
+    @ccs ||= ComparisonChartService.new(current_user,
+                                        cps.interval_params,
+                                        cps.emotion_params)
+  end
+
+  def dates_for_overall_chart
+    cps.datetime_params
   end
 end

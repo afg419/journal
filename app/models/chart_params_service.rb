@@ -12,15 +12,15 @@ class ChartParamsService
       start_date = Time.strptime(start, "%m/%d/%Y")
       end_date =  Time.strptime(finish, "%m/%d/%Y")
     else
-      end_date =  current_user.last_entry_date
+      end_date =  current_user.last_entry_date || Time.now
       start_date = end_date - 1.month
     end
-      [start_date, end_date]
+    {start: start_date, end: end_date}
   end
 
   def comparison_graph?
                    !!params["emotions"] &&
-    params["emotions"]["days"].to_i > 0 &&
+                    interval_params > 0 &&
                  !emotion_params.empty? && current_user.has_journal_entries?
   end
 
@@ -30,5 +30,9 @@ class ChartParamsService
         current_user.active_emotion_prototypes.find{|emp| emp.name == emotion}
       end
     end.compact
+  end
+
+  def interval_params
+    (params["emotions"] && params["emotions"]["days"]).to_i
   end
 end

@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
     user = User.find_or_create_by(email: opts["email"])
     user.name = opts["name"] if opts["name"]
     user.permission_id = opts["permission_id"] if opts["permission_id"]
-    user.emotion_prototypes = User.basic_emotion_prototypes if user.emotion_prototypes.empty?
+    user.emotion_prototypes = User.basic_emotion_prototypes.order(:id) if user.emotion_prototypes.empty?
     user.save
     user
   end
