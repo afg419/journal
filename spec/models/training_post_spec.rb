@@ -23,7 +23,7 @@ RSpec.describe TrainingPost, type: :model do
     VCR.use_cassette 'mining-multi-from-all' do
       TrainingPost.get_training_posts("all","",2,"ok")
 
-      expect(TrainingPost.count).to eq 20
+      expect(TrainingPost.count).to eq 21
 
       contents = TrainingPost.all.map {|x| x.entry}
 
