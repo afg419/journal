@@ -72,6 +72,7 @@ RSpec.describe User, type: :model do
   it "gets scores for emotion_prototype" do
     seed_emotions_user
     mock_login
+
     create_journal_post([3,2,0], "post1", Time.now)
     create_journal_post([6,1,2], "post2", Time.now)
     reply = @user.scores_for(@user.emotion_prototypes[0], Time.now - 1.day, Time.now).map {|score|
