@@ -42,7 +42,6 @@ RSpec.describe ChartService, type: :model do
     @cs = ChartService.new(@user)
 
     data = @cs.get_emotion_data_from_user.emotion_data
-    binding.pry
     expect(data[@user.id]["happy"][:scores].first[:score]).to eq 4
     expect(data[@user.id]["happy"][:scores][1][:score]).to eq 3
 

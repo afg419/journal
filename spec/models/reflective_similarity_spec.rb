@@ -57,17 +57,18 @@ RSpec.describe ReflectiveSimilarity, type: :model do
   end
 
   it "translates and scales extracted scores" do
-    t0 = Time.now
+    t0 = DateTime.now
     t1 = t0 + 1.day
     t2 = t0 + 3.day
-
-    extracted_scores = [ {:x=>t2.to_i, :y=>0},
-                         {:x=>t1.to_i, :y=>1},
-                         {:x=>t0.to_i, :y=>0}].reverse
+    binding.pry
+    extracted_scores =  [{:x => t2.to_i, :y=>0},
+                         {:x => t1.to_i, :y=>1},
+                         {:x => t0.to_i, :y=>0}].reverse
 
     rs = ReflectiveSimilarity.new(nil, 3)
 
     reply = rs.translate_scale_extracted_scores(extracted_scores, t0.to_i).sort_by{|score| score[:x]}
+
     expect(reply.first[:x].round(1)).to eq 0
     expect(reply.first[:y].round(1)).to eq 0
     expect(reply[1][:x]).to eq 1/3.0
