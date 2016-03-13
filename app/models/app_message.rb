@@ -1,5 +1,7 @@
 class AppMessage < ActiveRecord::Base
   belongs_to :user
+  serialize :links, Hash
+
 
   def self.national_suicide_prevention_hotline
     "Everyone feels down sometimes.  If you feel you may be a danger to" +
@@ -7,22 +9,20 @@ class AppMessage < ActiveRecord::Base
     " Hotline at 1 (800) 273-8255."
   end
 
-  def self.google_therapy_search
-    "Everyone feels down sometimes, but help can be just one click away. Would you like to explore local therapy and counselling options? <br>" +
-    "Link for local counselors: <a href= >Counselors</a><br>" +
-    "Link for local suicide services: <a href='https://www.google.com/#q=suicide+services+near+me'>Help</a>"
+  def self.help_message
+    "Everyone feels down sometimes, but help can be just one click away. Would you like to explore local therapy and counselling options?"
   end
 
-  def links
+  def self.help_links
     {
-      counselors: Proc.new{ link_to "Counselors", 'https://www.google.com/#q=counselling+near+me'}
-      suicide_services: Proc.new{ link_to "Help", 'https://www.google.com/#q=suicide+services+near+me'}
+      "Link for local counselors" => "https://www.google.com/#q=counselling+near+me",
+      "Link for local suicide services" => "https://www.google.com/#q=suicide+services+near+me"
     }
   end
 
   def self.current_message
     note = last
-    note.message if note && note.status == 1
+    note if note && note.status == 1
   end
 
   def self.set_all_inactive

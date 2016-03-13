@@ -4,7 +4,9 @@ class Api::V1::AlertAnalyticsController < ApplicationController
     sc = SuicidalEntryClassifier.new(classifier_params)
     reply = sc.troubled?
     if reply
-      current_user.app_messages.create(message: AppMessage.google_therapy_search, status: 1)
+      current_user.app_messages.create(message: AppMessage.help_message,
+                                       status: 1,
+                                       links: AppMessage.help_links)
     end
     render json: {reply: reply}
   end

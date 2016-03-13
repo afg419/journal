@@ -3,9 +3,18 @@
   <h2>Welcome <%= current_user.name %> </h2>
 </div>
 <br><br><br>
-<div class="container <%='message-box' if current_user.app_messages.current_message %>">
-  <%= current_user.app_messages.current_message %>
-</div>
+
+<% if note = current_user.app_messages.current_message  %>
+  <div class="container message-box">
+    <% note = current_user.app_messages.current_message %>
+    <%= note.message %><br>
+    <ul>
+      <% note.links.each do |title, href| %>
+      <li><%= link_to title, href, style: "color:white", target: "_blank" %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <div class="new-entry">
   <%= link_to "New Journal Entry", new_journal_entry_path, class: 'btn btn-default' %>
