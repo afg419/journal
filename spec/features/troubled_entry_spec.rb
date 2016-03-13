@@ -29,7 +29,6 @@
 #
 #       page.find(".submit-entry").click
 #       sleep(3)
-#
 #     end
 #   end
 # end

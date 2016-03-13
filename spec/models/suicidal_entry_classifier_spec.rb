@@ -19,7 +19,7 @@ RSpec.describe SuicidalEntryClassifier, type: :model do
     expect(sec2.troubled_classification?).to eq false
   end
 
-  it "uses sentimental analysis to help classify" do
+  pending "uses sentimental analysis to help classify" do
     sec = SuicidalEntryClassifier.new(mock_classifier_params("body" => "I hate life"))
     expect(sec.troubled_sentiment?)
 
