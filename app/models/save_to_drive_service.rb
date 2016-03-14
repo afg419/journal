@@ -6,6 +6,10 @@ class SaveToDriveService
     @google_service = google_service
   end
 
+  def create_journal_folder
+    google_service.create_file("reflection-journal")
+  end
+
   def create_file(tag)
     google_service.create_file(tag)
   end
@@ -22,5 +26,11 @@ class SaveToDriveService
     file = create_file(tag)
     buffer = StringIO.new(body)
     send_to_drive(file, buffer)
+  end
+
+  def create_journal_folder_on_drive
+    folder = create_journal_folder
+    folder.mime_type = "application/vnd.google-apps.folder"
+    google_service.drive.insert_file(folder)
   end
 end
