@@ -12,7 +12,7 @@ class SelfReflection
 
   def distances_between_current_interval_and_past_intervals
     tcbi = refl.translated_curves_by_interval
-    current = tcbi[-1][0]
+    current = tcbi[-1][0] if tcbi[-1]
     i=0
     tcbi[0..-2].map do |c|
       puts "#{i}"

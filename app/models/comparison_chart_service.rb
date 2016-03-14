@@ -91,7 +91,7 @@ class ComparisonChartService
 
   def similarity_to_current_interval(emotion_prototype)
     sr = SelfReflection.new(user, interval, emotion_prototype)
-    comp = sr.distances_between_current_interval_and_past_intervals << [1000,0]
+    comp = sr.distances_between_current_interval_and_past_intervals << [1000,Time.now]
   end
 
   def emotion_names
