@@ -52,5 +52,4 @@ class User < ActiveRecord::Base
      latest_possible_date_for_comparison = last_entry_date - interval.day - (interval/3.0).day
      first_entry_date < latest_possible_date_for_comparison
   end
-
 end

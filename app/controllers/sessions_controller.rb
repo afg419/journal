@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
 private
 
   def create_journal_folder_if_none
-    if current_user.folder_id == "No Folder" || no_folder_on_drive
+    if no_folder_id || no_folder_matching_folder_id
       user, id = current_user, current_user.id
       folder_maker = SaveToDriveService.new(@service, id)
       reply = folder_maker.create_journal_folder_on_drive
@@ -45,7 +45,13 @@ private
     session[:user_info] = @service.user_info
   end
 
-  def no_folder_on_drive
-    
+  def no_folder_id
+    current_user.folder_id == "No Folder"
+  end
+
+  def no_folder_matching_folder_id
+    folders = @service.drive.list_files(q: "title contains 'reflection-journal'").items
+    folder_id = current_user.folder_id
+    !folders.any?{|x| x.id == folder_id}
   end
 end
