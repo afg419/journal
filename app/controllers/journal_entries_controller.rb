@@ -33,22 +33,3 @@ private
     buffer.read
   end
 end
-
-# # # Download a file's content
-# # #
-# # # @param [Google::Apis::DriveV2::DriveService] client
-# # #   Authorized client instance
-# # # @param [Google::Apis::DriveV2::File]
-# # #   Drive File instance
-# # # @return
-# # #   File's content if successful, nil otherwise
-# def download_file(client, file)
-#   buffer = StringIO.new
-#   begin
-#     client.get_file(file.id, download_dest: buffer)
-#     return buffer.to_s
-#   rescue Google::Apis::Error => e
-#     puts "Unable to download file: #{e.message}"
-#     return nil
-#   end
-# end

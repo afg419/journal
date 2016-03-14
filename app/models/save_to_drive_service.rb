@@ -10,27 +10,17 @@ class SaveToDriveService
     google_service.create_file(tag)
   end
 
-  def save_file_locally(body)
-    File.write(file_name, body)
-  end
-
-  def send_to_drive(file)
+  def send_to_drive(file, buffer)
     google_service.drive.insert_file(
         file,
-        upload_source: file_name,
+        upload_source: buffer,
         content_type: 'text/plain'
       )
   end
 
-  def delete_local_file
-    File.delete(file_name)
-  end
-
   def post_file_to_drive(tag, body)
     file = create_file(tag)
-    save_file_locally(body)
-    reply = send_to_drive(file)
-    delete_local_file
-    reply
+    buffer = StringIO.new(body)
+    send_to_drive(file, buffer)
   end
 end
