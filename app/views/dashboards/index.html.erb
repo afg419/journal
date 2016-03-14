@@ -65,6 +65,9 @@ $(function() {
     <br>
   </div>
   <div class="row">
+    <div class="" style="color:white; text-align:center; font-size:large">
+      <%= flash[:comparison_error] %>
+    </div>
     <div class="col-md-6">
       <%= high_chart("some_other_id", @chart2) if @chart2 %>
     </div>
@@ -74,6 +77,8 @@ $(function() {
   </div>
 </div>
 
-
+<div class="">
+  <br><br><br>
+</div>
 
 <br>
