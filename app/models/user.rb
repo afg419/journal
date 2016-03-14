@@ -47,4 +47,10 @@ class User < ActiveRecord::Base
   def has_journal_entries?
     !journal_entries.empty?
   end
+
+  def has_sufficient_journal_entries?(interval)
+     latest_possible_date_for_comparison = last_entry_date - interval.day - (interval/3.0).day
+     first_entry_date < latest_possible_date_for_comparison
+  end
+
 end

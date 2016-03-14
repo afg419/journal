@@ -14,9 +14,11 @@
 
 <body class="application-body-<%=background%>">
   <%= render(partial: '/navs/logged_in_nav', :locals => {:navbar => background} ) if current_user %>
-  <% flash.each do |k,v| %>
-    <%= v %>
-  <% end %>
+  <div class="" style="text-align:right">
+    <%# flash.each do |k,v| %>
+    <%#= v %>
+    <%# end %>
+  </div>
   <%= yield %>
 </body>
 </html>

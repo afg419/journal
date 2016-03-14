@@ -8,7 +8,7 @@ class ChartParamsService
   end
 
   def datetime_params
-    if (start = params["start_date"]) && (finish = params["end_date"])
+    if (start = params["start_date"]) && (finish = params["end_date"]) && !start.strip.empty? && !finish.strip.empty?
       start_date = Time.strptime(start, "%m/%d/%Y")
       end_date =  Time.strptime(finish, "%m/%d/%Y")
     else

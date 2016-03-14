@@ -6,6 +6,9 @@ class DashboardsController < ApplicationController
   def index
     @chart = cs.populate_overall_chart(dates_for_overall_chart)
     @chart2, @chart3 = ccs.populate_comparison_charts
+    if @chart3.nil? && params[:emotions]
+      flash.now[:comparison_error] = ccs.graph_fail_reasons
+    end
     render layout: 'wide',  :locals => {:background => "dashboard3"}
   end
 

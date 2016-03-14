@@ -57,7 +57,7 @@ class ReflectiveSimilarity
     initial = user.first_entry_date
     sbi = scores_by_interval.reject{|x| x.count == 0}
     sbi.each_index.map do |i|
-      puts "#{i} of 300"
+      puts "#{i}"
       [scores_to_translated_curve(sbi[i], initial + i.days),sbi[i].first[:created_at]]
     end
   end

@@ -74,7 +74,16 @@ class ComparisonChartService
   end
 
   def render_comparison_graph?
-    interval > 0 && !emotion_prototypes.empty? && user.has_journal_entries?
+    interval > 0 && !emotion_prototypes.empty? && user.has_journal_entries? && user.has_sufficient_journal_entries?(interval)
+  end
+
+  def graph_fail_reasons
+    {
+      true => "",
+     (interval <= 0) => "Please select a positive number of days back to compare.",
+     (emotion_prototypes.empty?) => "Please select an emotion or emotions to compare.",
+     (!user.has_sufficient_journal_entries?(interval)) => "Sorry, the interval you've selected exceeds the range of times of your journal entry submissions.  Please try a smaller interval."
+    }[true]
   end
 
   def current_time_interval_js
@@ -91,7 +100,7 @@ class ComparisonChartService
 
   def similarity_to_current_interval(emotion_prototype)
     sr = SelfReflection.new(user, interval, emotion_prototype)
-    comp = sr.distances_between_current_interval_and_past_intervals << [1000,0]
+    comp = sr.distances_between_current_interval_and_past_intervals << [1000,Time.now]
   end
 
   def emotion_names
