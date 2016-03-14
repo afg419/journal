@@ -12,11 +12,9 @@ class Auth
   def set_auth_client(opts)
     reply = JSON.parse(ENV["GOOGLE_API_OPTIONS"])
     client_secrets = Google::APIClient::ClientSecrets.new(reply)
-    # client_secrets = Google::APIClient::ClientSecrets.load 'google/api_client/client_secrets.json'
     auth_client = client_secrets.to_authorization
     auth_client.update!(
-      :scope => 'https://www.googleapis.com/auth/drive'
-      # :redirect_uri => 'http://localhost:3000/google_api/auth'
+      :scope => 'https://www.googleapis.com/auth/drive.file'
     )
     auth_client.code, auth_client.access_token = opts["code"], opts["access_token"]
     auth_client

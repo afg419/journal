@@ -7,9 +7,6 @@ namespace :test do
     s = Sentimental.new(0)
 
 
-    #
-
-
     j1 = "Forgot to do this before I started coding today. Actually had a dream last night (really more of a nightmare) that I couldn't authorize OAuth and failed the project. Clearly having some sort of anxiety about this whole thing. Today has gone in waves - I am using a really thorough testing/organizational approach to this project which is making me a) feel really solid on the parts I have implemented so far but b) freak out about how I'm not as far as everyone else. Which is kind of silly because everyone is doing something different so I really can't compare...but I still feel behind as fuck. Focusing on writing waffle cards and knocking functionality out bit by bit. Also need to figure out what API im actually consuming. Hah."
 
     j2 = "Went for a ride with Brant today. It occurred to me then, that I have been anxious and upset about the possibility I would never have someone like Sarah in my life, and how much I missed her. I shared this. I've felt sad all afternoon, but I am content."
