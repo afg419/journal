@@ -29,7 +29,6 @@ private
   def file_from_drive(file_name)
     buffer = StringIO.new
     google_service.drive.get_file(@entry.file_id, download_dest: buffer)
-    binding.pry
     buffer.rewind
     buffer.read
   end

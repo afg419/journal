@@ -28,11 +28,11 @@ class GoogleService
     }
   end
 
-  def create_folder(title)
-    Google::Apis::DriveV2::File.new(title: title, mime_type: "application/vnd.google-apps.folder")    
-  end
+  # def create_folder(title)
+  #   Google::Apis::DriveV2::File.new(title: title, mime_type: "application/vnd.google-apps.folder")
+  # end
 
   def create_file(title)
-    Google::Apis::DriveV2::File.new(title: title, folder: "journal")
+    Google::Apis::DriveV2::File.new(title: title)
   end
 end

@@ -28,7 +28,7 @@ RSpec.describe ReflectiveSimilarity, type: :model do
 
   it "converts scores to intervals" do
     mock_login
-    now = Time.now
+    now = Time.new("2016-03-19 17:35:38 -0600")
     t0 = now - 15.day
     t1 = now - 12.day
     t2 = now - 9.day
