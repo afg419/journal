@@ -76,9 +76,9 @@ class ChartService
     end
   end
 
-  def populate_overall_chart(date_range)
+  def populate_overall_chart
     if user.journal_entries?
-      get_emotion_data_from_user(date_range[:start], date_range[:end])
+      get_emotion_data_from_user(dates[:start], dates[:end])
     end
     render_dashboard_plot
   end

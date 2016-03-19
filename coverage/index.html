@@ -14,7 +14,7 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2016-03-19T17:39:41-06:00">2016-03-19T17:39:41-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2016-03-19T17:56:26-06:00">2016-03-19T17:56:26-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,15 +25,15 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         14.34
+         14.23
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>29</b> files in total.
-    <b>572</b> relevant lines. 
-    <span class="green"><b>566</b> lines covered</span> and
+    <b>574</b> relevant lines. 
+    <span class="green"><b>568</b> lines covered</span> and
     <span class="red"><b>6</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -93,11 +93,11 @@
       <tr>
         <td class="strong"><a href="#a2b62427816e4bbd7789ed9b55d03074db45a115" class="src_link" title="app/controllers/dashboards_controller.rb">app/controllers/dashboards_controller.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>34</td>
-        <td>18</td>
-        <td>18</td>
+        <td>38</td>
+        <td>20</td>
+        <td>20</td>
         <td>0</td>
-        <td>5.6</td>
+        <td>4.8</td>
       </tr>
       
       <tr>
@@ -167,7 +167,7 @@
         <td>21</td>
         <td>21</td>
         <td>0</td>
-        <td>7.0</td>
+        <td>5.4</td>
       </tr>
       
       <tr>
@@ -327,7 +327,7 @@
         <td>34</td>
         <td>33</td>
         <td>1</td>
-        <td>12.9</td>
+        <td>13.0</td>
       </tr>
       
       <tr>
@@ -353,15 +353,15 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         3.46
+         3.38
        </span>
     </span> hits/line)
   </h2>
   <a name="Controllers"></a>
   <div>
     <b>8</b> files in total.
-    <b>133</b> relevant lines. 
-    <span class="green"><b>133</b> lines covered</span> and
+    <b>135</b> relevant lines. 
+    <span class="green"><b>135</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -421,11 +421,11 @@
       <tr>
         <td class="strong"><a href="#a2b62427816e4bbd7789ed9b55d03074db45a115" class="src_link" title="app/controllers/dashboards_controller.rb">app/controllers/dashboards_controller.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>34</td>
-        <td>18</td>
-        <td>18</td>
+        <td>38</td>
+        <td>20</td>
+        <td>20</td>
         <td>0</td>
-        <td>5.6</td>
+        <td>4.8</td>
       </tr>
       
       <tr>
@@ -470,7 +470,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         17.64
+         17.57
        </span>
     </span> hits/line)
   </h2>
@@ -532,7 +532,7 @@
         <td>21</td>
         <td>21</td>
         <td>0</td>
-        <td>7.0</td>
+        <td>5.4</td>
       </tr>
       
       <tr>
@@ -692,7 +692,7 @@
         <td>34</td>
         <td>33</td>
         <td>1</td>
-        <td>12.9</td>
+        <td>13.0</td>
       </tr>
       
       <tr>
@@ -1653,8 +1653,8 @@
     <h3>app/controllers/dashboards_controller.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>18</b> relevant lines. 
-      <span class="green"><b>18</b> lines covered</span> and
+      <b>20</b> relevant lines. 
+      <span class="green"><b>20</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -1701,25 +1701,25 @@
         <li class="covered" data-hits="7" data-linenumber="7">
           <span class="hits">7</span>
           
-          <code class="ruby">    @chart = cs.populate_overall_chart(dates_for_overall_chart)</code>
+          <code class="ruby">    @chart = overall_chart_service.populate_overall_chart(dates_for_overall_chart)</code>
         </li>
       
         <li class="covered" data-hits="7" data-linenumber="8">
           <span class="hits">7</span>
           
-          <code class="ruby">    @chart2, @chart3 = ccs.populate_comparison_charts</code>
+          <code class="ruby">    @chart2, @chart3 = comparison_chart_service.populate_comparison_charts</code>
         </li>
       
         <li class="covered" data-hits="7" data-linenumber="9">
           <span class="hits">7</span>
           
-          <code class="ruby">    if @chart3.nil? &amp;&amp; params[:emotions]</code>
+          <code class="ruby">    if chart_fail?</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="10">
           <span class="hits">2</span>
           
-          <code class="ruby">      flash.now[:comparison_error] = ccs.graph_fail_reasons</code>
+          <code class="ruby">      flash.now[:comparison_error] = comparison_chart_service.graph_fail_reasons</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="11">
@@ -1764,8 +1764,8 @@
           <code class="ruby">  def cps</code>
         </li>
       
-        <li class="covered" data-hits="28" data-linenumber="18">
-          <span class="hits">28</span>
+        <li class="covered" data-hits="21" data-linenumber="18">
+          <span class="hits">21</span>
           
           <code class="ruby">    @cps ||= ChartParamsService.new(current_user, params)</code>
         </li>
@@ -1785,13 +1785,13 @@
         <li class="covered" data-hits="1" data-linenumber="21">
           <span class="hits">1</span>
           
-          <code class="ruby">  def cs</code>
+          <code class="ruby">  def overall_chart_service</code>
         </li>
       
         <li class="covered" data-hits="7" data-linenumber="22">
           <span class="hits">7</span>
           
-          <code class="ruby">    @cs ||= ChartService.new(current_user, dates_for_overall_chart)</code>
+          <code class="ruby">    @cs ||= ChartService.new(current_user)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="23">
@@ -1809,7 +1809,7 @@
         <li class="covered" data-hits="1" data-linenumber="25">
           <span class="hits">1</span>
           
-          <code class="ruby">  def ccs</code>
+          <code class="ruby">  def comparison_chart_service</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="26">
@@ -1845,13 +1845,13 @@
         <li class="covered" data-hits="1" data-linenumber="31">
           <span class="hits">1</span>
           
-          <code class="ruby">  def dates_for_overall_chart</code>
+          <code class="ruby">  def chart_fail?</code>
         </li>
       
-        <li class="covered" data-hits="14" data-linenumber="32">
-          <span class="hits">14</span>
+        <li class="covered" data-hits="7" data-linenumber="32">
+          <span class="hits">7</span>
           
-          <code class="ruby">    cps.datetime_params</code>
+          <code class="ruby">    @chart3.nil? &amp;&amp; params[:emotions]</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="33">
@@ -1861,6 +1861,30 @@
         </li>
       
         <li class="never" data-hits="" data-linenumber="34">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="35">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def dates_for_overall_chart</code>
+        </li>
+      
+        <li class="covered" data-hits="7" data-linenumber="36">
+          <span class="hits">7</span>
+          
+          <code class="ruby">    cps.datetime_params</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="37">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="38">
           
           
           <code class="ruby">end</code>
@@ -3048,20 +3072,20 @@
           <code class="ruby">  def datetime_params</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="11">
-          <span class="hits">16</span>
+        <li class="covered" data-hits="9" data-linenumber="11">
+          <span class="hits">9</span>
           
           <code class="ruby">    if (start = params[&quot;start_date&quot;]) &amp;&amp; (finish = params[&quot;end_date&quot;]) &amp;&amp; !start.strip.empty? &amp;&amp; !finish.strip.empty?</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="12">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="2" data-linenumber="12">
+          <span class="hits">2</span>
           
           <code class="ruby">      start_date = Time.strptime(start, &quot;%m/%d/%Y&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="13">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="2" data-linenumber="13">
+          <span class="hits">2</span>
           
           <code class="ruby">      end_date =  Time.strptime(finish, &quot;%m/%d/%Y&quot;)</code>
         </li>
@@ -3072,14 +3096,14 @@
           <code class="ruby">    else</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="15">
-          <span class="hits">13</span>
+        <li class="covered" data-hits="7" data-linenumber="15">
+          <span class="hits">7</span>
           
           <code class="ruby">      end_date =  current_user.last_entry_date || Time.now</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="16">
-          <span class="hits">13</span>
+        <li class="covered" data-hits="7" data-linenumber="16">
+          <span class="hits">7</span>
           
           <code class="ruby">      start_date = end_date - 1.month</code>
         </li>
@@ -3090,8 +3114,8 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="18">
-          <span class="hits">16</span>
+        <li class="covered" data-hits="9" data-linenumber="18">
+          <span class="hits">9</span>
           
           <code class="ruby">    {start: start_date, end: end_date}</code>
         </li>
@@ -3162,8 +3186,8 @@
           <code class="ruby">      if value.to_i == 1</code>
         </li>
       
-        <li class="covered" data-hits="25" data-linenumber="30">
-          <span class="hits">25</span>
+        <li class="covered" data-hits="21" data-linenumber="30">
+          <span class="hits">21</span>
           
           <code class="ruby">        current_user.active_emotion_prototypes.find{|emp| emp.name == emotion}</code>
         </li>
@@ -4257,19 +4281,19 @@
         <li class="covered" data-hits="2" data-linenumber="83">
           <span class="hits">2</span>
           
-          <code class="ruby">     (interval &lt;= 0) =&gt; &quot;Please select a positive number of days back to compare.&quot;,</code>
+          <code class="ruby">      (interval &lt;= 0) =&gt; &quot;Please select a positive number of days back to compare.&quot;,</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="84">
           <span class="hits">2</span>
           
-          <code class="ruby">     (emotion_prototypes.empty?) =&gt; &quot;Please select an emotion or emotions to compare.&quot;,</code>
+          <code class="ruby">      (emotion_prototypes.empty?) =&gt; &quot;Please select an emotion or emotions to compare.&quot;,</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="85">
           <span class="hits">2</span>
           
-          <code class="ruby">     (!user.has_sufficient_journal_entries?(interval)) =&gt; &quot;Sorry, the interval you&#39;ve selected exceeds the range of times of your journal entry submissions.  Please try a smaller interval.&quot;</code>
+          <code class="ruby">      (!user.has_sufficient_journal_entries?(interval)) =&gt; &quot;Sorry, the interval you&#39;ve selected exceeds the range of times of your journal entry submissions.  Please try a smaller interval.&quot;</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="86">
@@ -7071,7 +7095,7 @@
         <li class="covered" data-hits="1" data-linenumber="20">
           <span class="hits">1</span>
           
-          <code class="ruby">  def troubled_sentiment? #toggled neutral+positive to true, sentimental not doing what I want atm.</code>
+          <code class="ruby">  def troubled_sentiment?</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="21">
@@ -7434,8 +7458,8 @@
           <code class="ruby">  def set_emotion_prototype(status, name)</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="30">
-          <span class="hits">13</span>
+        <li class="covered" data-hits="22" data-linenumber="30">
+          <span class="hits">22</span>
           
           <code class="ruby">    emp = user_emotion_prototypes.find{|x| x.emotion_prototype.name == name}</code>
         </li>
@@ -7494,8 +7518,8 @@
           <code class="ruby">  def last_entry_date</code>
         </li>
       
-        <li class="covered" data-hits="31" data-linenumber="40">
-          <span class="hits">31</span>
+        <li class="covered" data-hits="25" data-linenumber="40">
+          <span class="hits">25</span>
           
           <code class="ruby">    (@led ||= journal_entries.order(:created_at).last.created_at) unless journal_entries.to_a.empty?</code>
         </li>

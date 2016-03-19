@@ -80,9 +80,9 @@ class ComparisonChartService
   def graph_fail_reasons
     {
       true => "",
-     (interval <= 0) => "Please select a positive number of days back to compare.",
-     (emotion_prototypes.empty?) => "Please select an emotion or emotions to compare.",
-     (!user.has_sufficient_journal_entries?(interval)) => "Sorry, the interval you've selected exceeds the range of times of your journal entry submissions.  Please try a smaller interval."
+      (interval <= 0) => "Please select a positive number of days back to compare.",
+      (emotion_prototypes.empty?) => "Please select an emotion or emotions to compare.",
+      (!user.has_sufficient_journal_entries?(interval)) => "Sorry, the interval you've selected exceeds the range of times of your journal entry submissions.  Please try a smaller interval."
     }[true]
   end
 
