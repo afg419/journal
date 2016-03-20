@@ -25,11 +25,15 @@ class ChartParamsService
   end
 
   def emotion_params
-    params["emotions"].to_a.map do |emotion, value|
-      if value.to_i == 1
-        current_user.active_emotion_prototypes.find{|emp| emp.name == emotion}
-      end
-    end.compact
+    if params["emotions"]
+      params["emotions"].to_a.map do |emotion, value|
+        if value.to_i == 1
+          current_user.active_emotion_prototypes.find{|emp| emp.name == emotion}
+        end
+      end.compact
+    else
+      current_user.active_emotion_prototypes
+    end
   end
 
   def interval_params

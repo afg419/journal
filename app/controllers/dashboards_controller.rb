@@ -4,7 +4,8 @@ class DashboardsController < ApplicationController
   end
 
   def index
-    @chart = overall_chart_service.populate_overall_chart
+    @chart = ocs.render_overall_chart
+    # @chart = overall_chart_service.populate_overall_chart
     @chart2, @chart3 = comparison_chart_service.populate_comparison_charts
     if chart_fail?
       flash.now[:comparison_error] = comparison_chart_service.graph_fail_reasons
@@ -13,6 +14,10 @@ class DashboardsController < ApplicationController
   end
 
 private
+
+  def ocs
+    @ocs ||= OverallChartService.new(current_user,dates_for_overall_chart)
+  end
 
   def cps
     @cps ||= ChartParamsService.new(current_user, params)
