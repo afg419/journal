@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160313204357) do
+ActiveRecord::Schema.define(version: 20160314204129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,8 +79,9 @@ ActiveRecord::Schema.define(version: 20160313204357) do
     t.string   "name"
     t.string   "email"
     t.string   "permission_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "folder_id",     default: "No Folder"
   end
 
   add_foreign_key "app_messages", "users"

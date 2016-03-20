@@ -27,9 +27,9 @@ private
   end
 
   def file_from_drive(file_name)
-    google_service.drive.get_file(@entry.file_id, download_dest: file_name)
-    file_contents = File.open(file_name, 'r').read
-    File.delete(file_name)
-    file_contents
+    buffer = StringIO.new
+    google_service.drive.get_file(@entry.file_id, download_dest: buffer)
+    buffer.rewind
+    buffer.read
   end
 end

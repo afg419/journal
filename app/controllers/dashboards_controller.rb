@@ -1,31 +1,34 @@
+
 class DashboardsController < ApplicationController
   def show
     render layout: 'wide',  :locals => {:background => "dashboard3"}
   end
 
   def index
-    @chart = cs.populate_overall_chart(dates_for_overall_chart)
-    @chart2, @chart3 = ccs.populate_comparison_charts
-    if @chart3.nil? && params[:emotions]
-      flash.now[:comparison_error] = ccs.graph_fail_reasons
+    @chart = overall_chart_service.render_overall_chart
+    @chart2, @chart3 = comparison_chart_service.render_current_and_similar_charts
+    if comparison_charts_fail?
+      flash.now[:comparison_error] = comparison_chart_service.graph_fail_reasons
     end
     render layout: 'wide',  :locals => {:background => "dashboard3"}
   end
 
 private
 
+  def overall_chart_service
+    @ocs ||= OverallChartService.new(current_user, dates_for_overall_chart)
+  end
+
+  def comparison_chart_service
+    @ccs ||= ComparisonChartService.new(current_user, cps.interval_params, cps.emotion_params)
+  end
+
   def cps
     @cps ||= ChartParamsService.new(current_user, params)
   end
 
-  def cs
-    @cs ||= ChartService.new(current_user, dates_for_overall_chart)
-  end
-
-  def ccs
-    @ccs ||= ComparisonChartService.new(current_user,
-                                        cps.interval_params,
-                                        cps.emotion_params)
+  def comparison_charts_fail?
+    !comparison_chart_service.render_comparison_graph? && params[:emotions]
   end
 
   def dates_for_overall_chart

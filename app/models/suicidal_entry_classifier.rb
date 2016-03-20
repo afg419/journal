@@ -17,7 +17,7 @@ class SuicidalEntryClassifier
     {"Ok" => false, "Troubled" => true}[bayes_classifier.classify entry_data["body"]]
   end
 
-  def troubled_sentiment? #toggled neutral+positive to true, sentimental not doing what I want atm.
+  def troubled_sentiment?
     {
       :neutral => true,
       :positive => true,

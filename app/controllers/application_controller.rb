@@ -1,4 +1,5 @@
 require 'google/apis/drive_v2'
+Dir["charts/*.rb"].each {|file| require file }
 
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
